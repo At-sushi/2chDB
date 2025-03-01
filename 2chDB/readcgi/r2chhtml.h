@@ -681,14 +681,7 @@ h1,.c{text-align:center}
 
 #endif
 
-#define R2CH_HTML_INDEX_FOOTER \
-"<p class=c>
-<a href=\"http://www.honeyline.co.jp/\"><img src=\"http://honeyline.co.jp/link/img/honey8.gif\"></a> 
-<a href=http://FRIEND.P-CLUB.COM/WEB/link.cgi/DDN2785/HREF/hp><img src=http://FRIEND.P-CLUB.COM/WEB/link.cgi/DDN2785/IMG/hp></a><br>
-どのような形の削除依頼であれ公開させていただきます
-</p>
-
-</body>"
+#define R2CH_HTML_INDEX_FOOTER ""
 
 
 /* スレインデクス用HTML */
