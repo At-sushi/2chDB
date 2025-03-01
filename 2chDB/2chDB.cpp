@@ -5,8 +5,6 @@
 std::string create_fname(const char* bbs, const char* key);
 extern int rawmode;
 
-constexpr char* DAT_DIR "../%.256s/dat/";
-
 void init();
 void testWrite(const char* bbs, const char* key, const char* source);
 const char* queryFromReadCGI(const char* bbs, const char* key);	
