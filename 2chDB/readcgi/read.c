@@ -1748,13 +1748,6 @@ int dat_read(char const *fname,
 	zz_fileSize = getFileSize(fname);
 #endif
 
-	if (zz_fileSize > MAX_FILESIZE)
-		html_error(ERROR_TOO_HUGE);
-	if (zz_fileSize < 10)
-		html_error(ERROR_NOT_FOUND); /* ƒGƒ‰[Ží•Ê‚Í•Ê‚É‚µ‚½•û‚ª‚¢‚¢‚©‚à */
-	if (*zz_ky == '.')
-		html_error(ERROR_NOT_FOUND);
-
 	nn_st = st;
 	nn_to = to;
 	nn_ls = ls;
