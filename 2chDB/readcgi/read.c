@@ -1744,9 +1744,12 @@ int dat_read(char const *fname,
 	if (BigBuffer)
 		return 0;
 #endif
-#ifdef USE_INDEX	/* USE_DIGEST */
 	zz_fileSize = getFileSize(fname);
-#endif
+
+	if (zz_fileSize > MAX_FILESIZE)
+		html_error(ERROR_TOO_HUGE);
+	if (zz_fileSize < 0)
+		html_error(ERROR_NOT_FOUND); /* ƒGƒ‰[Ží•Ê‚Í•Ê‚É‚µ‚½•û‚ª‚¢‚¢‚©‚à */
 
 	nn_st = st;
 	nn_to = to;
