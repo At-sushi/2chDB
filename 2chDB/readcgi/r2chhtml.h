@@ -1,14 +1,14 @@
-/*
- * read.cgi┌╘┌ГHTML∙■∙╙┌П■╡┌╚▐o┌╣┌╫┌Ю┌л│B
+О╩©/*
+ * read.cgiЦ│▀Ц┌┴HTMLИ┐╗Е┬├Ц┌▓Ф┼°Ц│█Е┤╨Ц│≈Ц│÷Ц┌┌Ц│╝Ц─┌
  *
- * ∙р▐W▐Ц┌л▓█┬с│B
- * │E%s┌х┌г┌л░■┌ф▐┤■т┌П∙о┌╕┌д┌м┌╒┌╞┌э┌╧┌Я(%s,%d,%ld)
- * │E▌÷┌л█s┌ж▒╠┌╞┌И┌ф┌╚┌м \<┴Э█s> ┌е┌╥│B
- * │E" ┌м \"│A┴Э█s┌м\n│A%┌м%%┌е┌╥│B
- * │E▌·│X┴Ж┌╣┌╟┌х\┌╙≈L┌Х┌э┌╥┌╙┌╩┌Й┌м┌╗┌э┌╤┌х┌╒┌е┌╥│B▐а┌Ё┌х┌╒┌е┌к│B
- * │ECGIVER┌м ""┌е┌╜┌╜┌Г┌х┌╒┌╠┌ф│B
- * │E┐R┐│┐⌠┐g┌м │^│√│`│√│^ (■╪┼p┌е)│B
- * │E┌╠┌К┌Я┌е┌Ю│A┌х┌╘┌х┌╒│B
+ * Г╥╗И⌡├Д╦┼Ц│╝ФЁ╗Ф└▐Ц─┌
+ * Ц┐╩%sЦ│╙Ц│╘Ц│╝Ф∙╟Ц│╗И═├Г∙╙Ц┌▓Е╓┴Ц│┬Ц│╕Ц│╞Ц│└Ц│▒Ц│╬Ц│⌡Ц┌⌠(%s,%d,%ld)
+ * Ц┐╩Ф╛║Ц│╝Х║▄Ц│╦Г╤ Ц│▒Ц┌▀Ц│╗Ц│█Ц│╞ \<Ф■╧Х║▄> Ц│╖Ц│≥Ц─┌
+ * Ц┐╩" Ц│╞ \"Ц─│Ф■╧Х║▄Ц│╞\nЦ─│%Ц│╞%%Ц│╖Ц│≥Ц─┌
+ * Ц┐╩Ф≥┌Ц─┘Ф─╙Ц│≈Ц│▓Ц│╙\Ц│▄Ф°┴Ц┌┼Ц│╬Ц│≥Ц│▄Ц│²Ц┌▄Ц│╞Ц│┼Ц│╬Ц│≤Ц│╙Ц│└Ц│╖Ц│≥Ц─┌Ф╤┬Ц│∙Ц│╙Ц│└Ц│╖Ц│╜Ц─┌
+ * Ц┐╩CGIVERЦ│╞ ""Ц│╖Ц│▐Ц│▐Ц┌┴Ц│╙Ц│└Ц│⌠Ц│╗Ц─┌
+ * Ц┐╩Ц┌ЁЦ┐║Ц┐ЁЦ┐┬Ц│╞ О╪▐О╪┼О╫·О╪┼О╪▐ (Е█┼Х╖▓Ц│╖)Ц─┌
+ * Ц┐╩Ц│⌠Ц┌█Ц┌⌠Ц│╖Ц┌┌Ц─│Ц│╙Ц│▀Ц│╙Ц│└Ц─┌
  */
 
 #ifndef NO_FIRST
@@ -19,18 +19,18 @@
 #define TARGET_BLANK "target=_blank"
 
 /*
- * BANNERS: ┐X┐▄┌╙√Ё┌╒⌠≥┌л┐G┐┴│[▌·┌и▐o┌И█L█░│B
+ * BANNERS: Ц┌╧Ц┐╛Ц│▄Г└║Ц│└Г╜┴Ц│╝Ц┌╗Ц┐╘Ц┐╪Ф≥┌Ц│╚Е┤╨Ц┌▀Е╨┐Е▒┼Ц─┌
  */
 #define	R2CH_HTML_NEW_BANNER \
 	"<table cellspacing=0 cellpadding=0 border=1 width=100%%><tr><td>" \
 	"<table cellspacing=0 cellpadding=0 border=0 width=100%%>" \
 	"<tr><td height=1 bgcolor=#efefef><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
 	"<tr bgcolor=#cccccc><td height=20 nowrap><font size=2>&nbsp;" \
-	"| <a href=\"http://www.maido3.com/\" class=BigLine>┌╗┌╥┌╥┌ъ</a>" \
-	"| <a href=\"http://news.kakiko.com/2chwatch/\" class=BigLine>2ch┐T│[┐o┼д▌▀▐┼</a>" \
+	"| <a href=\"http://www.maido3.com/\" class=BigLine>Ц│┼Ц│≥Ц│≥Ц┌│</a>" \
+	"| <a href=\"http://news.kakiko.com/2chwatch/\" class=BigLine>2chЦ┌╣Ц┐╪Ц┐░Г⌡ёХ╕√Ф┴─</a>" \
 	"| <a href=\"http://www.binboserver.com/\" class=BigLine>BinboServer</a>" \
 	"| <a href=\"http://www.maido3.com/server/subdomain.html\" class=BigLine>Hikky.Zansu.com</a>" \
-	"| <a href=\"http://news.kakiko.com/\" class=BigLine>√Ё≈©┐T│[┐r┐X</a>" \
+	"| <a href=\"http://news.kakiko.com/\" class=BigLine>Г└║Ф√≥Ц┌╣Ц┐╪Ц┐⌠Ц┌╧</a>" \
 	"|</font></td></tr>" \
 	"<tr><td height=1 bgcolor=#333333><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
 	"<tr><td height=1 bgcolor=#efefef><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
@@ -38,56 +38,56 @@
 	"</table>" \
 	"<br>" \
 	"<center>" \
-	"┌Ё┌т┐h┐│┐C┐⌠┐V┐┼│[┐Y⌠o▐Й<br>" \
-	"│@│@│@*****.<b><font size=+1 face=Arial color=#ff1493>syo-ten</font></b>.com<br>" \
-	"│@│@│@*****.<b><font size=+1 face=Arial color=#ff1493>gasuki</font></b>.com<br>" \
-	"│@│@│@*****.<b><font size=+1 face=Arial color=#ff1493>zansu</font></b>.com<br>" \
-	"┌╗┌╥┌╚┌х√╪▒O┌П√Ё≈©┌е▌g┌╕┌э┌╥│B▒│┌╒▌р▐÷┌©│B<br>" \
-	"<b><font color=#ff1493>█H∙v┌╣┌╬┌╒┌е│A┼y┌╣┌Ё100■{│B</font></b>" \
+	"Ц│∙Ц│╤Ц┐┴Ц┐║Ц┌╓Ц┐ЁЦ┌╥Ц┐╙Ц┐╪Ц┌╨Г≥╩Е═╢<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=Arial color=#ff1493>syo-ten</font></b>.com<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=Arial color=#ff1493>gasuki</font></b>.com<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=Arial color=#ff1493>zansu</font></b>.com<br>" \
+	"Ц│┼Ц│≥Ц│█Ц│╙Е░█Е┴█Ц┌▓Г└║Ф√≥Ц│╖Д╫©Ц│┬Ц│╬Ц│≥Ц─┌Ф≈╘Ц│└Х─┘Е▀²Ц│║Ц─┌<br>" \
+	"<b><font color=#ff1493>Е╥╔Е╓╚Ц│≈Ц│═Ц│└Ц│╖Ц─│Ф╔╫Ц│≈Ц│∙100Е─█Ц─┌</font></b>" \
 	"<p><a href=\"http://www.maido3.com/server/\">" \
-	"░[√И┌е┌Ю┴У⌠K┌х┐▄┐⌠┐^┐▀┐T│[┐o┐T│[┐r┐X(n)" \
+	"Ф╥╠Е╓°Ц│╖Ц┌┌Е©╚И│╘Ц│╙Ц┐╛Ц┐ЁЦ┌©Ц┐╚Ц┌╣Ц┐╪Ц┐░Ц┌╣Ц┐╪Ц┐⌠Ц┌╧(n)" \
 	"</a>" \
-	"<br>┌═┌л▀░▒Е┌х┐T┐C┐g┌Ю▌g┌а┌д┌╒┌э┌╥│B" \
+	"<br>Ц│┌Ц│╝Е╥╗Е╓╖Ц│╙Ц┌╣Ц┌╓Ц┐┬Ц┌┌Д╫©Ц│ёЦ│╕Ц│└Ц│╬Ц│≥Ц─┌" \
 	"</center><p>" \
 	"</td></tr></table><p>"
 
 #ifdef CM_BBSPINK
-/* ▌g┌М┌Й┌д┌х┌╒...┌м┌╦│B */
+/* Д╫©Ц┌▐Ц┌▄Ц│╕Ц│╙Ц│└...Ц│╞Ц│ Ц─┌ */
 #define	R2CH_HTML_BANNER \
 	"<center>" \
-	"<a href=\"http://www.pinknavi.com/?pinkid=PB0001&prg=3&act=0&txt=┌╗┌╒┌е┌э┌╧&url=http://www.seiai.com/\" " TARGET_BLANK ">┌╗┌╒┌е┌э┌╧┐A┐_┐▀┐g┐T┐C┐g</a><br>" \
-	"<br><a href=\"http://www.maido3.com/mentai/\"><b><font size=4>░[√И┌е┌Ю┴У⌠K┌х┐▄┐⌠┐^┐▀┐T│[┐o┐T│[┐r┐X</font></b></a><br>" \
+	"<a href=\"http://www.pinknavi.com/?pinkid=PB0001&prg=3&act=0&txt=Ц│┼Ц│└Ц│╖Ц│╬Ц│⌡&url=http://www.seiai.com/\" " TARGET_BLANK ">Ц│┼Ц│└Ц│╖Ц│╬Ц│⌡Ц┌╒Ц┐─Ц┐╚Ц┐┬Ц┌╣Ц┌╓Ц┐┬</a><br>" \
+	"<br><a href=\"http://www.maido3.com/mentai/\"><b><font size=4>Ф╥╠Е╓°Ц│╖Ц┌┌Е©╚И│╘Ц│╙Ц┐╛Ц┐ЁЦ┌©Ц┐╚Ц┌╣Ц┐╪Ц┐░Ц┌╣Ц┐╪Ц┐⌠Ц┌╧</font></b></a><br>" \
 	"</center>" \
 	"<p>"
 #else
-/* ▌g┌М┌Й┌д┌х┌╒...┌м┌╦│B */
+/* Д╫©Ц┌▐Ц┌▄Ц│╕Ц│╙Ц│└...Ц│╞Ц│ Ц─┌ */
 #define	R2CH_HTML_BANNER \
 	"<center>" \
 	"<a href=\"http://www.maido3.com/server/\" " TARGET_BLANK ">" \
-	"░[√И┌е┌Ю┴У⌠K┌х┐▄┐⌠┐^┐▀┐T│[┐o┐T│[┐r┐X" \
+	"Ф╥╠Е╓°Ц│╖Ц┌┌Е©╚И│╘Ц│╙Ц┐╛Ц┐ЁЦ┌©Ц┐╚Ц┌╣Ц┐╪Ц┐░Ц┌╣Ц┐╪Ц┐⌠Ц┌╧" \
 	"</a>" \
-	"<br>┌═┌л▀░▒Е┌х┐T┐C┐g┌Ю▌g┌а┌д┌╒┌э┌╥│B" \
+	"<br>Ц│┌Ц│╝Е╥╗Е╓╖Ц│╙Ц┌╣Ц┌╓Ц┐┬Ц┌┌Д╫©Ц│ёЦ│╕Ц│└Ц│╬Ц│≥Ц─┌" \
 	"</center><p>"
 #endif
 
 /*
- * √╪▒O┐┴┐x┐▀
+ * Е░█Е┴█Ц┐╘Ц┐≥Ц┐╚
  */
 #ifdef CUT_NAME_STRING
-#define R2CH_HTML_NAME "│F"
+#define R2CH_HTML_NAME "О╪ "
 #else
-#define R2CH_HTML_NAME "√╪▒O│F"
+#define R2CH_HTML_NAME "Е░█Е┴█О╪ "
 #endif
 /*
- * ⌠┼█e⌠З┐┴┐x┐▀
+ * Ф┼∙Г╗©Ф≈╔Ц┐╘Ц┐≥Ц┐╚
  */
 #ifdef CUT_DATE_STRING
-#define R2CH_HTML_DATE "│F"
+#define R2CH_HTML_DATE "О╪ "
 #else
-#define R2CH_HTML_DATE "⌠┼█e⌠З│F"
+#define R2CH_HTML_DATE "Ф┼∙Г╗©Ф≈╔О╪ "
 #endif
 /*
- * √√■Ж┌и┌б┌╞┌И▀С■▓
+ * Ф°╚Е╟╬Ц│╚Ц│╓Ц│▒Ц┌▀Г╘╨Г≥╫
  */
 #ifdef CUT_TAIL_BLANK
 #define WHITESPACE ""
@@ -96,16 +96,16 @@
 #endif
 
 /*
- * BROWSER┌е┐▄┐X┌П∙\▌╕│B
+ * BROWSERЦ│╖Ц┐╛Ц┌╧Ц┌▓Х║╗Г╓╨Ц─┌
  */
 #ifdef CREATE_NAME_ANCHOR 
 
-/* ┐A┐⌠┐J│[√╪┌═┌Х */
-/* ┐▄┐X(mailto┌═┌Х): %d=┐▄┐X■т█├  %s=mailto %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┌╒Ц┐ЁЦ┌╚Ц┐╪Е░█Ц│┌Ц┌┼ */
+/* Ц┐╛Ц┌╧(mailtoЦ│┌Ц┌┼): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥  %s=mailto %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_RES_MAIL(n, l, m, nm, d, t) \
 	"<dt>" n " " R2CH_HTML_NAME "<a name=" l " href=\"mailto:" m WHITESPACE "\"><b>" nm WHITESPACE "</b></a> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 
-/* ┐▄┐X(mailto√Ё┌╣): %d=┐▄┐X■т█├ %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(mailtoГ└║Ц│≈): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #ifdef USE_CSS
 #define R2CH_HTML_RES_NOMAIL(n, l, nm, d, t) \
 	"<dt>" n " <a name=" l ">" R2CH_HTML_NAME "<b>" nm WHITESPACE "</b></a> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
@@ -114,19 +114,19 @@
 	"<dt>" n " <a name=" l ">" R2CH_HTML_NAME "<font color=green><b>" nm WHITESPACE "</b></font></a> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 #endif
 
-/* ┐▄┐X(sage): %d=┐▄┐X■т█├ %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(sage): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_RES_SAGE(n, l, nm, d, t) \
 	"<dt>" n " <a name=" l ">" R2CH_HTML_NAME "<font color=blue><b>" nm WHITESPACE "</b></font></a> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 
 #else
 
-/* ┐A┐⌠┐J│[√╪┌х┌╣
-   ┐}┐N┐█┐p┐┴┐││[┐^┌лl┌м▌л┌д┌И */
-/* ┐▄┐X(mailto┌═┌Х): %d=┐▄┐X■т█├  %s=mailto %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┌╒Ц┐ЁЦ┌╚Ц┐╪Е░█Ц│╙Ц│≈
+   Ц┐·Ц┌╞Ц┐╜Ц┐▒Ц┐╘Ц┐║Ц┐╪Ц┌©Ц│╝lЦ│╞Ф█╗Ц│╕Ц┌▀ */
+/* Ц┐╛Ц┌╧(mailtoЦ│┌Ц┌┼): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥  %s=mailto %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_RES_MAIL(n, l, m, nm, d, t) \
 	"<dt>" n " " R2CH_HTML_NAME "<a href=\"mailto:" m WHITESPACE "\"><b>" nm WHITESPACE "</b></a> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 
-/* ┐▄┐X(mailto√Ё┌╣): %d=┐▄┐X■т█├ %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(mailtoГ└║Ц│≈): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #ifdef USE_CSS
 #define R2CH_HTML_RES_NOMAIL(n, l, nm, d, t) \
 	"<dt>" n " " R2CH_HTML_NAME "<b>" nm WHITESPACE "</b> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
@@ -135,54 +135,54 @@
 	"<dt>" n " " R2CH_HTML_NAME "<font color=green><b>" nm WHITESPACE "</b></font> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 #endif
 
-/* ┐▄┐X(sage): %d=┐▄┐X■т█├ %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(sage): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_RES_SAGE(n, l, nm, d, t) \
 	"<dt>" n " " R2CH_HTML_NAME "<font color=blue><b>" nm WHITESPACE "</b></font> " R2CH_HTML_DATE d "<dd>" t "<br><br>"
 #endif
 
-/* ┐▄┐X(┌╠┌╠┴С┌Й┌д┌╒┌э┌╥): %d=┐▄┐X■т█├ */
+/* Ц┐╛Ц┌╧(Ц│⌠Ц│⌠Её┼Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ */
 #define R2CH_HTML_RES_BROKEN_HERE(n) \
-	"<dt>" n " " R2CH_HTML_NAME " " R2CH_HTML_DATE "[┌╠┌╠┴С┌Й┌д┌╒┌э┌╥]<dd>[┌╠┌╠┴С┌Й┌д┌╒┌э┌╥]<br><br>"
+	"<dt>" n " " R2CH_HTML_NAME " " R2CH_HTML_DATE "[Ц│⌠Ц│⌠Её┼Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥]<dd>[Ц│⌠Ц│⌠Её┼Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥]<br><br>"
 
-/* tail: ▌÷┌╛┌л%d┐▄┐X
-	 █е░V┐▄┐X%d
-         %02d=░╖▄ю┼J▌n▌·█▐ %02d=░╖▄ю▐I≈╧▌·█▐ */
+/* tail: Ф╛║Ц│▌Ц│╝%dЦ┐╛Ц┌╧
+	 Ф°─Ф√╟Ц┐╛Ц┌╧%d
+         %02d=Е┬╤И≥░И√▀Е╖▀Ф≥┌Е┬╩ %02d=Е┬╤И≥░Г╣┌Д╨├Ф≥┌Е┬╩ */
 #define R2CH_HTML_TAIL(path,next) \
-	" <a href=" path ">▌÷┌л" next "┐▄┐X</a>"
+	" <a href=" path ">Ф╛║Ц│╝" next "Ц┐╛Ц┌╧</a>"
 #define R2CH_HTML_TAIL2(path, ls)  \
-	" <a href=" path ">█е░V┐▄┐X" ls "</a>\n"
+	" <a href=" path ">Ф°─Ф√╟Ц┐╛Ц┌╧" ls "</a>\n"
 #define R2CH_HTML_TAIL_SIMPLE(from,to) \
-	" (" from "PM - " to "AM ┌л┼т┬Й▀C┌и▒S∙■┌м⌠г┌ъ┌э┌╧┌Я)<br>\n"
+	" (" from "PM - " to "AM Ц│╝И√⌠Д╦─Ф╟≈Ц│╚Е┘╗И┐╗Ц│╞Х╙╜Ц┌│Ц│╬Ц│⌡Ц┌⌠)<br>\n"
 
 /*
- * i-MODE┌е┐▄┐X┌П∙\▌╕│B
+ * i-MODEЦ│╖Ц┐╛Ц┌╧Ц┌▓Х║╗Г╓╨Ц─┌
  */
-/* ┐▄┐X(mailto┌═┌Х): %d=┐▄┐X■т█├  %s=mailto %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(mailtoЦ│┌Ц┌┼): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥  %s=mailto %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_IMODE_RES_MAIL \
 	"<p>[%d:<a href=\"mailto:%s \"><b>%s </b></a>(%s)]<br>%s</p><hr>"
 
-/* ┐▄┐X(mailto√Ё┌╣): %d=┐▄┐X■т█├ %s=√╪▒O %s=⌠┼█e⌠З %s=√{∙╤*/
+/* Ц┐╛Ц┌╧(mailtoГ└║Ц│≈): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ %s=Е░█Е┴█ %s=Ф┼∙Г╗©Ф≈╔ %s=Ф°╛Ф√┤*/
 #define R2CH_HTML_IMODE_RES_NOMAIL \
 	"<p>[%d:<b>%s </b>(%s)]<br>%s</p><hr>"
 
-/* ┐▄┐X(┌╠┌╠┴С┌Й┌д┌╒┌э┌╥): %d=┐▄┐X■т█├ */
-#define R2CH_HTML_IMODE_RES_BROKEN_HERE "<p>[%d:┌╠┌╠┴С┌Й┌д┌╒┌э┌╥]</p><hr>"
+/* Ц┐╛Ц┌╧(Ц│⌠Ц│⌠Её┼Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥): %d=Ц┐╛Ц┌╧Г∙╙Е▐╥ */
+#define R2CH_HTML_IMODE_RES_BROKEN_HERE "<p>[%d:Ц│⌠Ц│⌠Её┼Ц┌▄Ц│╕Ц│└Ц│╬Ц│≥]</p><hr>"
 
-/* tail: npath=░╤░╛┌╥┌ИURL┌╩┌л1 nst=▌÷┌лxxx┐▄┐X
-	lpath=░╤░╛┌╥┌ИURL┌╩┌л2 ls=█е░V┐▄┐Xxxx */
+/* tail: npath=Г■÷Ф┬░Ц│≥Ц┌▀URLЦ│²Ц│╝1 nst=Ф╛║Ц│╝xxxЦ┐╛Ц┌╧
+	lpath=Г■÷Ф┬░Ц│≥Ц┌▀URLЦ│²Ц│╝2 ls=Ф°─Ф√╟Ц┐╛Ц┌╧xxx */
 #ifdef PREV_NEXT_ANCHOR
 #define R2CH_HTML_IMODE_TAIL(path, next) \
-	" <a href=" path ">▌÷" next "</a>"
+	" <a href=" path ">Ф╛║" next "</a>"
 #define R2CH_HTML_IMODE_TAIL2(path, ls) \
-	" <a href=" path ">█е░V" ls "</a><br>\n"
+	" <a href=" path ">Ф°─Ф√╟" ls "</a><br>\n"
 #else
 #define R2CH_HTML_IMODE_TAIL(path, next) \
-	" <a href=" path ">▌÷┌л" next "┐▄┐X</a>"
+	" <a href=" path ">Ф╛║Ц│╝" next "Ц┐╛Ц┌╧</a>"
 #define R2CH_HTML_IMODE_TAIL2(path, ls) \
-	" <a href=" path ">█е░V┐▄┐X" ls "</a><br>\n"
+	" <a href=" path ">Ф°─Ф√╟Ц┐╛Ц┌╧" ls "</a><br>\n"
 #endif
 
-/* ┐e┐X┐g┌х┌л┌е▌g┌а┌д┌╒┌х┌╒┌╞┌г */
+/* Ц┐├Ц┌╧Ц┐┬Ц│╙Ц│╝Ц│╖Д╫©Ц│ёЦ│╕Ц│└Ц│╙Ц│└Ц│▒Ц│╘ */
 #define CHUNKED_ANCHOR_SELECT_HEAD(bbs,key) \
 	"<form><select onchange='" \
 	"var st=parseInt(this[selectedIndex].text);" \
@@ -198,11 +198,11 @@
  * ERROR1, ERROR2?, ERROR3, BANNER, ERROR4, (ERROR5_HTML|ERROR5_DAT|ERROR5_NONE)?, ERROR_6
  */
 
-/* ┐G┐┴│[(√Б┌╒█┤┌М┌╧░Ф): */
+/* Ц┌╗Ц┐╘Ц┐╪(Е∙▐Ц│└Е░┬Ц┌▐Ц│⌡Е┘┬): */
 #define R2CH_HTML_ERROR_ADMIN \
-	"<a href=\"http://green.jbbs.net/computer/20/bigserver.html\">┌╗√Б┌╒█┤┌М┌╧░Ф</a>"
+	"<a href=\"http://green.jbbs.net/computer/20/bigserver.html\">Ц│┼Е∙▐Ц│└Е░┬Ц┌▐Ц│⌡Е┘┬</a>"
 
-/* ┐G┐┴│[(1/6): %s=┐G┐┴│[┐│┐b┐Z│[┐W %s=┐G┐┴│[┐│┐b┐Z│[┐W %s=┐G┐┴│[┐│┐b┐Z│[┐W %s=┐R┐│┐⌠┐g */
+/* Ц┌╗Ц┐╘Ц┐╪(1/6): %s=Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦ %s=Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦ %s=Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦ %s=Ц┌ЁЦ┐║Ц┐ЁЦ┐┬ */
 #define R2CH_HTML_ERROR_1 \
 	"<html><head>" \
 	"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=Shift_JIS\">" \
@@ -221,35 +221,35 @@
 	"<body bgcolor=#efefef text=black link=blue alink=red vlink=#660099>" \
 	"<p><font size=+1 color=red>%s</font></b><br>" \
 	"<dl>" \
-	"<dt>1 √╪▒O│F<font color=green><b>" \
+	"<dt>1 Е░█Е┴█О╪ <font color=green><b>" \
 	CGIVER \
-	"</b></font>⌠┼█e⌠З│F2001/04/12(√ь) 15:11<dd>%s<br><br>%s<br>\n"
+	"</b></font>Ф┼∙Г╗©Ф≈╔О╪ 2001/04/12(Ф°╗) 15:11<dd>%s<br><br>%s<br>\n"
 
-/* ┐G┐┴│[(2/6): ┌╘┌©┌Ц│[┌╣┌А┌л┌щ│B */
+/* Ц┌╗Ц┐╘Ц┐╪(2/6): Ц│▀Ц│║Ц┌┘Ц┐╪Ц│≈Ц┌┐Ц│╝Ц│©Ц─┌ */
 #define R2CH_HTML_ERROR_2 \
-	"<dt>2 √╪▒O│F<font color=green><b>" CGIVER "</b></font>⌠┼█e⌠З│F2001/04/12(√ь) 15:11<dd>"\
+	"<dt>2 Е░█Е┴█О╪ <font color=green><b>" CGIVER "</b></font>Ф┼∙Г╗©Ф≈╔О╪ 2001/04/12(Ф°╗) 15:11<dd>"\
 	"<br>" \
 	"<p><a href=\"http://www.maido3.com/server/\" " TARGET_BLANK ">" \
 	"http://www.maido3.com/server/" \
 	"</a><br>" \
-	"┌Ё┌т┐h┐│┐C┐⌠┐V┐┼│[┐Y⌠o▐Й<br>" \
-	"│@│@│@*****.<b><font size=+1 face=\"Arial\" color=deeppink>syo-ten</font></b>.com<br>" \
-	"│@│@│@*****.<b><font size=+1 face=\"Arial\" color=deeppink>gasuki</font></b>.com<br>" \
-	"│@│@│@*****.<b><font size=+1 face=\"Arial\" color=deeppink>zansu</font></b>.com<br>" \
-	"┌╗┌╥┌╚┌х√╪▒O┌П√Ё≈©┌е▌g┌╕┌э┌╥│B▒│┌╒▌р▐÷┌©│B<br>" \
-	"<font color=deeppink><b>█H∙v┌╣┌╬┌╒┌е│A┼y┌╣┌Ё100■{│B</b></font>" \
+	"Ц│∙Ц│╤Ц┐┴Ц┐║Ц┌╓Ц┐ЁЦ┌╥Ц┐╙Ц┐╪Ц┌╨Г≥╩Е═╢<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=\"Arial\" color=deeppink>syo-ten</font></b>.com<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=\"Arial\" color=deeppink>gasuki</font></b>.com<br>" \
+	"Ц──Ц──Ц──*****.<b><font size=+1 face=\"Arial\" color=deeppink>zansu</font></b>.com<br>" \
+	"Ц│┼Ц│≥Ц│█Ц│╙Е░█Е┴█Ц┌▓Г└║Ф√≥Ц│╖Д╫©Ц│┬Ц│╬Ц│≥Ц─┌Ф≈╘Ц│└Х─┘Е▀²Ц│║Ц─┌<br>" \
+	"<font color=deeppink><b>Е╥╔Е╓╚Ц│≈Ц│═Ц│└Ц│╖Ц─│Ф╔╫Ц│≈Ц│∙100Е─█Ц─┌</b></font>" \
 	"<p><a " TARGET_BLANK " href=\"http://www.maido3.com/server/\">" \
-	"░[√И┌е┌Ю┴У⌠K┌х┐▄┐⌠┐^┐▀┐T│[┐o┐T│[┐r┐X" \
+	"Ф╥╠Е╓°Ц│╖Ц┌┌Е©╚И│╘Ц│╙Ц┐╛Ц┐ЁЦ┌©Ц┐╚Ц┌╣Ц┐╪Ц┐░Ц┌╣Ц┐╪Ц┐⌠Ц┌╧" \
 	"</a>" \
-	"<br>┌═┌л▀░▒Е┌х┐T┐C┐g┌Ю▌g┌а┌д┌╒┌э┌╥│B<br><br>" \
+	"<br>Ц│┌Ц│╝Е╥╗Е╓╖Ц│╙Ц┌╣Ц┌╓Ц┐┬Ц┌┌Д╫©Ц│ёЦ│╕Ц│└Ц│╬Ц│≥Ц─┌<br><br>" \
 	"<table cellspacing=0 cellpadding=0 border=0 width=100%%>" \
 	"<tr><td height=1 bgcolor=#efefef><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
 	"<tr bgcolor=#cccccc><td height=20 nowrap><font size=2>&nbsp;" \
-	"| <a href=\"http://www.maido3.com/\" class=\"BigLine\" " TARGET_BLANK ">┌╗┌╥┌╥┌ъ</a>" \
-	"| <a href=\"http://news.kakiko.com/2chwatch/\" class=\"BigLine\" " TARGET_BLANK ">2ch┐T│[┐o┼д▌▀▐┼</a>" \
+	"| <a href=\"http://www.maido3.com/\" class=\"BigLine\" " TARGET_BLANK ">Ц│┼Ц│≥Ц│≥Ц┌│</a>" \
+	"| <a href=\"http://news.kakiko.com/2chwatch/\" class=\"BigLine\" " TARGET_BLANK ">2chЦ┌╣Ц┐╪Ц┐░Г⌡ёХ╕√Ф┴─</a>" \
 	"| <a href=\"http://www.binboserver.com/\" class=\"BigLine\" " TARGET_BLANK ">BinboServer</a>" \
 	"| <a href=\"http://www.maido3.com/server/subdomain.html\" class=\"BigLine\" " TARGET_BLANK ">Hikky.Zansu.com</a>" \
-	"| <a href=\"http://news.kakiko.com/\" class=\"BigLine\" " TARGET_BLANK ">√Ё≈©┐T│[┐r┐X</a>" \
+	"| <a href=\"http://news.kakiko.com/\" class=\"BigLine\" " TARGET_BLANK ">Г└║Ф√≥Ц┌╣Ц┐╪Ц┐⌠Ц┌╧</a>" \
 	"|</font></td></tr>" \
 	"<tr><td height=1 bgcolor=#333333><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
 	"<tr><td height=1 bgcolor=#efefef><img height=1 width=1 src=\"/space1.gif\"></td></tr>" \
@@ -257,52 +257,52 @@
 	"</table>" \
 	"<br><br>"
 
-/* ┐G┐┴│[(3/6): */
+/* Ц┌╗Ц┐╘Ц┐╪(3/6): */
 #define R2CH_HTML_ERROR_3 \
 	"</dl><center>\n<br>"
 
-/* ┐G┐┴│[(4/6): */
+/* Ц┌╗Ц┐╘Ц┐╪(4/6): */
 #define R2CH_HTML_ERROR_4 \
 	"<br></center><hr><font size=-2>" CGIVER "</font><hr><p>"
 
-/* ┐G┐┴│[(5a/6,HTML): %s=▐Й▐┼ %s=┐X┐▄■т█├ */
+/* Ц┌╗Ц┐╘Ц┐╪(5a/6,HTML): %s=Е═╢Ф┴─ %s=Ц┌╧Ц┐╛Г∙╙Е▐╥ */
 #define R2CH_HTML_ERROR_5_HTML \
-	"▒Ю▓╥! ┴ъ▀▌┐█┐O▒q▄и┌е│A<a href=\"%s%s\">┐X┐▄┐b┐h %s.html</a> ┌П■╜▄╘┌╣┌э┌╣┌╫│B\n"
+	"И ┼И∙╥! И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚Ц│╖Ц─│<a href=\"%s%s\">Ц┌╧Ц┐╛Ц┐┐Ц┐┴ %s.html</a> Ц┌▓Г≥╨Х╕▀Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌\n"
 
 #ifdef READ_KAKO
-/* ┐G┐┴│[(5b/6,DAT): %s=▐Й▐┼ %s=┐X┐▄■т█├ */
+/* Ц┌╗Ц┐╘Ц┐╪(5b/6,DAT): %s=Е═╢Ф┴─ %s=Ц┌╧Ц┐╛Г∙╙Е▐╥ */
 #define R2CH_HTML_ERROR_5_DAT(href,key) \
-	"▒Ю▓╥! ┴ъ▀▌┐█┐O▒q▄и┌е│A<a href=" href ">┐X┐▄┐b┐h " key ".dat</a> ┌П■╜▄╘┌╣┌э┌╣┌╫│B\n"
+	"И ┼И∙╥! И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚Ц│╖Ц─│<a href=" href ">Ц┌╧Ц┐╛Ц┐┐Ц┐┴ " key ".dat</a> Ц┌▓Г≥╨Х╕▀Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌\n"
 
 #else
 #define R2CH_HTML_ERROR_5_DAT \
-	"▒Ю▓╥! ┴ъ▀▌┐█┐O▒q▄и┌е│A<a href=\"%s%s\">┐X┐▄┐b┐h %s.dat</a> ┌П■╜▄╘┌╣┌э┌╣┌╫│B<br>" \
-	"<b><font size=+1 color=red>┌╙</font></b>│A┌╣┌╘┌╣┌э┌╬ html┴╩┌Ё┌Й┌д┌╒┌э┌╧┌Я│B▌c■O│A▒р┌б┌╣┌╘┌х┌╒│B\n"
+	"И ┼И∙╥! И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚Ц│╖Ц─│<a href=\"%s%s\">Ц┌╧Ц┐╛Ц┐┐Ц┐┴ %s.dat</a> Ц┌▓Г≥╨Х╕▀Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌<br>" \
+	"<b><font size=+1 color=red>Ц│▄</font></b>Ц─│Ц│≈Ц│▀Ц│≈Ц│╬Ц│═ htmlЕ▄√Ц│∙Ц┌▄Ц│╕Ц│└Ц│╬Ц│⌡Ц┌⌠Ц─┌Ф╝▀Е©╣Ц─│Е╬┘Ц│╓Ц│≈Ц│▀Ц│╙Ц│└Ц─┌\n"
 #endif
 
-/* ┐G┐┴│[(5b/6,TEMP): %s=▐Й▐┼ %s=┐X┐▄■т█├ */
+/* Ц┌╗Ц┐╘Ц┐╪(5b/6,TEMP): %s=Е═╢Ф┴─ %s=Ц┌╧Ц┐╛Г∙╙Е▐╥ */
 #ifdef READ_TEMP
 #define R2CH_HTML_ERROR_5_TEMP(href,key) \
-	"▒Ю▓╥! dat≈▌┌©┌╣┌╫│A<a href=" href ">┐X┐▄┐b┐h " key".dat</a> ┌П■╜▄╘┌╣┌э┌╣┌╫│B\n"
+	"И ┼И∙╥! datХ░╫Ц│║Ц│≈Ц│÷Ц─│<a href=" href ">Ц┌╧Ц┐╛Ц┐┐Ц┐┴ " key".dat</a> Ц┌▓Г≥╨Х╕▀Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌\n"
 
 #else
 #define R2CH_HTML_ERROR_5_TEMP \
-	"▒Ю▓╥! ┐X┐▄┐b┐h <font color=deeppink><b>%s.dat</b></font> ┌м│Ahtml┴╩┌Ё┌Й┌И┌л┌П▒р┌а┌д┌╒┌И┌Ф┌╓┌е┌╥│B<br>" \
-	"┌╣┌н┌Г┌╜▒р┌б┌╣┌╘┌х┌╒│B\n"
+	"И ┼И∙╥! Ц┌╧Ц┐╛Ц┐┐Ц┐┴ <font color=deeppink><b>%s.dat</b></font> Ц│╞Ц─│htmlЕ▄√Ц│∙Ц┌▄Ц┌▀Ц│╝Ц┌▓Е╬┘Ц│ёЦ│╕Ц│└Ц┌▀Ц┌┬Ц│├Ц│╖Ц│≥Ц─┌<br>" \
+	"Ц│≈Ц│╟Ц┌┴Ц│▐Е╬┘Ц│╓Ц│≈Ц│▀Ц│╙Ц│└Ц─┌\n"
 #endif
 
-/* ┐G┐┴│[(5c/6,NONE): %s=■б */
+/* Ц┌╗Ц┐╘Ц┐╪(5c/6,NONE): %s=Ф²© */
 #define R2CH_HTML_ERROR_5_NONE \
-	"<a href=\"%s" KAKO_DIR "\">┴ъ▀▌┐█┐O▒q▄и</a>┌и┌Ю┌═┌Х┌э┌╧┌Я┌е┌╣┌╫│B<br>" \
-	"√Б┌╒█┤┌М┌╧┌д┌Ю▄╘┌б┌╘┌И┴б■\\░╚┌м┌ы┌ф┌Я┌г┌═┌Х┌э┌╧┌Я│B\n"
+	"<a href=\"%s" KAKO_DIR "\">И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚</a>Ц│╚Ц┌┌Ц│┌Ц┌┼Ц│╬Ц│⌡Ц┌⌠Ц│╖Ц│≈Ц│÷Ц─┌<br>" \
+	"Е∙▐Ц│└Е░┬Ц┌▐Ц│⌡Ц│╕Ц┌┌Х╕▀Ц│╓Ц│▀Ц┌▀Е▐╞Х┐╫\Ф─╖Ц│╞Ц│╩Ц│╗Ц┌⌠Ц│╘Ц│┌Ц┌┼Ц│╬Ц│⌡Ц┌⌠Ц─┌\n"
 
-/* ┐G┐┴│[(6/6): */
+/* Ц┌╗Ц┐╘Ц┐╪(6/6): */
 #define R2CH_HTML_ERROR_6 \
 	"</body></html>"
 
-/* ┐G┐┴│[999: %s=┐G┐┴│[┐│┐b┐Z│[┐W %s=board %s=key %s=ls %s=st %s=to %s=nofirst %d=file-size %d=max-line
+/* Ц┌╗Ц┐╘Ц┐╪999: %s=Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦ %s=board %s=key %s=ls %s=st %s=to %s=nofirst %d=file-size %d=max-line
               %s=time(hh:mm:ss) %s=board %s=soko %s=key %s=key */
-/* ▌g┌М┌Й┌д┌х┌╒...┌м┌╦│B */
+/* Д╫©Ц┌▐Ц┌▄Ц│╕Ц│╙Ц│└...Ц│╞Ц│ Ц─┌ */
 #define R2CH_HTML_ERROR_999_1 \
 	"<html><head>" \
 	"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=Shift_JIS\">" \
@@ -310,23 +310,23 @@
 	"</head>" \
 	"<body bgcolor=#efefef text=black link=blue alink=red vlink=#660099>" \
 	"<table border=1 cellspacing=11 cellpadding=2 width=95%% bgcolor=#efefef align=center><tr><td>" \
-	"┌╕┌Г│[│A%s<p>" \
-	"bbs = [%s]│@" \
-	"key = [%s]│@" \
-	"ls = [%s]│@" \
-	"st = [%s]│@" \
-	"to = [%s]│@" \
+	"Ц│┬Ц┌┴Ц┐╪Ц─│%s<p>" \
+	"bbs = [%s]Ц──" \
+	"key = [%s]Ц──" \
+	"ls = [%s]Ц──" \
+	"st = [%s]Ц──" \
+	"to = [%s]Ц──" \
 	"nofirst = [%s]<br>" \
 	"fileSize = [%d bytes] %dlines<br>" \
 	"time=[%s]<br>" \
-	"<br>│u┌╕┌Г│[│A┌╩┌Я┌х■бor┐X┐▄┐b┐h┌х┌╒┌е┌╥│v┌л▐Й█┤┌м┌╠┌╠▒q▄и┌ж Go <br>" \
-	"<a href=\"" KAKO_DIR "%s/%s.html\">┴ъ▀▌┐█┐O▒q▄и %s.html</a>\n" \
-	"<br>┌э┌╬│Adat -> html ∙о┼╥┌╙█s┌М┌Й┌д┌╒┌х┌╒▐Й█┤┌╙≈г┌╜┌═┌Х┌э┌╥│B" \
-	"<br><a href=\"http://teri.2ch.net/test/read.cgi?bbs=accuse&key=980507715&ls=30\">┌╠┌╠</a>┌е▒i┌╕┌И┌ф│A┴ъ▀▌┐█┐O░╝≈²┌П┌╣┌д┌╜┌Й┌И▐Й█┤┌╙┌═┌И┌╘┌Ю┌е┌╥│B" \
+	"<br>Ц─▄Ц│┬Ц┌┴Ц┐╪Ц─│Ц│²Ц┌⌠Ц│╙Ф²©orЦ┌╧Ц┐╛Ц┐┐Ц┐┴Ц│╙Ц│└Ц│╖Ц│≥Ц─█Ц│╝Е═╢Е░┬Ц│╞Ц│⌠Ц│⌠Е─┴Е╨╚Ц│╦ Go <br>" \
+	"<a href=\"" KAKO_DIR "%s/%s.html\">И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚ %s.html</a>\n" \
+	"<br>Ц│╬Ц│═Ц─│dat -> html Е╓┴Ф▐⌡Ц│▄Х║▄Ц┌▐Ц┌▄Ц│╕Ц│└Ц│╙Ц│└Е═╢Е░┬Ц│▄Х┴╞Ц│▐Ц│┌Ц┌┼Ц│╬Ц│≥Ц─┌" \
+	"<br><a href=\"http://teri.2ch.net/test/read.cgi?bbs=accuse&key=980507715&ls=30\">Ц│⌠Ц│⌠</a>Ц│╖Х╗╢Ц│┬Ц┌▀Ц│╗Ц─│И│▌Е▌╩Ц┐╜Ц┌╟Ф∙╢Г░├Ц┌▓Ц│≈Ц│╕Ц│▐Ц┌▄Ц┌▀Е═╢Е░┬Ц│▄Ц│┌Ц┌▀Ц│▀Ц┌┌Ц│╖Ц│≥Ц─┌" \
 	"</td></tr></table>" \
 	"<br><br><br>"
 
-/* ▌g┌М┌Й┌д┌х┌╒...┌м┌╦│B */
+/* Д╫©Ц┌▐Ц┌▄Ц│╕Ц│╙Ц│└...Ц│╞Ц│ Ц─┌ */
 #define R2CH_HTML_ERROR_999_2 \
 	"<br><br><br>" \
 	"<font size=-2>" CGIVER "</font>" \
@@ -379,8 +379,8 @@
 
 #define R2CH_HTML_BASE_DEFINE "<base href=\"http://%s%s/%s/%s/\">"
 
-/* ┐u┐┴┐E┐U┌е▄╘┌╫┌ф┌╚: %s=┐X┐▄√╪ %s=■б */
-/* </title> ┌л▒O┌л▀С■▓┌м█М▐°┌╣┌х┌╒┌╠┌ф */
+/* Ц┐√Ц┐╘Ц┌╕Ц┌╤Ц│╖Х╕▀Ц│÷Ц│╗Ц│█: %s=Ц┌╧Ц┐╛Е░█ %s=Ф²© */
+/* </title> Ц│╝Е┴█Ц│╝Г╘╨Г≥╫Ц│╞Е┴┼И≥╓Ц│≈Ц│╙Ц│└Ц│⌠Ц│╗ */
 #define R2CH_SIMPLE_HTML_HEADER_1(title, cookie_script) \
 	R2CH_HTML_CSS_TYPE \
 	"<title>" title WHITESPACE "</title>" \
@@ -391,84 +391,84 @@
 
 #define R2CH_HTML_HEADER_1(title, board) \
 	R2CH_SIMPLE_HTML_HEADER_1(title, R2CH_HTML_COOKIE_SCRIPT) \
-	"<a href=\"" board "\">│║▄f▌╕■б┌и√ъ┌И│║</a>"
+	"<a href=\"" board "\">Б√═Ф▌╡Г╓╨Ф²©Ц│╚Ф┬╩Ц┌▀Б√═</a>"
 
 #define R2CH_HTML_RETURN_BOARD(board) \
-	"<a href=\"" board "\">▄f▌╕■б┌и√ъ┌И</a>"
+	"<a href=\"" board "\">Ф▌╡Г╓╨Ф²©Ц│╚Ф┬╩Ц┌▀</a>"
 
-/* path=░╤░╛┌╥┌ИURL */
+/* path=Г■÷Ф┬░Ц│≥Ц┌▀URL */
 #ifdef PREV_NEXT_ANCHOR
 #define R2CH_HTML_ALL_ANCHOR(path) \
-	" <a href=" path ">▒S∙■</a>"
+	" <a href=" path ">Е┘╗И┐╗</a>"
 #else
 #define R2CH_HTML_ALL_ANCHOR(path) \
-	" <a href=" path ">┐▄┐X┌П▒S∙■⌠г┌ч</a>"
+	" <a href=" path ">Ц┐╛Ц┌╧Ц┌▓Е┘╗И┐╗Х╙╜Ц┌─</a>"
 #endif
-/* %s=░╤░╛┌╥┌ИURL %d=┼J▌n┬й▓u */
+/* %s=Г■÷Ф┬░Ц│≥Ц┌▀URL %d=И√▀Е╖▀Д╫█Г╫╝ */
 #define R2CH_HTML_CHUNK_ANCHOR(path, st) \
 	" <a href=" path ">" st "-</a>"
-/* path=░╤░╛┌╥┌ИURL ls=▀L▌√░■ */
+/* path=Г■÷Ф┬░Ц│≥Ц┌▀URL ls=Х╗≤Д╨▀Ф∙╟ */
 #ifdef PREV_NEXT_ANCHOR
 #define R2CH_HTML_LATEST_ANCHOR(path, ls) \
-	" <a href=" path ">█е░V" ls "</a>"
+	" <a href=" path ">Ф°─Ф√╟" ls "</a>"
 #else
 #define R2CH_HTML_LATEST_ANCHOR(path, ls) \
-	" <a href=" path ">█е░V┐▄┐X" ls "</a>"
+	" <a href=" path ">Ф°─Ф√╟Ц┐╛Ц┌╧" ls "</a>"
 #endif
 
-/* </title>┌л▒O┌л▀С■▓┌м█М▐°┌╣┌х┌╒┌╠┌ф */
+/* </title>Ц│╝Е┴█Ц│╝Г╘╨Г≥╫Ц│╞Е┴┼И≥╓Ц│≈Ц│╙Ц│└Ц│⌠Ц│╗ */
 #ifdef PREV_NEXT_ANCHOR
 #define R2CH_HTML_IMODE_HEADER_1(title, board, alllink) \
 	"<title>" title WHITESPACE "</title>" \
 	"</head>" \
 	"<body bgcolor=#efefef text=black link=blue alink=red vlink=#660099>" \
-	"<a href=\"" board "\">│║▄f▌╕■б┌и√ъ┌И│║</a>" \
+	"<a href=\"" board "\">Б√═Ф▌╡Г╓╨Ф²©Ц│╚Ф┬╩Ц┌▀Б√═</a>" \
 	" <a href=" alllink ">1-</a>"
 
 #define R2CH_HTML_IMODE_HEADER_2(latestlink, ls) \
-	" <a href=" latestlink ">█е░V" ls "</a>"
+	" <a href=" latestlink ">Ф°─Ф√╟" ls "</a>"
 #else
 #define R2CH_HTML_IMODE_HEADER_1(title, board, alllink) \
 	"<title>" title WHITESPACE "</title>" \
 	"</head>" \
 	"<body bgcolor=#efefef text=black link=blue alink=red vlink=#660099>" \
-	"<a href=\"" board "\">│║▄f▌╕■б┌и√ъ┌И│║</a>" \
-	" <a href=" alllink ">┐▄┐X┌П█е▐┴┌╘┌Г⌠г┌ч</a>"
+	"<a href=\"" board "\">Б√═Ф▌╡Г╓╨Ф²©Ц│╚Ф┬╩Ц┌▀Б√═</a>" \
+	" <a href=" alllink ">Ц┐╛Ц┌╧Ц┌▓Ф°─Е┬²Ц│▀Ц┌┴Х╙╜Ц┌─</a>"
 
 #define R2CH_HTML_IMODE_HEADER_2(latestlink, ls)  \
-	" <a href=" latestlink ">█е░V┐▄┐X" ls "</a>"
+	" <a href=" latestlink ">Ф°─Ф√╟Ц┐╛Ц┌╧" ls "</a>"
 #endif
 
-/* ┐▄┐X░■┐I│[┐o│[: %d=█е▒Е┐▄┐X░■ */
+/* Ц┐╛Ц┌╧Ф∙╟Ц┌╙Ц┐╪Ц┐░Ц┐╪: %d=Ф°─Е╓╖Ц┐╛Ц┌╧Ф∙╟ */
 #define R2CH_HTML_HEADER_RED(num) \
 	"<p><table><tr><td bgcolor=red>" \
-	"<br><br><font color=white>┐▄┐X░■┌╙" num "┌П▓╢┌╕┌д┌╒┌э┌╥│B▌c■O┌х┌╙┌Г▒S∙■┌м∙\\▌╕┌╣┌э┌╧┌Я│B</font>" \
+	"<br><br><font color=white>Ц┐╛Ц┌╧Ф∙╟Ц│▄" num "Ц┌▓Х╤┘Ц│┬Ц│╕Ц│└Ц│╬Ц│≥Ц─┌Ф╝▀Е©╣Ц│╙Ц│▄Ц┌┴Е┘╗И┐╗Ц│╞Х║╗\Г╓╨Ц│≈Ц│╬Ц│⌡Ц┌⌠Ц─┌</font>" \
 	"</td></tr></table>"
 
-/* ┐▄┐X░■┌Б┌н┌╒: %d=┌Б┌н┌╜┌х┌И┐▄┐X░■ */
+/* Ц┐╛Ц┌╧Ф∙╟Ц┌└Ц│╟Ц│└: %d=Ц┌└Ц│╟Ц│▐Ц│╙Ц┌▀Ц┐╛Ц┌╧Ф∙╟ */
 #define R2CH_HTML_HEADER_REDZONE(num1, num2) \
 	"<p><table><tr><td bgcolor=red>\n" \
-	"<font color=white>┐▄┐X░■┌╙" num1 "┌П▓╢┌╕┌д┌╒┌э┌╥│B" num2 "┌П▓╢┌╕┌И┌ф∙\\▌╕┌е┌╚┌х┌╜┌х┌И┌Ф│B</font>" \
+	"<font color=white>Ц┐╛Ц┌╧Ф∙╟Ц│▄" num1 "Ц┌▓Х╤┘Ц│┬Ц│╕Ц│└Ц│╬Ц│≥Ц─┌" num2 "Ц┌▓Х╤┘Ц│┬Ц┌▀Ц│╗Х║╗\Г╓╨Ц│╖Ц│█Ц│╙Ц│▐Ц│╙Ц┌▀Ц┌┬Ц─┌</font>" \
 	"</td></tr></table>"
 
-/* ┐▄┐X░■┌╩┌К┌╩┌К?: %d=▄x█░┌л▐o┌И┐▄┐X░■ */
+/* Ц┐╛Ц┌╧Ф∙╟Ц│²Ц┌█Ц│²Ц┌█?: %d=Х╜╕Е▒┼Ц│╝Е┤╨Ц┌▀Ц┐╛Ц┌╧Ф∙╟ */
 #define R2CH_HTML_HEADER_YELLOW(num1, num2) \
 	"<p><table><tr><td bgcolor=yellow>" \
-	"┐▄┐X░■┌╙" num1 "┌П▓╢┌╕┌д┌╒┌э┌╥│B" num2 "┌П▓╢┌╕┌И┌ф∙\\▌╕┌е┌╚┌х┌╜┌х┌И┌Ф│B" \
+	"Ц┐╛Ц┌╧Ф∙╟Ц│▄" num1 "Ц┌▓Х╤┘Ц│┬Ц│╕Ц│└Ц│╬Ц│≥Ц─┌" num2 "Ц┌▓Х╤┘Ц│┬Ц┌▀Ц│╗Х║╗\Г╓╨Ц│╖Ц│█Ц│╙Ц│▐Ц│╙Ц┌▀Ц┌┬Ц─┌" \
 	"</td></tr></table>"
 
-/* ┐t┐@┐C┐▀┐T┐C┐Y┌Б┌н┌╒: %d=▓╢┌╕┌╫▒Е┌╚┌Ё %d=∙\▌╕┌е┌╚┌х┌╒▒Е┌╚┌Ё %s=∙t┴а∙╤▌ ≈Я */ 
+/* Ц┐∙Ц┌║Ц┌╓Ц┐╚Ц┌╣Ц┌╓Ц┌╨Ц┌└Ц│╟Ц│└: %d=Х╤┘Ц│┬Ц│÷Е╓╖Ц│█Ц│∙ %d=Х║╗Г╓╨Ц│╖Ц│█Ц│╙Ц│└Е╓╖Ц│█Ц│∙ %s=Д╩≤Е┼═Ф√┤Е╜≈Е┬≈ */ 
 #define R2CH_HTML_HEADER_SIZE_REDZONE(s1,s2,r) \
 	"<p><table><tr><td bgcolor=red>\n" \
-	"<font color=white>┐T┐C┐Y┌╙" s1 "┌П▓╢┌╕┌д┌╒┌э┌╥│B" s2 "┌П▓╢┌╕┌И┌ф" r "∙\\▌╕┌е┌╚┌х┌╜┌х┌И┌Ф│B</font>" \
+	"<font color=white>Ц┌╣Ц┌╓Ц┌╨Ц│▄" s1 "Ц┌▓Х╤┘Ц│┬Ц│╕Ц│└Ц│╬Ц│≥Ц─┌" s2 "Ц┌▓Х╤┘Ц│┬Ц┌▀Ц│╗" r "Х║╗\Г╓╨Ц│╖Ц│█Ц│╙Ц│▐Ц│╙Ц┌▀Ц┌┬Ц─┌</font>" \
 	"</td></tr></table>" 
 
-/* ▌·┼т▒я┌и┌Ф┌а┌д┌м∙\▌╕┌е┌╚┌х┌╜┌х┌И┌Ф */
+/* Ф≥┌И√⌠Е╦╞Ц│╚Ц┌┬Ц│ёЦ│╕Ц│╞Х║╗Г╓╨Ц│╖Ц│█Ц│╙Ц│▐Ц│╙Ц┌▀Ц┌┬ */
 #define R2CH_HTML_HEADER_SIZE_REDZONE_TIME(s1,s2) \
-	R2CH_HTML_HEADER_SIZE_REDZONE(s1,s2, "▌·┼т▒я┌и┌Ф┌а┌д┌м")
+	R2CH_HTML_HEADER_SIZE_REDZONE(s1,s2, "Ф≥┌И√⌠Е╦╞Ц│╚Ц┌┬Ц│ёЦ│╕Ц│╞")
 
-/* ┐X┐▄√╪: %s=┐X┐▄√╪ */
-/* </font> ┌л▒O┌л▀С■▓┌м█М▐°┌╣┌х┌╒┌╠┌ф */
+/* Ц┌╧Ц┐╛Е░█: %s=Ц┌╧Ц┐╛Е░█ */
+/* </font> Ц│╝Е┴█Ц│╝Г╘╨Г≥╫Ц│╞Е┴┼И≥╓Ц│≈Ц│╙Ц│└Ц│⌠Ц│╗ */
 #define R2CH_HTML_HEADER_2(title) \
 	"<p><font size=+1 color=red>" title " </font>" \
 	"<dl>"
@@ -483,39 +483,39 @@
 	"<hr><center><a href=" path ">" str "</a></center>"
 
 #define R2CH_HTML_RELOAD(path) \
-	R2CH_HTML_T_RELOAD(path, "░V▓┘┐▄┐X┌л∙\\▌╕")
+	R2CH_HTML_T_RELOAD(path, "Ф√╟Г²─Ц┐╛Ц┌╧Ц│╝Х║╗\Г╓╨")
 
 #define R2CH_HTML_AFTER(path) \
-	R2CH_HTML_T_RELOAD(path, "▒╠┌╚┌П⌠г┌ч")
+	R2CH_HTML_T_RELOAD(path, "Г╤ Ц│█Ц┌▓Х╙╜Ц┌─")
 
 #define R2CH_HTML_RELOAD_I(path) \
-	"<center><a href=" path ">░V▓┘┐▄┐X┌л∙\\▌╕</a></center><hr>"
+	"<center><a href=" path ">Ф√╟Г²─Ц┐╛Ц┌╧Ц│╝Х║╗\Г╓╨</a></center><hr>"
 
 /*
  * PREV_NEXT
  */
 #define R2CH_HTML_PREV(path, prev) \
-	" <a href=" path ">▒O" prev "</a>"
+	" <a href=" path ">Е┴█" prev "</a>"
 
 #define R2CH_HTML_NEXT(path, next) \
-	" <a href=" path ">▌÷" next "</a>"
+	" <a href=" path ">Ф╛║" next "</a>"
 
 #define R2CH_HTML_NEW(path) \
-	" <a href=" path ">√╒⌠г</a>"
+	" <a href=" path ">Ф°╙Х╙╜</a>"
 
 #define R2CH_HTML_NEW_I(path) \
-	" <a href=" path ">░V▓┘</a>"
+	" <a href=" path ">Ф√╟Г²─</a>"
 
 /*
  * FOOTER
  * (FORM? , FOOTER) | FORM_IMODE
  */
-/* %s=■б %s=┐X┐▄ %ld=▄╩█щ▌·█▐ */
+/* %s=Ф²© %s=Ц┌╧Ц┐╛ %ld=Г▐╬Е°╗Ф≥┌Е┬╩ */
 #define R2CH_HTML_FORM(depth, bs, ky, tm) \
 	"<form method=POST action=\"" depth "bbs.cgi\">" \
-	"<input type=submit value=\"▐▒┌╚█·┌ч\" name=submit> √╪▒O│F " \
+	"<input type=submit value=\"Ф⌡╦Ц│█Х╬╪Ц┌─\" name=submit> Е░█Е┴█О╪  " \
 	"<input name=FROM size=19>" \
-	" E-mail<font size=1> (▐х≈╙┴б) </font>: " \
+	" E-mail<font size=1> (Г°│Г∙╔Е▐╞) </font>: " \
 	"<input name=mail size=19>" \
 	"<br><textarea rows=5 cols=70 wrap=off name=MESSAGE></textarea>" \
 	"<input type=hidden name=bbs value=" bs ">" \
@@ -523,18 +523,18 @@
 	"<input type=hidden name=time value=" tm ">" \
 	"</form>"
 	
-/* ┐u┐┴┐E┐U┌л┌ф┌╚┌л┐t┐b┐^: %s=⌠┼█e▌р√╪ %s=mail %s=■б %s=┐X┐▄ %ld=▄╩█щ▌·█▐ */
+/* Ц┐√Ц┐╘Ц┌╕Ц┌╤Ц│╝Ц│╗Ц│█Ц│╝Ц┐∙Ц┐┐Ц┌©: %s=Ф┼∙Г╗©Х─┘Е░█ %s=mail %s=Ф²© %s=Ц┌╧Ц┐╛ %ld=Г▐╬Е°╗Ф≥┌Е┬╩ */
 #define R2CH_HTML_PREFOOTER \
 	"</dl>"
 #define R2CH_HTML_FOOTER \
 	"<p>" CGIVER "</body></html>"
 
-/* i-MODE┌л┌ф┌╚┌лFORM: %s=■б %s=┐X┐▄ %ld=▄╩█щ▌·█▐ */
+/* i-MODEЦ│╝Ц│╗Ц│█Ц│╝FORM: %s=Ф²© %s=Ц┌╧Ц┐╛ %ld=Г▐╬Е°╗Ф≥┌Е┬╩ */
 #define R2CH_HTML_FORM_IMODE(depth, bs, ky, tm) \
 	"<form method=POST action=\"" depth "bbs.cgi\">\n" \
-	"<input type=submit value=\"┌╘┌╚┌╠┌ч\" name=submit> " \
-	"NAME│F<input name=FROM size=20 value=\"\">" \
-	"MAIL│F<input name=mail size=20 value=\"\">" \
+	"<input type=submit value=\"Ц│▀Ц│█Ц│⌠Ц┌─\" name=submit> " \
+	"NAMEО╪ <input name=FROM size=20 value=\"\">" \
+	"MAILО╪ <input name=mail size=20 value=\"\">" \
 	"<br>" \
 	"<input type=hidden name=bbs value=" bs ">" \
 	"<input type=hidden name=key value=" ky ">" \
@@ -542,37 +542,37 @@
 	"<textarea rows=5 cols=60 wrap=off name=MESSAGE></textarea>" \
 	"</form><br>" 
 
-/* i-MODE┌л┌ф┌╚┌л┐t┐b┐^: %s=■б %s=┐X┐▄ %ld=▄╩█щ▌·█▐ */
+/* i-MODEЦ│╝Ц│╗Ц│█Ц│╝Ц┐∙Ц┐┐Ц┌©: %s=Ф²© %s=Ц┌╧Ц┐╛ %ld=Г▐╬Е°╗Ф≥┌Е┬╩ */
 #define R2CH_HTML_FOOTER_IMODE \
 	"<p>" CGIVER "</body></html>"
 
-/* html_error()≈p┐G┐┴│[┐│┐b┐Z│[┐W */
-#define ERRORMES_TOO_HUGE "┌╠┌л┐X┐▄┐b┐h▒Е┌╚┌╥┌╛┌э┌╥│B"
-#define ERRORMES_NOT_FOUND "┌╩┌Я┌х■бor┐X┐▄┐b┐h┌х┌╒┌е┌╥│B"
-#define ERRORMES_DAT_FOUND "┴ъ▀▌┐█┐O▒q▄и┌е■╜▄╘"
-#define ERRORMES_TEMP_FOUND "html┴╩▒р┌©"
-#define ERRORMES_NO_MEMORY "┐│┐┌┐┼┌л┼m∙ш┌и▌╦■s┌╣┌э┌╣┌╫│B"
-#define ERRORMES_MAINTENANCE "▓╡░╝▓├│B│B│B"
-#define ERRORMES_LOGOUT "┌х┌Я┌╘∙s▓╡┌е┌╥│B"
+/* html_error()Г■╗Ц┌╗Ц┐╘Ц┐╪Ц┐║Ц┐┐Ц┌╩Ц┐╪Ц┌╦ */
+#define ERRORMES_TOO_HUGE "Ц│⌠Ц│╝Ц┌╧Ц┐╛Ц┐┐Ц┐┴Е╓╖Ц│█Ц│≥Ц│▌Ц│╬Ц│≥Ц─┌"
+#define ERRORMES_NOT_FOUND "Ц│²Ц┌⌠Ц│╙Ф²©orЦ┌╧Ц┐╛Ц┐┐Ц┐┴Ц│╙Ц│└Ц│╖Ц│≥Ц─┌"
+#define ERRORMES_DAT_FOUND "И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚Ц│╖Г≥╨Х╕▀"
+#define ERRORMES_TEMP_FOUND "htmlЕ▄√Е╬┘Ц│║"
+#define ERRORMES_NO_MEMORY "Ц┐║Ц┐╒Ц┐╙Ц│╝Г╒╨Д©²Ц│╚Е╓╠Ф∙≈Ц│≈Ц│╬Ц│≈Ц│÷Ц─┌"
+#define ERRORMES_MAINTENANCE "Х╙©Ф∙╢Д╦╜Ц─┌Ц─┌Ц─┌"
+#define ERRORMES_LOGOUT "Ц│╙Ц┌⌠Ц│▀Д╦█Х╙©Ц│╖Ц│≥Ц─┌"
 #ifdef	Katjusha_DLL_REPLY
-#define	ERRORMES_ABORNED	"┌г┌╠┌╘┌е┌═┌з│[┌Я┌╙┌═┌а┌╫┌щ┌╫┌╒┌е┌╥│B"
+#define	ERRORMES_ABORNED	"Ц│╘Ц│⌠Ц│▀Ц│╖Ц│┌Ц│╪Ц┐╪Ц┌⌠Ц│▄Ц│┌Ц│ёЦ│÷Ц│©Ц│÷Ц│└Ц│╖Ц│≥Ц─┌"
 #endif
 
-/* ■ЯTERI┐^┐C┐v┌е','┌╙▓u┼╥┌Ё┌Й┌д┼i■[┌Ё┌Й┌И∙╤▌ ≈Я */
-#define COMMA_SUBSTITUTE "\x81\x97\x81\x4d" /* "│≈│M" */
+/* И²·TERIЦ┌©Ц┌╓Ц┐≈Ц│╖','Ц│▄Г╫╝Ф▐⌡Ц│∙Ц┌▄Ц│╕Ф═╪Г╢█Ц│∙Ц┌▄Ц┌▀Ф√┤Е╜≈Е┬≈ */
+#define COMMA_SUBSTITUTE "\x81\x97\x81\x4d" /* "О╪═О╫─" */
 #define COMMA_SUBSTITUTE_FIRSTCHAR 0x81
 #define COMMA_SUBSTITUTE_LEN 4
 
-/* ⌠┼█e⌠З≈⌠┌и⌠Э┌И┐X┐g┐b┐p│[■╩▓Х∙╤▌ ≈Я┌П┐J┐⌠┐}▀Ф░ь┌Х┌е∙ю┌в┌И */
-#define STOPPER_MARKS "┐X┐g┐b┐p│[", "▓Б▌~", "┬з⌠]┌╣┌╫┌Ф"
+/* Ф┼∙Г╗©Ф≈╔Ф╛└Ц│╚Е┘╔Ц┌▀Ц┌╧Ц┐┬Ц┐┐Ц┐▒Ц┐╪Е┬╓Е╝ Ф√┤Е╜≈Е┬≈Ц┌▓Ц┌╚Ц┐ЁЦ┐·Е▄╨Е┬┤Ц┌┼Ц│╖Д╦╕Ц│╧Ц┌▀ */
+#define STOPPER_MARKS "Ц┌╧Ц┐┬Ц┐┐Ц┐▒Ц┐╪", "Е│°Ф╜╒", "Г╖╩Х╩╒Ц│≈Ц│÷Ц┌┬"
 
-/* ┴ъ▀▌┐█┐O┴{≈≈▌·┌л▓█┬с */
+/* И│▌Е▌╩Ц┐╜Ц┌╟И√╡Х╕╖Ф≥┌Ц│╝ФЁ╗Ф└▐ */
 #define	R2CH_HTML_CAUTION_KAKO	\
-	"<font color=red>[▓█] ┌╠┌л┐X┐▄┐b┐h┌м┴ъ▀▌┐█┐O┌е┌═┌Х│A▐▒┌╚┌╠┌щ┌м▐o≈┬┌э┌╧┌Я<br></font>"
+	"<font color=red>[ФЁ╗] Ц│⌠Ц│╝Ц┌╧Ц┐╛Ц┐┐Ц┐┴Ц│╞И│▌Е▌╩Ц┐╜Ц┌╟Ц│╖Ц│┌Ц┌┼Ц─│Ф⌡╦Ц│█Ц│⌠Ц│©Ц│╞Е┤╨Ф²╔Ц│╬Ц│⌡Ц┌⌠<br></font>"
 
 #ifdef USE_INDEX
 
-/* ┐X┐▄┐_┐C┐W┐F┐X┐g≈pHTML */
+/* Ц┌╧Ц┐╛Ц┐─Ц┌╓Ц┌╦Ц┌╖Ц┌╧Ц┐┬Г■╗HTML */
 #define R2CH_HTML_INDEX_HEADER(title1, title2) \
 "<head><meta http-equiv=Content-Type content=\"text/html; charset=Shift_JIS\">
 
@@ -594,20 +594,20 @@ h1,.c{text-align:center}
 <form method=POST action=\"../test/bbs.cgi\">
 <h2>" title2 "</h2>
 <dl>
-<dt>│║┬╣┌╓≤b▒Х│║<dd><ul>
-<li>HTML│ACSS│AFLASH┌х┌г┌л<em>┐T┐C┐g░╖█Л┌л▀Z▐p</em><li>JavaScript│AVBScript┌х┌г┌л<em>┐N┐┴┐C┐A┐⌠┐g┐T┐C┐h┐v┐█┐O┐┴┐─</em><li>Web┐T┐C┐g┌л┴^┴c┌╗┌Ф┌я┼г≈²┌и┌б┌╒┌д┌л▐Н∙Я▄П┼╥│E▌G▓k<li>2ch┌е┌м█r┌Г┌╣┬к≈┼┌м┌е┌╚┌э┌╧┌Я</ul>
-<dt>│║■б┬А┌╒┌х≤b▒Х│║<dd><ul>
-<li>HP┼о▌@│A┐l┐b┐g┐A┐C┐h┐▀│A┐l┐b┐g▐Ц┌л▌√▄▐│╗│w<a href=\"http://kaba.2ch.net/net/index2.html\">┐l┐b┐g▌√▄▐■б</a>│x<li>┐▄┐⌠┐^┐▀┐T│[┐o│A┐h┐│┐C┐⌠│╗│w<a href=\"/perl/index2.html\">┐▄┐⌠┐^┐▀▌I■б</a>│x<li>HP┌л░И⌠`│A┐l┐b┐g┌╥┌И┌╬┌╞┌е√в┌╘┌И≤b┌╣⌠≥│╗│w<a href=\"http://cocoa.2ch.net/ad/index2.html\">░И⌠`▄f▌╕■б</a>│x<li>CGI│APerl│APHP┌х┌г┌л┐T│[┐o┐T┐C┐h┐v┐█┐O┐┴┐~┐⌠┐O│╗│w<a href=\"http://corn.2ch.net/php/index2.html\">WebProg</a>│x</ul>
-<dt>│║┼e▌М▒██┤┐X┐▄│║<dd><ul><li>▌╘∙╙┌лHP┌л∙]┴©┌П▀│┌ъ┌И▐Й█┤│╗│w<a href=\"/test/read.cgi?bbs=hp&key=993635902\">│║│║HP∙]┴©┐X┐▄┐b┐h│║│║</a>│x<li>┐X┐^┐C┐▀┐V│[┐g┌и┌б┌╒┌д┌л▌©√Б│╗│w<a href=\"/test/read.cgi?bbs=hp&key=996828258\">CSS│A┐X┐^┐C┐▀┐V│[┐g▌©√Б≈p┐X┐▄┐b┐h</a>│x<li>FLASH┌и┌б┌╒┌д┌л▌©√Б│╗│w<a href=\"/test/read.cgi?bbs=hp&key=994898823\">FLASH┌л░╩█Л┌и┼ж┌╥┌И▌©√Б┌м┌╠┌╠┌е│Т</a>│x<li>JavaScript┌и┌б┌╒┌д┌л▌©√Б│╗│w<a href=\"/test/read.cgi?bbs=hp&key=997445548\">JavaScript┌л▌©√Б≈p┐X┐▄┐b┐h</a>│x<li>┌╩┌Й┬х┼O┌л▌©√Б│E■б┬д⌠Ю│╗│w<a href=\"/test/read.cgi?bbs=hp&key=995867650\">Web┐T┐C┐g░╖█Л▐┴░S▌р≈p┐X┐▄┐b┐h</a>│x<li>│w<a href=\"/test/read.cgi?bbs=hp&key=991370397\">Dreamweaver</a>│x│A│w<a href=\"/test/read.cgi?bbs=hp&key=997848771\">┐z│[┐─┐y│[┐W┐r┐▀┐_│[</a>│x│A│w<a href=\"/test/read.cgi?bbs=hp&key=987875928\">Golive</a>│x│A│w<a href=\"/test/read.cgi?bbs=hp&key=991367944\">Photoshop│Eillustrater</a>│x⌠≥┌м░Й≈p┐X┐▄┌╙┌═┌Х┌э┌╥</ul>
-<dt>│║┐X┐▄┐b┐h┌П┌╫┌д┌И▒O┌и│║<dd><ul>
-<li>■б┬А┌╒┌е┌м┌х┌╒┌╘│A┼Ы▐o┌е┌м┌х┌╒┌╘│A┌Ю┌╓┬Й⌠x┼m■F┌╣┌э┌╣┌Е┌╓│B<li>▓P■╜▌©√Б┌м▀ж▌~┌е┌╥│B▒██┤┐X┐▄┌и▐▒┌╚█·┌Я┌е┌╜┌╬┌Ё┌╒│B</ul>
-<dt>│║▐Z░l┌л░S⌠╬│║<dd><ul>
-<li>■б┬А┌╒│E┐X┐▄┬А┌╒┌П■╜▄╘┌╣┌╫┌Г≈D┌╣┌╜≈U⌠╠┌╣┌д┌═┌╟┌э┌╣┌Е┌╓│B<li>▐÷▌Х┌и┐X┐▄┐b┐h┌П▐I≈╧┌Ё┌╧┌И┌Ф┌╓┌х█s┬в┌м░T┌щ┌э┌╣┌Е┌╓│B<li>▒й┐X┐▄∙Ё┐X┐▄┌и┌м┐▄┐X┌╧┌╦┼╝▒S∙З▓u│B│u∙З▓u┌л■Э┼w│v┌е┌╥│B<li>│u▀С▀C┌П⌠г┌ч│v┌л┌Ю√Y┌Й┌╦┌и│B<li>ою╟ь┌ф┌к│B</ul>
+<dt>Б√═Ф┴╠Ц│├Х╘╠И║▄Б√═<dd><ul>
+<li>HTMLЦ─│CSSЦ─│FLASHЦ│╙Ц│╘Ц│╝<em>Ц┌╣Ц┌╓Ц┐┬Е┬╤Д╫°Ц│╝Ф┼─Х║⌠</em><li>JavaScriptЦ─│VBScriptЦ│╙Ц│╘Ц│╝<em>Ц┌╞Ц┐╘Ц┌╓Ц┌╒Ц┐ЁЦ┐┬Ц┌╣Ц┌╓Ц┐┴Ц┐≈Ц┐╜Ц┌╟Ц┐╘Ц┐═</em><li>WebЦ┌╣Ц┌╓Ц┐┬Ц│╝И│▀Е√╤Ц│┼Ц┌┬Ц│ЁГ╝║Г░├Ц│╚Ц│╓Ц│└Ц│╕Ц│╝Ф┐┘Е═╠Д╨╓Ф▐⌡Ц┐╩И⌡▒Х╚┤<li>2chЦ│╖Ц│╞Х█▓Ц┌┴Ц│≈Д╬²И═╪Ц│╞Ц│╖Ц│█Ц│╬Ц│⌡Ц┌⌠</ul>
+<dt>Б√═Ф²©И│∙Ц│└Ц│╙Х╘╠И║▄Б√═<dd><ul>
+<li>HPХ╕ЁЕ╞÷Ц─│Ц┐█Ц┐┐Ц┐┬Ц┌╒Ц┌╓Ц┐┴Ц┐╚Ц─│Ц┐█Ц┐┐Ц┐┬Д╦┼Ц│╝Д╨▀Д╩╤Б├▓Ц─▌<a href=\"http://kaba.2ch.net/net/index2.html\">Ц┐█Ц┐┐Ц┐┬Д╨▀Д╩╤Ф²©</a>Ц─▐<li>Ц┐╛Ц┐ЁЦ┌©Ц┐╚Ц┌╣Ц┐╪Ц┐░Ц─│Ц┐┴Ц┐║Ц┌╓Ц┐ЁБ├▓Ц─▌<a href=\"/perl/index2.html\">Ц┐╛Ц┐ЁЦ┌©Ц┐╚И╞√Ф²©</a>Ц─▐<li>HPЦ│╝Е╝ёД╪²Ц─│Ц┐█Ц┐┐Ц┐┬Ц│≥Ц┌▀Ц│═Ц│▒Ц│╖Е└╡Ц│▀Ц┌▀Х╘╠Ц│≈Г╜┴Б├▓Ц─▌<a href=\"http://cocoa.2ch.net/ad/index2.html\">Е╝ёД╪²Ф▌╡Г╓╨Ф²©</a>Ц─▐<li>CGIЦ─│PerlЦ─│PHPЦ│╙Ц│╘Ц│╝Ц┌╣Ц┐╪Ц┐░Ц┌╣Ц┌╓Ц┐┴Ц┐≈Ц┐╜Ц┌╟Ц┐╘Ц┐÷Ц┐ЁЦ┌╟Б├▓Ц─▌<a href=\"http://corn.2ch.net/php/index2.html\">WebProg</a>Ц─▐</ul>
+<dt>Б√═Е░└Г╗╝Г╥▐Е░┬Ц┌╧Ц┐╛Б√═<dd><ul><li>Х┤╙Е┬├Ц│╝HPЦ│╝Х╘∙Д╬║Ц┌▓Ф╠┌Ц┌│Ц┌▀Е═╢Е░┬Б├▓Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=993635902\">Б√═Б√═HPХ╘∙Д╬║Ц┌╧Ц┐╛Ц┐┐Ц┐┴Б√═Б√═</a>Ц─▐<li>Ц┌╧Ц┌©Ц┌╓Ц┐╚Ц┌╥Ц┐╪Ц┐┬Ц│╚Ц│╓Ц│└Ц│╕Ц│╝ХЁ╙Е∙▐Б├▓Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=996828258\">CSSЦ─│Ц┌╧Ц┌©Ц┌╓Ц┐╚Ц┌╥Ц┐╪Ц┐┬ХЁ╙Е∙▐Г■╗Ц┌╧Ц┐╛Ц┐┐Ц┐┴</a>Ц─▐<li>FLASHЦ│╚Ц│╓Ц│└Ц│╕Ц│╝ХЁ╙Е∙▐Б├▓Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=994898823\">FLASHЦ│╝Хё╫Д╫°Ц│╚И√╒Ц│≥Ц┌▀ХЁ╙Е∙▐Ц│╞Ц│⌠Ц│⌠Ц│╖Б≥╙</a>Ц─▐<li>JavaScriptЦ│╚Ц│╓Ц│└Ц│╕Ц│╝ХЁ╙Е∙▐Б├▓Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=997445548\">JavaScriptЦ│╝ХЁ╙Е∙▐Г■╗Ц┌╧Ц┐╛Ц┐┐Ц┐┴</a>Ц─▐<li>Ц│²Ц┌▄Д╩╔Е╓√Ц│╝ХЁ╙Е∙▐Ц┐╩Ф²©Ф║┬Е├┘Б├▓Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=995867650\">WebЦ┌╣Ц┌╓Ц┐┬Е┬╤Д╫°Е┬²Е©┐Х─┘Г■╗Ц┌╧Ц┐╛Ц┐┐Ц┐┴</a>Ц─▐<li>Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=991370397\">Dreamweaver</a>Ц─▐Ц─│Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=997848771\">Ц┐⌡Ц┐╪Ц┐═Ц┐ Ц┐╪Ц┌╦Ц┐⌠Ц┐╚Ц┐─Ц┐╪</a>Ц─▐Ц─│Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=987875928\">Golive</a>Ц─▐Ц─│Ц─▌<a href=\"/test/read.cgi?bbs=hp&key=991367944\">PhotoshopЦ┐╩illustrater</a>Ц─▐Г╜┴Ц│╞Е╟┌Г■╗Ц┌╧Ц┐╛Ц│▄Ц│┌Ц┌┼Ц│╬Ц│≥</ul>
+<dt>Б√═Ц┌╧Ц┐╛Ц┐┐Ц┐┴Ц┌▓Ц│÷Ц│╕Ц┌▀Е┴█Ц│╚Б√═<dd><ul>
+<li>Ф²©И│∙Ц│└Ц│╖Ц│╞Ц│╙Ц│└Ц│▀Ц─│Ф≈╒Е┤╨Ц│╖Ц│╞Ц│╙Ц│└Ц│▀Ц─│Ц┌┌Ц│├Д╦─Е╨╕Г╒╨Х╙█Ц│≈Ц│╬Ц│≈Ц┌┤Ц│├Ц─┌<li>Е█≤Г≥╨ХЁ╙Е∙▐Ц│╞Г╕│Ф╜╒Ц│╖Ц│≥Ц─┌Г╥▐Е░┬Ц┌╧Ц┐╛Ц│╚Ф⌡╦Ц│█Х╬╪Ц┌⌠Ц│╖Ц│▐Ц│═Ц│∙Ц│└Ц─┌</ul>
+<dt>Б√═Д╫▐Д╨╨Ц│╝Е©┐Е╬≈Б√═<dd><ul>
+<li>Ф²©И│∙Ц│└Ц┐╩Ц┌╧Ц┐╛И│∙Ц│└Ц┌▓Г≥╨Х╕▀Ц│≈Ц│÷Ц┌┴Е└╙Ц│≈Ц│▐Х╙≤Е╟▌Ц│≈Ц│╕Ц│┌Ц│▓Ц│╬Ц│≈Ц┌┤Ц│├Ц─┌<li>Е▀²Ф┴▀Ц│╚Ц┌╧Ц┐╛Ц┐┐Ц┐┴Ц┌▓Г╣┌Д╨├Ц│∙Ц│⌡Ц┌▀Ц┌┬Ц│├Ц│╙Х║▄Г┌╨Ц│╞Ф┘▌Ц│©Ц│╬Ц│≈Ц┌┤Ц│├Ц─┌<li>И╖└Ц┌╧Ц┐╛ГЁ·Ц┌╧Ц┐╛Ц│╚Ц│╞Ц┐╛Ц┌╧Ц│⌡Ц│ Е╝▄Е┘╗Ф■╬Г╫╝Ц─┌Ц─▄Ф■╬Г╫╝Ц│╝Г╬▌Е╜╕Ц─█Ц│╖Ц│≥Ц─┌<li>Ц─▄Г╘╨Ф╟≈Ц┌▓Х╙╜Ц┌─Ц─█Ц│╝Ц┌┌Е©≤Ц┌▄Ц│ Ц│╚Ц─┌<li>О╬▐О╬─О╫╟О╬≤Ц│╗Ц│╜Ц─┌</ul>
 </dl>
 
-<input type=submit value=\"┐X┐▄┐b┐h█Л░╛\" name=submit><input type=hidden name=bbs value=hp><input type=hidden name=time value=998848311>
-<a href=http://www.2ch.net/before.html>▐▒┌╚█·┌ч▒O┌и⌠г┌Я┌е┌к</a> │b <a href=http://www.2ch.net/guide/>2ch┐K┐C┐h</a> │b <a href=\"http://www.2ch.net/guide/faq.html\">FAQ</a></form>
-<p><a href=http://210.150.210.150/sage/bbstable.html " TARGET_BLANK ">│║▄f▌╕■б┬Й≈≈│║</a></p>
+<input type=submit value=\"Ц┌╧Ц┐╛Ц┐┐Ц┐┴Д╫°Ф┬░\" name=submit><input type=hidden name=bbs value=hp><input type=hidden name=time value=998848311>
+<a href=http://www.2ch.net/before.html>Ф⌡╦Ц│█Х╬╪Ц┌─Е┴█Ц│╚Х╙╜Ц┌⌠Ц│╖Ц│╜</a> О╫° <a href=http://www.2ch.net/guide/>2chЦ┌╛Ц┌╓Ц┐┴</a> О╫° <a href=\"http://www.2ch.net/guide/faq.html\">FAQ</a></form>
+<p><a href=http://210.150.210.150/sage/bbstable.html " TARGET_BLANK ">Б√═Ф▌╡Г╓╨Ф²©Д╦─Х╕╖Б√═</a></p>
 </div>
 
 <div class=m>
@@ -621,7 +621,7 @@ h1,.c{text-align:center}
 	"<a href=\"" anchor "/l50\" " TARGET_BODY ">" num ": " title "</a>\n"
 
 #define R2CH_HTML_INDEX_AD \
-"<p><a href=\"-\">┐X┐▄┐b┐h┬Й≈≈</a></p>
+"<p><a href=\"-\">Ц┌╧Ц┐╛Ц┐┐Ц┐┴Д╦─Х╕╖</a></p>
 </small>
 </div>
 
@@ -632,32 +632,32 @@ h1,.c{text-align:center}
 <a href=\"http://www.jyukujyo.com/\"><img src=\"http://www.jyukujyo.com/ad/jyukujyo.gif\"></a>
 <a href=\"http://www.tanteifile.com\"><img src=\"http://homepage2.nifty.com/kirik/2ch/game.gif\"></a>
 <a href=\"http://homepage2.nifty.com/tbks/\"><img src=\"http://homepage2.nifty.com/tbks/chiee0ffff.jpg\"></a>
-<p><a href=\"http://www.2ch.net/ad.html\">█L█░▐o█e┌л┌╗√Б┌╒█┤┌М┌╧</a></p>
+<p><a href=\"http://www.2ch.net/ad.html\">Е╨┐Е▒┼Е┤╨Г╗©Ц│╝Ц│┼Е∙▐Ц│└Е░┬Ц┌▐Ц│⌡</a></p>
 </div>
 
 
 <table border=1 cellspacing=0 cellpadding=0 width=95%%><tr bgcolor=black><td colspan=2>
 <table width=100%%><tr bgcolor=#FFCC44><td>
-│║ 2ch┌м│A<a href=\"http://www.maido3.com/server/usagi/news.html\" " TARGET_BLANK "><font color=navy size=+1><b>┌╠┌╠┌л┐T│[┐o</b></font></a>┌П▌g┌а┌д┌И┌е┌╥│B│B│B
+Б√═ 2chЦ│╞Ц─│<a href=\"http://www.maido3.com/server/usagi/news.html\" " TARGET_BLANK "><font color=navy size=+1><b>Ц│⌠Ц│⌠Ц│╝Ц┌╣Ц┐╪Ц┐░</b></font></a>Ц┌▓Д╫©Ц│ёЦ│╕Ц┌▀Ц│╖Ц│≥Ц─┌Ц─┌Ц─┌
 </td></tr></table>
 </td></tr><tr><td bgcolor=black>
 <font color=#CCFFCC>
-│@<font size=+1 face=\"Arial\"><b>.jp</b></font> ┐h┐│┐C┐⌠┌╗▌²┌©┌л┌╗▀q≈l▒Е┼╫▄}│B<a href=\"http://welcome.maido3.jp/\" " TARGET_BLANK "><font size=+1 face=\"Arial\" color=red><b>maido3.jp</b></font></a><br>
-│@<font size=+1 face=\"Arial\"><b>.com .net .org</b></font> ▌Ф⌠╬▒Ц█s┌╣┌э┌╥│B(US$10) <a href=\"http://www.maido3.com/server/\" " TARGET_BLANK "><font size=+1 face=\"Arial\" color=cyan><b>maido3.com</b></font></a><br>
-│@<font size=+1 face=\"Arial\" color=white><b>.cc .to .tv .fm .ca</b></font> ▌Ф⌠╬▒Ц█s┌м┌╤┌ъ┌э┌╣┌╫│B<font color=white face=\"Arial\" size=-1><b>NEW</b></font><br>
+Ц──<font size=+1 face=\"Arial\"><b>.jp</b></font> Ц┐┴Ц┐║Ц┌╓Ц┐ЁЦ│┼Ф▄│Ц│║Ц│╝Ц│┼Е╝╒Ф╖≤Е╓╖Ф╜⌠Х©▌Ц─┌<a href=\"http://welcome.maido3.jp/\" " TARGET_BLANK "><font size=+1 face=\"Arial\" color=red><b>maido3.jp</b></font></a><br>
+Ц──<font size=+1 face=\"Arial\"><b>.com .net .org</b></font> Е▐√Е╬≈Д╩ёХ║▄Ц│≈Ц│╬Ц│≥Ц─┌(US$10) <a href=\"http://www.maido3.com/server/\" " TARGET_BLANK "><font size=+1 face=\"Arial\" color=cyan><b>maido3.com</b></font></a><br>
+Ц──<font size=+1 face=\"Arial\" color=white><b>.cc .to .tv .fm .ca</b></font> Е▐√Е╬≈Д╩ёХ║▄Ц│╞Ц│≤Ц┌│Ц│╬Ц│≈Ц│÷Ц─┌<font color=white face=\"Arial\" size=-1><b>NEW</b></font><br>
 </td><td align=center>
-√Ё≈©┐z│[┐─┐y│[┐W┐X┐y│[┐X<P>
+Г└║Ф√≥Ц┐⌡Ц┐╪Ц┐═Ц┐ Ц┐╪Ц┌╦Ц┌╧Ц┐ Ц┐╪Ц┌╧<P>
 <a href=\"http://space.kakiko.com/\" " TARGET_BLANK "><font size=+1 face=\"Arial\" color=blue><b>Space.Kakiko.com</b></font></a><br>
 </font>
 </td></tr><tr bgcolor=black><td colspan=2>
 <table width=100%%><tr bgcolor=black><td>
-<font color=#ccffcc>▄▌│X1,000┴~┌╘┌Г┌л</font> <a href=\"http://www.binboserver.com/\" " TARGET_BLANK "><font color=cyan face=\"Arial\"><b>BinboServer.com</b></font></a>
+<font color=#ccffcc>Ф°┬Ц─┘1,000Е├├Ц│▀Ц┌┴Ц│╝</font> <a href=\"http://www.binboserver.com/\" " TARGET_BLANK "><font color=cyan face=\"Arial\"><b>BinboServer.com</b></font></a>
 </td><td>
-<font color=#ccffcc>┌Q┌©┌А┌Я┌к┌И┌Ю▌g┌а┌д┌╒┌И</font> <a href=\"http://www.maido3.com/server/\" " TARGET_BLANK "><font color=cyan face=\"Arial\"><b>Big-Server.com</b></font></a>
+<font color=#ccffcc>О╪▓Ц│║Ц┌┐Ц┌⌠Ц│╜Ц┌▀Ц┌┌Д╫©Ц│ёЦ│╕Ц│└Ц┌▀</font> <a href=\"http://www.maido3.com/server/\" " TARGET_BLANK "><font color=cyan face=\"Arial\"><b>Big-Server.com</b></font></a>
 </td></tr></table>
 </td></tr><tr bgcolor=black><td colspan=2>
 <table width=100%%><tr bgcolor=#FFCC44><td align=right>
-&gt;&gt; ┌Q┌©┌А┌Я┌к┌И│A<a href=\"http://news.kakiko.com/mentai/\"><font color=NAVY>┐T│[┐o┼д▌▀▐┼</font></a>
+&gt;&gt; О╪▓Ц│║Ц┌┐Ц┌⌠Ц│╜Ц┌▀Ц─│<a href=\"http://news.kakiko.com/mentai/\"><font color=NAVY>Ц┌╣Ц┐╪Ц┐░Г⌡ёХ╕√Ф┴─</font></a>
 </td></tr></table>
 </td></tr></table>"
 
@@ -670,12 +670,12 @@ h1,.c{text-align:center}
 #define R2CH_HTML_DIGEST_FOOTER \
 "<form method=POST action=\"../test/bbs.cgi\">
 <input type=hidden name=bbs value=hp><input type=hidden name=key value=998774537><input type=hidden name=time value=998848311>
-<input type=submit value=\"⌠┼█e\" name=submit> √╪▒O│F
-<input name=FROM size=19> E-mail│F<input name=mail size=19>
+<input type=submit value=\"Ф┼∙Г╗©\" name=submit> Е░█Е┴█О╪ 
+<input name=FROM size=19> E-mailО╪ <input name=mail size=19>
 <ul>
 <textarea rows=5 cols=60 wrap=off name=MESSAGE></textarea>
 </ul>
-<a href=\"../test/read.cgi?bbs=hp&key=998774537\">▒S┐▄┐X</a> <a href=\"../test/read.cgi?bbs=hp&key=998774537&ls=50\">█е░V50</a>
+<a href=\"../test/read.cgi?bbs=hp&key=998774537\">Е┘╗Ц┐╛Ц┌╧</a> <a href=\"../test/read.cgi?bbs=hp&key=998774537&ls=50\">Ф°─Ф√╟50</a>
 </form></dl>
 </div>"
 
@@ -685,13 +685,13 @@ h1,.c{text-align:center}
 "<p class=c>
 <a href=\"http://www.honeyline.co.jp/\"><img src=\"http://honeyline.co.jp/link/img/honey8.gif\"></a> 
 <a href=http://FRIEND.P-CLUB.COM/WEB/link.cgi/DDN2785/HREF/hp><img src=http://FRIEND.P-CLUB.COM/WEB/link.cgi/DDN2785/IMG/hp></a><br>
-┌г┌л┌Ф┌╓┌х▄`┌л█М▐°┬к≈┼┌е┌═┌Й▄Ж┼J┌Ё┌╧┌д┌╒┌╫┌╬┌╚┌э┌╥
+Ц│╘Ц│╝Ц┌┬Ц│├Ц│╙Е╫╒Ц│╝Е┴┼И≥╓Д╬²И═╪Ц│╖Ц│┌Ц┌▄Е┘╛И√▀Ц│∙Ц│⌡Ц│╕Ц│└Ц│÷Ц│═Ц│█Ц│╬Ц│≥
 </p>
 
 </body>"
 
 
-/* ┐X┐▄┐C┐⌠┐f┐N┐X≈pHTML */
+/* Ц┌╧Ц┐╛Ц┌╓Ц┐ЁЦ┐┤Ц┌╞Ц┌╧Г■╗HTML */
 
 #define R2CH_HTML_SUBBACK_HEADER \
 	"<html><head>" \
@@ -704,4 +704,4 @@ h1,.c{text-align:center}
 	"<a href=\"" anchor "/l50\">" num ": " title "</a>\n"
 
 #define R2CH_HTML_SUBBACK_FOOTER \
-	"<div align=right><a href=\"/tech/kako/\"><b>┴ъ▀▌┐█┐O▒q▄и┌м┌╠┌©┌Г</b></a></div></body></html>"
+	"<div align=right><a href=\"/tech/kako/\"><b>И│▌Е▌╩Ц┐╜Ц┌╟Е─┴Е╨╚Ц│╞Ц│⌠Ц│║Ц┌┴</b></a></div></body></html>"

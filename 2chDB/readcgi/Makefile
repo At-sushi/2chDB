@@ -1,4 +1,4 @@
-zlibdir       = zlib
+ï»¿zlibdir       = zlib
 
 CC            = gcc
 DEFS          = -DHAVE_READ2CH_H
@@ -27,7 +27,7 @@ clean:
 	cd $(zlibdir); make distclean
 	rm -f read.cgi *.o
 
-# ¥Ğ¥¤¥Ê¥ê¤Î¤¢¤ë¥Õ¥¡¥¤¥ë¤Î²¼¤Ëtech/dat/998845501.dat¤òÃÖ¤¤¤Æ¤«¤é¼Â¹Ô
+# ãƒã‚¤ãƒŠãƒªã®ã‚ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¸‹ã«tech/dat/998845501.datã‚’ç½®ã„ã¦ã‹ã‚‰å®Ÿè¡Œ
 test:
 	( export HTTP_COOKIE='NAME=abcde%21;MAIL=hoge@huga.net' \
 	export QUERY_STRING='bbs=tech&key=998845501'; \

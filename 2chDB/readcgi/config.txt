@@ -1,102 +1,102 @@
-�L���ȃI�v�V�����̐��� (read2ch.h �ŋL�q����Ă��鏇)
+﻿有効なオプションの説明 (read2ch.h で記述されている順)
 
-��Ver5.1x�œ����ς�
-��Ver5.1x�œ����ς݂����A�ύX����
-���V�@�\�E�傫�ȕύX�ł͂Ȃ����ŁAON����
-���V�@�\�E�ύX���傫���̂ŁA�Ƃ肠����OFF����
-�~�V�@�\�E�e�X�g�����̗��R�ŁA�J���łł�OFF�ɂȂ��Ă������
+◎Ver5.1xで導入済み
+○Ver5.1xで導入済みだが、変更あり
+△新機能・大きな変更ではない等で、ON推奨
+▲新機能・変更が大きいので、とりあえずOFF推奨
+×新機能・テスト中等の理由で、開発版でもOFFになっているもの
 
-�~ENGLISH
-�p��łɂ���(r2chhtml.h �ł͂Ȃ� r2chhtml_en.h ���C���N���[�h�����) 
+×ENGLISH
+英語版にする(r2chhtml.h ではなく r2chhtml_en.h がインクルードされる) 
 
-��CONFIG_TIMEZONE
-�^�C���]�[���̐ݒ�(���{��JST-9)
+◎CONFIG_TIMEZONE
+タイムゾーンの設定(日本はJST-9)
 
-��LINKTAGCUT
-���G���ԑт� >>000 �`���̃��X�ւ̃����N���폜�B
-�u���X��S���ǂށv�̑����ւ̑΍�Ƃ��āA
-�\���͈͊O�̃����N�͍폜���Ȃ��悤�ɕύX�B
+○LINKTAGCUT
+混雑時間帯に >>000 形式のレスへのリンクを削除。
+「レスを全部読む」の増加への対策として、
+表示範囲外のリンクは削除しないように変更。
 
-�~NORMAL_TAGCUT
-���ԑтɂ�����炸 >>000 �`���̃��X�ւ̃����N���폜�B
-�\���͈͊O�̃����N�͍폜���Ȃ��B
+×NORMAL_TAGCUT
+時間帯にかかわらず >>000 形式のレスへのリンクを削除。
+表示範囲外のリンクは削除しない。
 
-��RELOADLINK
-��ԍŌ�ɁA�u�V�����X��\���v�̃����N��\������
-�A�ł���Ă�NotModified���Ԃ�̂ŁA�傫�ȕ��ׂɂ͂Ȃ�Ȃ��͂��B
+△RELOADLINK
+一番最後に、「新着レスを表示」のリンクを表示する
+連打されてもNotModifiedが返るので、大きな負荷にはならないはず。
 
-��GSTR2
-nofirst �� n �ȂǁA�Z�k�`�Ŏw���ł���悤�ɂ���
-�ғ����B���̂Ƃ�����Ȃ��B
+◎GSTR2
+nofirst → n など、短縮形で指示できるようにする
+稼動中。今のところ問題なし。
 
-��TYPE_TERI
-teri �^�C�v�̃��O��ǂݍ��ށB
+◎TYPE_TERI
+teri タイプのログを読み込む。
 
-��PREVENTRELOAD
-�������ݒ���̃����[�h��h�~����
-FORCE_304_TIME�Ŏw�肳�ꂽ���Ԃ̊ԁA304 Not Modified��Ԃ�
-�ғ����B
+◎PREVENTRELOAD
+書き込み直後のリロードを防止する
+FORCE_304_TIMEで指定された時間の間、304 Not Modifiedを返す
+稼動中。
 
-��GZIP
-��ZLIB
-�o�͂����k����B
-ZLIB���w�肷��ƈ��k��gzip���g��Ȃ��Ȃ邽�߁A
-�v���Z�X��������A���גጸ�ɂȂ���B
+◎GZIP
+△ZLIB
+出力を圧縮する。
+ZLIBを指定すると圧縮にgzipを使わなくなるため、
+プロセス数が減り、負荷低減につながる。
 
-��RAWOUT
-dat��(����)�擾��read.cgi�ŏ�������B
-��dat�����k���ē]���ʂ����炷���Ƃ��ł���B
-CGI�ւ̃��N�G�X�g����������\��������̂ŁA���ׂ��傫���Ȃ�\������B
-mod_gzip�̐ݒ莟��ł́A�s�v�ɂȂ�ꍇ���B
-rawmode�ł́AAccept-Encoding: (gzip|x-gzip)�łȂ��Ɓu�u���E�U���ςł��v
-�G���[���N����̂Œ��ӁB
+△RAWOUT
+datの(差分)取得をread.cgiで処理する。
+生datも圧縮して転送量を減らすことができる。
+CGIへのリクエストが増加する可能性があるので、負荷が大きくなる可能性あり。
+mod_gzipの設定次第では、不要になる場合も。
+rawmodeでは、Accept-Encoding: (gzip|x-gzip)でないと「ブラウザが変です」
+エラーが起きるので注意。
 
-��RAWOUT_PARCIAL
-raw=0.0�̃��N�G�X�g���Ast=nn, to=nn, ls=nn���Q�Ƃ��ĕ����擾�\�ɂ���
+△RAWOUT_PARCIAL
+raw=0.0のリクエスト時、st=nn, to=nn, ls=nnを参照して部分取得可能にする
 
-��RAWOUT_MULTI
-raw=0.0��bbs��key���w�肳��Ă��Ȃ����Adat=board/key.size�`����
-������dat�����̈ꊇ�擾���\�ɂ���B
-�vRAWOUT,Katjusha_DLL_REPLY
+△RAWOUT_MULTI
+raw=0.0でbbsもkeyも指定されていない時、dat=board/key.size形式で
+複数のdat差分の一括取得を可能にする。
+要RAWOUT,Katjusha_DLL_REPLY
 
-��USE_MMAP
-fread(read)�̑����mmap���g�p����B
-���ׂ̒ጸ�����҂ł���B
+△USE_MMAP
+fread(read)の代わりにmmapを使用する。
+負荷の低減が期待できる。
 
-�~EXPLICIT_RELEASE
-�����I�Ɏ������������B
-CGI�v���Z�X���I������΁A�����͉�������̂Ŗ����I�ȉ���͕s�v�B
-�t�ɁA������������ׂ𑝉�������댯������̂ŁAOFF�����B
+×EXPLICIT_RELEASE
+明示的に資源を解放する。
+CGIプロセスが終了すれば、資源は解放されるので明示的な解放は不要。
+逆に、解放処理が負荷を増加させる危険があるので、OFF推奨。
 
-�~USE_INDEX
-read.cgi���ɂ��index�̎���(experimental)
-/board/dat/idx/�f�B���N�g��������΁A�e���X��index���쐬����B
+×USE_INDEX
+read.cgi側によるindexの実装(experimental)
+/board/dat/idx/ディレクトリがあれば、各レスのindexを作成する。
 
-��CHUNK_ANCHOR
-�g�b�v��CHUNK_NUM���ɋ�؂������X�ւ�anchor������
+△CHUNK_ANCHOR
+トップにCHUNK_NUM毎に区切ったレスへのanchorをつける
 
-��SEPARATE_CHUNK_ANCHOR
-�vCHUNK_ANCHOR
-��ɑ���chunk�ւ�anchor�𖖔��ɕ\������B
+▲SEPARATE_CHUNK_ANCHOR
+要CHUNK_ANCHOR
+後に続くchunkへのanchorを末尾に表示する。
 
-��CHUNKED_ANCHOR_WITH_FORM
-�vCHUNK_ANCHOR
-from select�`���� CHUNKED_ANCHOR��\������B
-�u�f���ɖ߂�v�u���X��S���v�u�ŐV���X�v�Ƃ̓��ꂪ���Ă��Ȃ��B
+▲CHUNKED_ANCHOR_WITH_FORM
+要CHUNK_ANCHOR
+from select形式で CHUNKED_ANCHORを表示する。
+「掲示板に戻る」「レスを全部」「最新レス」との統一が取れていない。
 
-��USE_CHUNK_LINK
-CHUNK_ANCHOR��CREATE_NAME_ANCHOR�g�p����>>nn��CHUNK���Ƃ̃����N�ɂ���
+▲USE_CHUNK_LINK
+CHUNK_ANCHORとCREATE_NAME_ANCHOR使用時に>>nnをCHUNKごとのリンクにする
 
-��SAGE_IS_PLAIN
-sage���X�̂Ƃ��A���O�𑾎��ɂ��Ȃ�
-(<a href="mailto:sage">�̑����<font color=>������)
-�኱�]���ʂ����邪�A�����ڂ��ω�����B
+▲SAGE_IS_PLAIN
+sageレスのとき、名前を太字にしない
+(<a href="mailto:sage">の代わりに<font color=>をつける)
+若干転送量が減るが、見た目が変化する。
 
-��USE_SETTING_FILE
-���ɐݒ肪�����Ă���t�@�C�����g�p����B
-�̃f�B���N�g����SETTING_FILE_NAME�̃t�@�C��������(SETTING.TXT�Ɠ����ꏊ)�A
-�L���ȃG���g��������΁A�f�t�H���g�l��u��������B
-SETTING_R.TXT��
+△USE_SETTING_FILE
+板毎に設定が書いてあるファイルを使用する。
+板のディレクトリにSETTING_FILE_NAMEのファイルがあり(SETTING.TXTと同じ場所)、
+有効なエントリがあれば、デフォルト値を置き換える。
+SETTING_R.TXTは
 ---
 FORCE_304_TIME=30
 LIMIT_PM=23
@@ -104,188 +104,188 @@ RES_NORMAL=50
 MAX_FILESIZE=512
 LINKTAGCUT=0
 ---
-�ȂǁB��s�B'='�O��̋󔒕s�B'='���Ȃ�������A�}�b�`���Ȃ������肵���疳��
-�Ō�̍s�ɉ��s�������ĂȂ�������A���̍s������
-���ݐݒ�\�Ȓl�́A
+など。空行可。'='前後の空白不可。'='がなかったり、マッチしなかったりしたら無視
+最後の行に改行が入ってなかったら、その行も無視
+現在設定可能な値は、
 RES_YELLOW
 RES_REDZONE
 RES_IMODE
 RES_NORMAL
-MAX_FILESIZE (Kbyte�P�ʂŐݒ�)
+MAX_FILESIZE (Kbyte単位で設定)
 LIMIT_PM
 LIMIT_AM
-FORCE_304_TIME (PREVENTRELOAD�L�����̂�)
-LATEST_NUM (LATEST_ANCHOR�L�����̂�)
+FORCE_304_TIME (PREVENTRELOAD有効時のみ)
+LATEST_NUM (LATEST_ANCHOR有効時のみ)
 LINKTAGCUT
 
-��USE_INTERNAL_SETTINGS
-��USE_SETTING_FILE���K�v�B
-SETTING_R.TXT��ǂ܂��ɁA���Ƃ̐ݒ���v���O���������Ɏ��B
+△USE_INTERNAL_SETTINGS
+※USE_SETTING_FILEが必要。
+SETTING_R.TXTを読まずに、板ごとの設定をプログラム内部に持つ。
 
-��SPECIAL_SETTING
-USE_INTERNAL_SETTINGS�ł̔��Ƃ̐ݒ���`����B
-���e�́ASETTING_R.TXT�ɏ�����B
-�����̔��`����̂͐������Ȃ��B
-�ݒ�̏I����'\n'���K�v�B
-��̔ɕ����̐ݒ�������ꍇ�́A'\n'�ŋ�؂邱�ƁB
+△SPECIAL_SETTING
+USE_INTERNAL_SETTINGSでの板ごとの設定を定義する。
+内容は、SETTING_R.TXTに準ずる。
+多数の板を定義するのは推奨しない。
+設定の終わりに'\n'が必要。
+一つの板に複数の設定を書く場合は、'\n'で区切ること。
 #deifine SPECIAL_SETTING \
-  { "��", "�ݒ薼=�ݒ�\n" }, \
-  { "��", "�ݒ薼=�ݒ�\n�ݒ薼=�ݒ�\n" },
+  { "板名", "設定名=設定\n" }, \
+  { "板名", "設定名=設定\n設定名=設定\n" },
 
-��CHECK_MOD_GZIP
-mod_gzip����������Ă�����A�u�f���ɖ߂�v�̃����N���
-/��/ �ɂ���B
-(OFF�ɂ���ƁA�߂���accept-encoding�ɂ���āA/index.htm��/index.html�ɂȂ�)
+△CHECK_MOD_GZIP
+mod_gzipが導入されていたら、「掲示板に戻る」のリンク先を
+/板名/ にする。
+(OFFにすると、戻り先はaccept-encodingによって、/index.htmか/index.htmlになる)
 
-��CUT_NAME_STRING
-"���O�F"���\���ɂ���
+△CUT_NAME_STRING
+"名前："を非表示にする
 
-��CUT_DATE_STRING
-"���e���F"���\���ɂ���
+△CUT_DATE_STRING
+"投稿日："を非表示にする
 
-��CREATE_NAME_ANCHOR
-�e���X�ɃA���J�[������B
-CHUNK_ANCHOR�Ƃ̕��p�ŃL���b�V�����ʂ��オ��\�������邪�A
-�]���ʂ𑝂₷���ʂɂȂ�\��������B
-�����OFF�ɂ����ꍇ�ł��ACHUNK_ANCHOR��OFF�ɂ��Ȃ��ƁA
->>000 �`���̃����N�悪�L�͈͂ƂȂ邽�߁A
-�]���ʂ𑝂₷�\��������B
+▲CREATE_NAME_ANCHOR
+各レスにアンカーをつける。
+CHUNK_ANCHORとの併用でキャッシュ効果が上がる可能性があるが、
+転送量を増やす結果になる可能性もある。
+これをOFFにした場合でも、CHUNK_ANCHORをOFFにしないと、
+>>000 形式のリンク先が広範囲となるため、
+転送量を増やす可能性がある。
 
-��NO_FIRST
-�e�탊���N�ɕt��"&nofirst=true"��u��������B
+▲NO_FIRST
+各種リンクに付く"&nofirst=true"を置きかえる。
 #define NO_FIRST "&n=t"
 
-��CAUTION_FILESIZE
-�u�傫�����܂��v�̌x�����o���܂ł̃T�C�Y(KB�P��)�B
-MAX_FILESIZE - CAUTION_FILESIZE*1024 �𒴂�����x����\������B
-���ꂪ����`�Ȃ�A�x���͏o���Ȃ��B
+△CAUTION_FILESIZE
+「大きすぎます」の警告を出すまでのサイズ(KB単位)。
+MAX_FILESIZE - CAUTION_FILESIZE*1024 を超えたら警告を表示する。
+これが未定義なら、警告は出さない。
 
-�~MAX_FILESIZE_BUSY [�f�o�b�O�p]
+×MAX_FILESIZE_BUSY [デバッグ用]
 
-��WRITESTOP_FILESIZE
-�X���b�h�X�g�b�v�����ɂ���T�C�Y(KB�P��)
-MAX_FILESIZE - WRITESTOP_FILESIZE*1024 �𒴂�����FORM�����o���Ȃ�
-���ꂪ����`�Ȃ�A�傫���Ă��X���b�h�X�g�b�v�����͂��Ȃ�
+△WRITESTOP_FILESIZE
+スレッドストップ扱いにするサイズ(KB単位)
+MAX_FILESIZE - WRITESTOP_FILESIZE*1024 を超えたらFORM等を出さない
+これが未定義なら、大きくてもスレッドストップ扱いはしない
 
-��NN4_LM_WORKAROUND
-NN4.x��gzip���k����Content-Length�������Last-Modified�������ɂȂ��
-��̑΍���s���B(User-Agent�ɂ���Ă�Content-Length���o�͂��Ȃ�)
+△NN4_LM_WORKAROUND
+NN4.xでgzip圧縮時にContent-LengthがあるとLast-Modifiedが無効になる問
+題の対策を行う。(User-AgentによってはContent-Lengthを出力しない)
 
-��PREV_NEXT_ANCHOR
-�u1- �O50 ��50�v������
- CHUNK_ANCHOR���͉��ɂ�������
- RELOADLINK���Ȃ��ꍇ�́A��50�Ɩ��ǂɐ؂�ւ�
- �O��̐���CHUNK_NUM�Œ�`
- i-mode�ł́A���� ��10 �O10 �ŐV10
+△PREV_NEXT_ANCHOR
+「1- 前50 次50」をつける
+ CHUNK_ANCHOR時は下にだけつける
+ RELOADLINKがない場合は、次50と未読に切り替え
+ 前後の数はCHUNK_NUMで定義
+ i-modeでは、下に 次10 前10 最新10
 
-��REFERDRES_SIMPLE
-���G���ԑтɁA>>nn�`���̃����N����Q�Ƃ��ꂽ�ꍇ��
-�o��html����]���ȃ����N�����Ȃ��B
+△REFERDRES_SIMPLE
+混雑時間帯に、>>nn形式のリンクから参照された場合に
+出力htmlから余分なリンク等を省く。
 
-��PUT_ETAG
-HTTP�w�b�_��ETag���o�͂��A�N���C�A���g���X�V�⍇�����ł���悤�ɂ���B
+▲PUT_ETAG
+HTTPヘッダにETagを出力し、クライアントが更新問合せをできるようにする。
 
-��NO_LINK_URL_BUSY
-���G���ԑтɃ��X�{������URL�������N�����Ȃ��悤�ɂ���
+▲NO_LINK_URL_BUSY
+混雑時間帯にレス本文内のURLをリンク化しないようにする
 
-��READ_KAKO
-dat�����A�ߋ����O��dat��read.cgi�œǂ�
+▲READ_KAKO
+dat落ち、過去ログのdatをread.cgiで読む
 read.cgi/tech/temp/nnnn/
 read.cgi/tech/kako/nnnn/
 
-��READ_TEMP
-(READ_KAKO��`���̂ݗL��)
-html���҂���dat��read.cgi�œǂށB
+▲READ_TEMP
+(READ_KAKO定義時のみ有効)
+html化待ちのdatもread.cgiで読む。
 
-��READ_KAKO_THROUGH
-�ߋ����O�ɗU������Ƃ��ɔ͈͎w����p������
+▲READ_KAKO_THROUGH
+過去ログに誘導するときに範囲指定を継承する
 
-��AUTO_KAKO
-�ߋ����O�ɑ΂��ē��ߓI�ɃA�N�Z�X����
-AUTO_KAKO_MODE�Ő������e���`���邱��
+▲AUTO_KAKO
+過去ログに対して透過的にアクセスする
+AUTO_KAKO_MODEで制限内容を定義すること
 
 AUTO_KAKO_MODE
-AUTO_KAKO�ŉߋ����O���擾/�{���ł��鐧����ݒ肷��(0�`2)
-      �ʏ�ǂݏo��    RAW���[�h
+AUTO_KAKOで過去ログを取得/閲覧できる制限を設定する(0～2)
+      通常読み出し    RAWモード
       temp/  kako/    temp/  kako/
-  0 =  �~     �~       ��     ��
-  1 =  ��     �~       ��     ��
-  2 =  ��     ��       ��     ��
-  �}��) ���͉{���\  �~�͉{���֎~
+  0 =  ×     ×       ○     ○
+  1 =  ○     ×       ○     ○
+  2 =  ○     ○       ○     ○
+  凡例) ○は閲覧可能  ×は閲覧禁止
 
-��AUTO_LOGTYPE
-dat�t�@�C�������ă��O�̃t�H�[�}�b�g���������ʂ���
+▲AUTO_LOGTYPE
+datファイルを見てログのフォーマットを自動判別する
 
-��CUT_TAIL_BLANK
-���O�̕�����Shift_JIS�̂P�o�C�g�ڂł��邩�������ɔ��肷�鎖�ɂ��A
-���O���ƃ��[�����̖����̋󔒁A�y��<br>�^�O���O�̋󔒂��قڏ��ł�����B
+△CUT_TAIL_BLANK
+直前の文字がShift_JISの１バイト目であるかを厳密に判定する事により、
+名前欄とメール欄の末尾の空白、及び<br>タグ直前の空白をほぼ消滅させる。
 
-��STRICT_ILLEGAL_CHECK
-(�Ӑ}�I��)���������h�~�̂��� 
-'<',"http://"�̒��O�̕�����Shift_JIS�̂P�o�C�g�ڂ��������ɔ��肵�A
-�K�v�Ȃ�΋󔒂�������B(fusianasan��bold�����΍�Ǝ�������)
-�R�X�g(����)�������銄�ɓ]���ʌ����ɂ͍v�������A
-���ɕ����������Ă����̕��������ŗ��܂�A�傫�ȉe���͂Ȃ����߁AOFF�����B
+▲STRICT_ILLEGAL_CHECK
+(意図的な)文字化け防止のため 
+'<',"http://"の直前の文字がShift_JISの１バイト目かを厳密に判定し、
+必要ならば空白を加える。(fusianasanのbold化け対策と似た処理)
+コスト(負荷)がかかる割に転送量減少には貢献せず、
+仮に文字化けしてもその部分だけで留まり、大きな影響はないため、OFF推奨。
 
-��Katjusha_Beta_kisei
-������[����ɂ��A�N�Z�X�����₷��B������ rawmode �ł̃A�N�Z�X�͕ʁB
+△Katjusha_Beta_kisei
+かちゅーしゃによるアクセスを拒絶する。ただし rawmode でのアクセスは別。
 
-��Katjusha_DLL_REPLY
-������`����gzip�Ή�DLL����̃��N�G�X�g�ɉ�������
-�T�C�Y�݂̂̃��N�G�X�g���󂯓���A
-���ځ[������o�����ꍇ�̓G���[�R�[�h�݂̂�Ԃ��B
+△Katjusha_DLL_REPLY
+かちゅ～しゃgzip対応DLLからのリクエストに応答する
+サイズのみのリクエストを受け入れ、
+あぼーんを検出した場合はエラーコードのみを返す。
 
-�~USE_CSS
-���O�̗Ε\����CSS���g���ĕ\��
-fusianasan,<a name>�̑Ή����K�v
+×USE_CSS
+名前の緑表示をCSSを使って表示
+fusianasan,<a name>の対応が必要
 
-�HCM_BBSPINK
-CM����BBSPINK�p�̂��̂ɒu�������B
+？CM_BBSPINK
+CM欄がBBSPINK用のものに置き換わる。
 
-�HLOGLOGOUT
-BadAccess(); �ɂЂ����������v�����L�^����B
+？LOGLOGOUT
+BadAccess(); にひっかかった要求を記録する。
 
 ---------------------------------------------------------------------
-�̗p����̂���condition�폜
+採用決定のためcondition削除
 
-��NEWBA
-BadAccess�̐V�����o�[�W�������g���B
-�ғ����B���̂Ƃ�����Ȃ��B������`����K���ɒ��ӁB
+◎NEWBA
+BadAccessの新しいバージョンを使う。
+稼動中。今のところ問題なし。かちゅ～しゃ規制に注意。
 
-��CUTRESLINK
+◎CUTRESLINK
 
-��LASTMOD
-�����ς݁B�قڕK�{�B
+◎LASTMOD
+導入済み。ほぼ必須。
 
-��ALL_ANCHOR
+△ALL_ANCHOR
 
-��LATEST_ANCHOR
-�u�ŐV���X LATEST_NUM�v������
+△LATEST_ANCHOR
+「最新レス LATEST_NUM」をつける
 
-��USE_PATH
-PATH_INFO���������邱�Ƃɂ��A
+▲USE_PATH
+PATH_INFOを処理することにより、
 http:://piza2.2ch.net/test/read.cgi/tech/998997848/10-20
-�̃��N�G�X�g�������ł���悤�ɂȂ�B
-CHUNK_ANCHOR�Ƃ̕��p�Ō��ʂ𔭊�����B
+のリクエストを処理できるようになる。
+CHUNK_ANCHORとの併用で効果を発揮する。
 http:://piza2.2ch.net/test/read.cgi/tech/
-���ɁA�̃X���ꗗ��\�����邽�߁A���ׂ�������\������B
+時に、板のスレ一覧を表示するため、負荷が増える可能性あり。
 
-��ALWAYS_PATH
-(USE_PATH��`���̂݋@�\)
-��p�X�d�l��URL�ŌĂ΂ꂽ�Ƃ���BASE���o�͂��āA��Ƀp�X�d�l�Ń����N�𐶐�����B
+▲ALWAYS_PATH
+(USE_PATH定義時のみ機能)
+非パス仕様のURLで呼ばれたときはBASEを出力して、常にパス仕様でリンクを生成する。
 
 ---------------------------------------------------------------------
-�s�̗p�̂���code�폜
+不採用のためcode削除
 
-�~USE_INDEX2CGI
-index2.cgi����������A�u�f���ɖ߂�v�̃����N���index2.cgi�ɂ���
-���͂�s�v�H
+×USE_INDEX2CGI
+index2.cgiがあったら、「掲示板に戻る」のリンク先をindex2.cgiにする
+もはや不要？
 
-�~EXPIRES
-proxy�p�ɁA�L���b�V���̕ێ��������o�͂���B
+×EXPIRES
+proxy用に、キャッシュの保持期限を出力する。
 
-�~COOKIE
-Cookie �ɂ�閼�O�AE-mail �t�B�[���h�̏����l�̖��ߍ��݂� CGI ���ōs��
-Last-Modified�t���ɂ��Aproxy�ŃL���b�V�����ꂽ�ꍇ�Ɋe��̕s�s��
-(�ň��̏ꍇ�A�L���b�v�E�g���b�v�̃p�X�R��)���������邽�ߎg�p�s��
+×COOKIE
+Cookie による名前、E-mail フィールドの初期値の埋め込みを CGI 側で行う
+Last-Modified付加により、proxyでキャッシュされた場合に各種の不都合
+(最悪の場合、キャップ・トリップのパス漏れ)が発生するため使用不可に
 

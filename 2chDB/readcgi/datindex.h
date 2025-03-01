@@ -1,6 +1,6 @@
-/*  file: datindex.h
+﻿/*  file: datindex.h
  *
- *  ���E���ʃC���f�N�X�̒�`
+ *  世界共通インデクスの定義
  *
  *  $Id: datindex.h,v 1.7 2001/09/04 07:26:48 2ch Exp $ */
 
@@ -13,88 +13,88 @@
 #define DATINDEX_VERSION 1
 
 /*
- *  �������l���āA�C���f�N�X�͂Ȃ�ׂ�4096�o�C�g(page size)�ȓ���
- *  ���܂�悤�ɂ���B�t�Ɍ����ƁA4096�o�C�g��菬�������Ă��A
- *  �����������E�f�B�X�N�e�ʂ̓_�Ń����b�g�͂Ȃ��B
- *  (Linux ext2�́Afragment�����Ȃ��͂��Ȃ̂ŁA
- *   minimum allocation unit��4096�o�C�g�̃n�Y)
+ *  効率を考えて、インデクスはなるべく4096バイト(page size)以内に
+ *  収まるようにする。逆に言うと、4096バイトより小さくしても、
+ *  メモリ効率・ディスク容量の点でメリットはない。
+ *  (Linux ext2は、fragmentを作らないはずなので、
+ *   minimum allocation unitは4096バイトのハズ)
  *
- *  �y�^�p�̍Œ�񑩁z
+ *  【運用の最低約束】
  *
- *    * version ��0�̃C���f�N�X�ɑ����A
- *	���邢�̓C���f�N�X�̃T�C�Y��0��������A
- *	��{�I�ɉ��������A�C���f�N�X�ɗ��炸���͂ŏ�������B
- *	�������Aversion��0�̂܂܈�莞�Ԍo�߂������̂́A
- *	�p��-�č쐬���s���ׂ��B(�쐬�r���Ŏ��񂾂ƍl����)
- *    * version ���m���Ă���̂��傫���Ƃ��́A
- *	���������A���͂ŏ�������B
- *    * version ���m���Ă���̂�菬�����ꍇ�́A
- *	�p�����ĐV�K�쐬�B
+ *    * version が0のインデクスに遭遇、
+ *	あるいはインデクスのサイズが0だったら、
+ *	基本的に何もせず、インデクスに頼らず自力で処理する。
+ *	ただし、versionが0のまま一定時間経過したものは、
+ *	廃棄-再作成を行うべき。(作成途中で氏んだと考えれ)
+ *    * version が知ってるものより大きいときは、
+ *	何もせず、自力で処理する。
+ *    * version が知ってるものより小さい場合は、
+ *	廃棄して新規作成。
  *
- *  �y�V�K�쐬�̂����z
- *    * creat(2)�ł���B
- *	creat()�ɏ������v���Z�X���ӔC��������
- *	�C���f�N�X���\�z����!
- *	creat()�ŕ������v���Z�X�́A���͂ŏ�������!
- *	�C���f�N�X�\�z���I�������Aversion���Z�b�g����!
+ *  【新規作成のやり方】
+ *    * creat(2)でつくれ。
+ *	creat()に勝ったプロセスが責任を持って
+ *	インデクスを構築しる!
+ *	creat()で負けたプロセスは、自力で処理しる!
+ *	インデクス構築が終わったら、versionをセットしる!
  *
- *  �y�I�[�v���̂����z
- *    * MAP_SHARED�ŊJ���ׂ��B
+ *  【オープンのやり方】
+ *    * MAP_SHAREDで開くべし。
  *
- *  �y�Â��o�[�W�����̔p���̂����z
- *    * �t�@�C�����f�B���N�g������unlink
- *    * ���Ƃ́y�V�K�쐬�z�ցB
+ *  【古いバージョンの廃棄のやり方】
+ *    * ファイルをディレクトリからunlink
+ *    * あとは【新規作成】へ。
  *
  */
 
-/* �z��L������
-   �L���̂��������ł���ׂ��� */
+/* 想定記事総数
+   キリのいい数字であるべきだ */
 #define DATINDEX_MAX_ARTICLES 1024
 
-/* �C���f�N�X�P��
-   CHUNK_NUM�̖񐔂ł���ׂ��� */
+/* インデクス単位
+   CHUNK_NUMの約数であるべきだ */
 #define DATINDEX_CHUNK_SIZE 10
 
 #define DATINDEX_IDX_SIZE ((DATINDEX_MAX_ARTICLES + DATINDEX_CHUNK_SIZE - 1) \
 			   / DATINDEX_CHUNK_SIZE)
 
-/* �C���f�N�X
-   �T�C�Y��4096�𒴂���̂͊��}�ł��Ȃ� */
+/* インデクス
+   サイズが4096を超えるのは歓迎できない */
 typedef struct DATINDEX
 {
-	/* �o�[�W�������B�j�󑀍�̃Z�}�t�H�ɂ��Ȃ��Ă��� */
+	/* バージョン情報。破壊操作のセマフォにもなっている */
 	unsigned long volatile version;
 
-	/* ������
-	   chunk idx�X�V�̃Z�}�t�H�ɂ��Ȃ��Ă��� */
+	/* 発言数
+	   chunk idx更新のセマフォにもなっている */
 	unsigned long linenum;
 
-	/* .dat �̍ŏI�X�V���� */
+	/* .dat の最終更新時刻 */
 	time_t lastmod;
 
-	/* �X���^�C�g���ւ̃I�t�Z�b�g */
+	/* スレタイトルへのオフセット */
 	unsigned title_ofs;
 
-	/* �C���f�N�X
-	   �{���Ȃ�΁A�S�L���ɑ΂���
-	   L-M�����������Ƃ���Ȃ̂����A
-	   ��������ƃT�C�Y���傫���Ȃ肷���ğT���c
+	/* インデクス
+	   本来ならば、全記事に対して
+	   L-Mを持ちたいところなのだが、
+	   そうするとサイズが大きくなりすぎて鬱だ…
 
-	   �e�L����L-M�́Achunk L-M����̍���(16bit)��
-	   ���悤�ɂ��A����18���Ԉȏ゠����̂�
-	   ���ʈ�������A�Ƃ���kludge���l�����邪�c */
+	   各記事のL-Mは、chunk L-Mからの差分(16bit)で
+	   持つようにし、差が18時間以上あるものは
+	   特別扱いする、というkludgeも考えられるが… */
 	struct
 	{
-		unsigned nextofs;	/* ��chunk�ւ̃I�t�Z�b�g */
-		time_t lastmod;		/* chunk�̍ŐV�X�V */
-		unsigned valid_bitmap;	/* �L������: LSB����ǂ� */
-		long pad;		/* ���߂��� */
+		unsigned nextofs;	/* 次chunkへのオフセット */
+		time_t lastmod;		/* chunkの最新更新 */
+		unsigned valid_bitmap;	/* 有効発言: LSBから読め */
+		long pad;		/* うめぐさ */
 	} idx[DATINDEX_IDX_SIZE];
 
-	/* XXX ���߂���1 */
+	/* XXX うめぐさ1 */
 	unsigned pad1[607];
 
-	/* �V�O�l�`�� */
+	/* シグネチャ */
 	unsigned long signature;
 } DATINDEX;
 
@@ -106,33 +106,33 @@ struct DATINDEX_STRING
 
 struct DATINDEX_LINE
 {
-	/* �����̃|�C���^���m���Čv�Z���ׂ��ł͂Ȃ� XXX */
+	/* これらのポインタ同士を再計算すべきではない XXX */
 	struct DATINDEX_STRING name;
 	struct DATINDEX_STRING mailto;
 	struct DATINDEX_STRING date;
 	struct DATINDEX_STRING text;
-	int len;	/* ���v�Z�̎��� 0 ������ */
-	time_t lastmod;	/* ���ځ[�񎞂ɂ� 0 ������ */
+	int len;	/* 未計算の時は 0 が入る */
+	time_t lastmod;	/* あぼーん時には 0 を入れれ */
 };
 
-/* index�Ǘ�
-   �ׂɃO���[�o���ϐ��ł��������ǂ� */
+/* index管理
+   べつにグローバル変数でもいいけどね */
 typedef struct DATINDEX_OBJ
 {
-	/* .dat�{�� */
+	/* .dat本体 */
 	struct stat dat_stat;
 	char *private_dat;
 
-	/* .dat��ǂ�Ő��������e�[�u�� */
+	/* .datを読んで生成されるテーブル */
 	struct DATINDEX_LINE *line;
-	/* line�̌� */
+	/* lineの個数 */
 	int linenum;
 
-	/* �C���f�N�X */
+	/* インデクス */
 	DATINDEX volatile *shared_idx;
 } DATINDEX_OBJ;
 
-/* ����: i386 �ł͓����܂��[��(�m */
+/* 注意: i386 では動きませーん(藁 */
 #define DATINDEX_CMPXCHG(sem, cur, new) \
 	({ \
 		long eax; \
@@ -144,25 +144,25 @@ typedef struct DATINDEX_OBJ
 		eax; \
 	 })
 
-/* �����K�����ԈႦ���c�T
-   ���J�C���^�t�F�C�X�́A
+/* 命名規則を間違えた…鬱
+   公開インタフェイスは、
    <module>_<method>()
-   ���Ė����ɂ���悤�ɂ��悤�A����́B */
+   って命名にするようにしよう、今後は。 */
 
-/* �C���f�N�X�� dat �ɓǂݍ���
-   dat �͊��S�ɏ��������s���� */
+/* インデクスを dat に読み込む
+   dat は完全に初期化が行われる */
 extern int datindex_open(DATINDEX_OBJ *dat,
 			 char const *bs, long ky);
 
-/* lastmod���E���グ��
-   first �́A!is_nofirst() �ł��邱�Ƃɒ��� */
+/* lastmodを拾い上げる
+   first は、!is_nofirst() であることに注意 */
 extern time_t datindex_lastmod(DATINDEX_OBJ const *dat,
-			       int first,	/* 1�Ԗڂ��܂߂� */
+			       int first,	/* 1番目を含める */
 			       int st,
 			       int to);
 
-/* ���͘R��AC++��D���Ȃ񂾁c
-   �Ȃ�ƂȂ��������킹�鏑�����ɂȂ��Ă�ł���?(�T
+/* 実は漏れ、C++大好きなんだ…
+   なんとなくそれを匂わせる書き方になってるでしょ?(鬱
    (6411) */
 
 #endif /* DATINDEX_H__ */

@@ -1,5 +1,5 @@
-/* file: digest.c
-   ”Âˆê——ƒ_ƒCƒWƒFƒXƒg“f‚«o‚µˆ— */
+ï»¿/* file: digest.c
+   æ¿ä¸€è¦§ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆåãå‡ºã—å‡¦ç† */
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -12,8 +12,8 @@
 #include "r2chhtml.h"
 
 /****************************************************************/
-/*	”Âƒ_ƒCƒWƒFƒXƒg(index2.html)‚ğo—Í‚µ‚Ä‚İ‚éB		*/
-/*	path_depth == 1 ‚Ì‚Í‚¸					*/
+/*	æ¿ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆ(index2.html)ã‚’å‡ºåŠ›ã—ã¦ã¿ã‚‹ã€‚		*/
+/*	path_depth == 1 ã®ã¯ãš					*/
 /****************************************************************/
 void dat_out_index(void)
 {
@@ -26,8 +26,8 @@ void dat_out_index(void)
 	int fd;
 	int max = 0;
 
-	/* XXX ‚Ş‚è‚â‚è”Âƒ^ƒCƒgƒ‹‚ğæ“¾‚µ‚Ä‚İ‚é
-	   –\—Í“I‚È•û–@‚¾‚È‚  */
+	/* XXX ã‚€ã‚Šã‚„ã‚Šæ¿ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã—ã¦ã¿ã‚‹
+	   æš´åŠ›çš„ãªæ–¹æ³•ã ãªã‚ */
 	sprintf(fname, "../%.64s/index2.html", zz_bs);
 	fd = open(fname, O_RDONLY);
 	if (fd < 0)
@@ -35,9 +35,9 @@ void dat_out_index(void)
 	html = mmap(NULL, 65536, PROT_READ, MAP_SHARED, fd, 0);
 	if (html == MAP_FAILED)
 		html_error(ERROR_NO_MEMORY);
-	/* <TITLE> (7 chars) ‚ğ’T‚·
-	   strstr() ‚ğg‚¢‚½‚¢‚Æ‚±‚ë‚¾‚ª
-	   ”Ôl‚ª‚¢‚È‚¢‚Ì‚ÅAè‚Å’T‚· */
+	/* <TITLE> (7 chars) ã‚’æ¢ã™
+	   strstr() ã‚’ä½¿ã„ãŸã„ã¨ã“ã‚ã ãŒ
+	   ç•ªäººãŒã„ãªã„ã®ã§ã€æ‰‹ã§æ¢ã™ */
 	i = 0;
 	while (i < 8192 - 7)
 		switch (html[i + 6]) {
@@ -54,14 +54,14 @@ void dat_out_index(void)
 		case '>':
 			if (memcmp(&html[i], "<TITLE>", 7) != 0
 			    && memcmp(&html[i], "<title>", 7) != 0) {
-				/* ‚¿‚å‚Á‚Æè”²‚« */
+				/* ã¡ã‚‡ã£ã¨æ‰‹æŠœã */
 				i++;
 				continue;
 			}
 			/* found! */	
 			i += 7;
 			title_s = i;
-			/* ‚±‚ñ‚Ç‚Í </TITLE> (8 chars) ‚ğ’T‚· */
+			/* ã“ã‚“ã©ã¯ </TITLE> (8 chars) ã‚’æ¢ã™ */
 			while (i < 8192 - 8)
 				switch (html[i + 7]) {
 				default:	i += 8; continue;
@@ -82,7 +82,7 @@ void dat_out_index(void)
 					    && memcmp(&html[i],
 						      "</title>",
 						      8) != 0) {
-						/* ‚¿‚å‚Á‚Æè”²‚« */
+						/* ã¡ã‚‡ã£ã¨æ‰‹æŠœã */
 						i++;
 						continue;
 					}
@@ -91,7 +91,7 @@ void dat_out_index(void)
 					goto found;
 				}
 
-			/* i ‚Íi‚ñ‚Å‚¢‚é‚Í‚¸ */
+			/* i ã¯é€²ã‚“ã§ã„ã‚‹ã¯ãš */
 			continue;
 		}
 
@@ -104,13 +104,13 @@ void dat_out_index(void)
 	else
 		pPrintf(pStdout,
 			R2CH_HTML_INDEX_HEADER("%s", "%s,%d,%d,%d"),
-			"‚È‚È‚µ”Â",
-			"‚È‚È‚µ”Â", title_s, title_e, i);
+			"ãªãªã—æ¿",
+			"ãªãªã—æ¿", title_s, title_e, i);
 
-	/* fd, html, ‘Œ¹‚Ì•úŠü‚Ís‚Á‚Ä‚È‚¢cŸT‚¾ */
+	/* fd, html, è³‡æºã®æ”¾æ£„ã¯è¡Œã£ã¦ãªã„â€¦é¬±ã  */
 
-	/* ƒXƒŒˆê——‚Ìo—Í
-	   ‚±‚Ì“_‚Å‚Í‚Ü‚¾ƒƒ‚ƒŠã‚É subject.txt ‚ª‘¶İB*/
+	/* ã‚¹ãƒ¬ä¸€è¦§ã®å‡ºåŠ›
+	   ã“ã®æ™‚ç‚¹ã§ã¯ã¾ã ãƒ¡ãƒ¢ãƒªä¸Šã« subject.txt ãŒå­˜åœ¨ã€‚*/
 	for (i = 0; i < N_INDEX_THREADS && i < lineMax; i++) {
 		char const *p = BigLine[i];
 		char const *subj;
@@ -154,32 +154,32 @@ void dat_out_index(void)
 	pPrintf(pStdout,
 		R2CH_HTML_INDEX_AD);
 
-	/* ‚©‚È[‚è‹C‹x‚ß */
+	/* ã‹ãªãƒ¼ã‚Šæ°—ä¼‘ã‚ */
 #ifndef USE_MMAP
 	if (BigBuffer)
 		free(BigBuffer);
 #endif
 	BigBuffer = NULL;
-	/* ‚±‚êˆÈ~AƒOƒ[ƒoƒ‹•Ï”‚ª
-	   M—p‚¨‚¯‚È‚­‚È‚é‰Â”\«‚ ‚è
-	   ‚È‚ñ‚¾‚©‚Ğ‚Á‚­‚è•Ô‚µ‚Ä‘‚«’¼‚µ‚½‚¢
-	   cŸT‚¾‚Ì‚¤ */
+	/* ã“ã‚Œä»¥é™ã€ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ãŒ
+	   ä¿¡ç”¨ãŠã‘ãªããªã‚‹å¯èƒ½æ€§ã‚ã‚Š
+	   ãªã‚“ã ã‹ã²ã£ãã‚Šè¿”ã—ã¦æ›¸ãç›´ã—ãŸã„
+	   â€¦é¬±ã æ°ã®ã† */
 
-	/* ƒXƒŒƒ_ƒCƒWƒFƒXƒg‚Ìo—Í */
+	/* ã‚¹ãƒ¬ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆã®å‡ºåŠ› */
 	zz_nf[0] = 0;
 	for (i = 0; i < N_INDEX_DIGESTS && i < max; i++) {
-		/* ‚±‚ê‚ğƒZƒbƒg‚µ‚Ä‚¨‚©‚È‚¢‚Æ
-		   ‘S”Ê“I‚É’²qˆ«‚¢ */
+		/* ã“ã‚Œã‚’ã‚»ãƒƒãƒˆã—ã¦ãŠã‹ãªã„ã¨
+		   å…¨èˆ¬çš„ã«èª¿å­æ‚ªã„ */
 		strcpy(zz_ky, dat_name_4digest[i]);
 
-		/* ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‚­‚é */
+		/* ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚“ã§ãã‚‹ */
 		sprintf(fname,
 			"../%.64s/dat/%.64s.dat",
 			zz_bs,
 			dat_name_4digest[i]);
 		dat_read(fname, 0, 0, 10);
 
-		/* ‚¹‚Á‚©‚­‚¾‚©‚ç•\¦‚µ‚Ä‚ ‚°‚é */
+		/* ã›ã£ã‹ãã ã‹ã‚‰è¡¨ç¤ºã—ã¦ã‚ã’ã‚‹ */
 		pPrintf(pStdout,
 			R2CH_HTML_DIGEST_HEADER_1("%d"),
 			1 + i);
@@ -195,8 +195,8 @@ void dat_out_index(void)
 		R2CH_HTML_INDEX_FOOTER);
 }
 /****************************************************************/
-/*	ƒXƒŒˆê——(subback.html‘Š“–)‚ğo—Í‚µ‚Ä‚İ‚éB		*/
-/*	path_depth == 2 ‚Ì‚Í‚¸					*/
+/*	ã‚¹ãƒ¬ä¸€è¦§(subback.htmlç›¸å½“)ã‚’å‡ºåŠ›ã—ã¦ã¿ã‚‹ã€‚		*/
+/*	path_depth == 2 ã®ã¯ãš					*/
 /****************************************************************/
 void dat_out_subback(void)
 {
@@ -204,8 +204,8 @@ void dat_out_subback(void)
 
 	pPrintf(pStdout, R2CH_HTML_SUBBACK_HEADER);
 
-	/* s‚ğ“Ç‚İ‚ñ‚Å‰ğÍ‚µ‚Ä‚¢‚­
-	   BigLine[]‚Ìî•ñ‚ğ‚Æ‚è‚ ‚¦‚¸M—p‚µ‚Ä‚¨‚­‚±‚Æ‚É‚·‚é */
+	/* è¡Œã‚’èª­ã¿è¾¼ã‚“ã§è§£æã—ã¦ã„ã
+	   BigLine[]ã®æƒ…å ±ã‚’ã¨ã‚Šã‚ãˆãšä¿¡ç”¨ã—ã¦ãŠãã“ã¨ã«ã™ã‚‹ */
 	for (i = 0; i < lineMax; i++) {
 		char const *p = BigLine[i];
 		char const *subj;

@@ -1,6 +1,6 @@
-/*  file: datindex.c
+ï»¿/*  file: datindex.c
  *
- *  ƒCƒ“ƒfƒNƒX‰^—p
+ *  ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹é‹ç”¨
  *
  *  $Id: datindex.c,v 1.11 2001/09/08 19:53:54 2ch Exp $ */
 
@@ -20,14 +20,14 @@
 /* /board/dat/idx/XXXXXXXXXX.idx */
 #define DATINDEX_PATH "dat/idx"
 
-/* version ‚ª 0 ‚Ì‚Æ‚«‚ÌAì‚è’¼‚µŠÔ(sec) */
+/* version ãŒ 0 ã®ã¨ãã®ã€ä½œã‚Šç›´ã—æ™‚é–“(sec) */
 #define DATINDEX_EXPIRATION 60
 
 /****************************************************************
- *	“ú•t‚ğ‰ğÍ‚·‚é
- *	‰ğÍ‚É¬Œ÷‚µ‚½‚çAƒXƒLƒƒƒ“‚µ‚½•¶š”‚ğ•Ô‚·
- *	¸”s‚µ‚½‚ç 0 ‚ğ•Ô‚·
- *	c‚È‚º‚©•b‚Ìæ“¾‚É‚à‘Î‰‚µ‚Ä‚¢‚é‚¼(‚—
+ *	æ—¥ä»˜ã‚’è§£æã™ã‚‹
+ *	è§£æã«æˆåŠŸã—ãŸã‚‰ã€ã‚¹ã‚­ãƒ£ãƒ³ã—ãŸæ–‡å­—æ•°ã‚’è¿”ã™
+ *	å¤±æ•—ã—ãŸã‚‰ 0 ã‚’è¿”ã™
+ *	â€¦ãªãœã‹ç§’ã®å–å¾—ã«ã‚‚å¯¾å¿œã—ã¦ã„ã‚‹ã(ï½—
  ****************************************************************/
 static int get_date(struct tm *datetime,
 		    char const *p)
@@ -42,7 +42,7 @@ static int get_date(struct tm *datetime,
 	if (!isdigit(p[ofs]))
 	return 0;
 
-	/* yymmdd‚ğ“¾‚é */
+	/* yymmddã‚’å¾—ã‚‹ */
 	n = strspn(&p[ofs], "/0123456789");
 	if (n >= 20)
 		return 0;
@@ -64,7 +64,7 @@ static int get_date(struct tm *datetime,
 		return 0;
 	datetime->tm_mday = atoi(dp);
 
-	/* hhmm[ss]‚ğ“¾‚é */
+	/* hhmm[ss]ã‚’å¾—ã‚‹ */
 	ofs += strcspn(&p[ofs], "<>\n0123456789");
 	if (!isdigit(p[ofs]))
 		return 0;
@@ -86,10 +86,10 @@ static int get_date(struct tm *datetime,
 	return ofs;
 }
 /****************************************************************
- *	w’è‚³‚ê‚½s(‚½‚¾‚µchunkˆÈ“à)‚Ì
- *	sƒCƒ“ƒfƒNƒX‚ğ‚Â‚­‚è‚ ‚°‚é
- *	‚±‚¢‚Â‚Íshared_idx‚ğ‚¢‚¶‚ç‚È‚¢
- *	i‚ñ‚¾ƒIƒtƒZƒbƒg‚ğ•Ô‚·
+ *	æŒ‡å®šã•ã‚ŒãŸè¡Œ(ãŸã ã—chunkä»¥å†…)ã®
+ *	è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ã¤ãã‚Šã‚ã’ã‚‹
+ *	ã“ã„ã¤ã¯shared_idxã‚’ã„ã˜ã‚‰ãªã„
+ *	é€²ã‚“ã ã‚ªãƒ•ã‚»ãƒƒãƒˆã‚’è¿”ã™
  ****************************************************************/
 static int buildup_line(struct DATINDEX_LINE *line,
 			int line_n,
@@ -102,7 +102,7 @@ static int buildup_line(struct DATINDEX_LINE *line,
 	int ofs;
 	int linenum;
 
-	/* ‚Ü‚¸‚Í epoch ‚©‚çn‚ß‚æ */
+	/* ã¾ãšã¯ epoch ã‹ã‚‰å§‹ã‚ã‚ˆ */
 	*newest_lastmod = 0;
 
 	for (ofs = 0, linenum = 0;
@@ -112,15 +112,15 @@ static int buildup_line(struct DATINDEX_LINE *line,
 		int orig_ofs;
 		struct tm datetime;
 
-		/* ‚í‚©‚ñ‚È‚¢ƒtƒ‰ƒO‚ª‘½‚·‚¬‚Ä‚²‚ß‚ñ‚Ë */
-		int aborted = 0;	/* ‚ ‚Ú[‚ñ? */
-		int completed = 0;	/* ƒp[ƒX‚ª’Ê‚Á‚½‚çƒZƒbƒg‚·‚×‚µ */
+		/* ã‚ã‹ã‚“ãªã„ãƒ•ãƒ©ã‚°ãŒå¤šã™ãã¦ã”ã‚ã‚“ã­ */
+		int aborted = 0;	/* ã‚ã¼ãƒ¼ã‚“? */
+		int completed = 0;	/* ãƒ‘ãƒ¼ã‚¹ãŒé€šã£ãŸã‚‰ã‚»ãƒƒãƒˆã™ã¹ã— */
 		time_t lastmod = dat_lastmod;
 
 		orig_ofs = ofs;
 
 		/* name<>mailto<>date id<>text<>[subject]\n */
-		/* name, mailto‚ğƒXƒLƒbƒv‚·‚é */
+		/* name, mailtoã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ */
 		for (i = 0; i < 2; i++) {
 			if (i == 0)
 				line->name.p = &dat[ofs];
@@ -144,21 +144,21 @@ static int buildup_line(struct DATINDEX_LINE *line,
 			ofs += 2;
 		}
 
-		/* “ú•t‚ğ‰ğÍ‚·‚é
-		   “ú•t•¶š‚ª‚Ü‚Á‚½‚­“¾‚ç‚ê‚È‚©‚Á‚½‚çA
-		   ‚ ‚Ú[‚ñ‚ÆŒ©‚È‚· */
+		/* æ—¥ä»˜ã‚’è§£æã™ã‚‹
+		   æ—¥ä»˜æ–‡å­—ãŒã¾ã£ãŸãå¾—ã‚‰ã‚Œãªã‹ã£ãŸã‚‰ã€
+		   ã‚ã¼ãƒ¼ã‚“ã¨è¦‹ãªã™ */
 		n = get_date(&datetime, &dat[ofs]);
 		if (n == 0) {
-			/* ‚ ‚Ú[‚ñ‚ÆŒ©‚È‚·
-			   ‚±‚Ì‚Ü‚Üs‚Ìˆ—‚ğ‘Å‚¿Ø‚Á‚Ä‚à‚¢‚¢‚Ì‚¾‚ª
-			   ƒXƒŒƒ^ƒCƒgƒ‹‚ğæ“¾‚µ‚½‚¢ê‡‚ª‚ ‚é‚Ì‚ÅA
-			   ‚»‚Ìê‡‚Íƒtƒ‰ƒO‚ğ—§‚Ä‚Ä‘±s(ŸT */
+			/* ã‚ã¼ãƒ¼ã‚“ã¨è¦‹ãªã™
+			   ã“ã®ã¾ã¾è¡Œã®å‡¦ç†ã‚’æ‰“ã¡åˆ‡ã£ã¦ã‚‚ã„ã„ã®ã ãŒ
+			   ã‚¹ãƒ¬ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã—ãŸã„å ´åˆãŒã‚ã‚‹ã®ã§ã€
+			   ãã®å ´åˆã¯ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã¦ç¶šè¡Œ(é¬± */
 			aborted = 1;
 		} else {
-			/* æ“¾‚µ‚½‚ğ L-M ‚Æ‚µ‚ÄƒZƒbƒg‚µ‚Ä‚¨‚­ */
+			/* å–å¾—ã—ãŸæ™‚åˆ»ã‚’ L-M ã¨ã—ã¦ã‚»ãƒƒãƒˆã—ã¦ãŠã */
 			lastmod = mktime(&datetime);
 		}
-		/* date‚Ìc‚èA–{•¶‚ğƒXƒLƒbƒv‚·‚é */
+		/* dateã®æ®‹ã‚Šã€æœ¬æ–‡ã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ */
 		for (i = 0; i < 2; i++) {
 			if (i == 0)
 				line->date.p = &dat[ofs];
@@ -181,39 +181,39 @@ static int buildup_line(struct DATINDEX_LINE *line,
 
 			ofs += 2;
 		}
-		/* ‚±‚±‚Ü‚Å—ˆ‚ê‚½‚ç‚ ‚Ú[‚ñ‚Å‚Í‚È‚¢‚ÆŒ©‚È‚·
-		   (œ aborted ‚ªƒZƒbƒg‚³‚ê‚Ä‚éê‡ )*/
+		/* ã“ã“ã¾ã§æ¥ã‚ŒãŸã‚‰ã‚ã¼ãƒ¼ã‚“ã§ã¯ãªã„ã¨è¦‹ãªã™
+		   (é™¤ aborted ãŒã‚»ãƒƒãƒˆã•ã‚Œã¦ã‚‹å ´åˆ )*/
 		if (!aborted) {
 			completed = 1;
 		}
-		/* ƒXƒŒƒ^ƒCƒgƒ‹‚ª‚ ‚é‚©‚à‚µ‚ê‚È‚¢‚ªA“Ç‚İ”ò‚Î‚· */
+		/* ã‚¹ãƒ¬ã‚¿ã‚¤ãƒˆãƒ«ãŒã‚ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ãŒã€èª­ã¿é£›ã°ã™ */
 
 	can_not_parse:
-		/* XXX ƒtƒ@ƒCƒ‹I’[‚ÌƒPƒc‚ğ”j‚é‰Â”\«‚ ‚è
-		   C³‚µ‚é!! */
+		/* XXX ãƒ•ã‚¡ã‚¤ãƒ«çµ‚ç«¯ã®ã‚±ãƒ„ã‚’ç ´ã‚‹å¯èƒ½æ€§ã‚ã‚Š
+		   ä¿®æ­£ã—ã‚‹!! */
 		ofs += 1 + strcspn(&dat[ofs], "\n");
 
 		if (completed) {
 			line->lastmod = lastmod;
 		} else {
-			/* s‚Ì‰ğÍ‚ªŠ®—¹‚µ‚Ä‚¢‚È‚¢ê‡ */
+			/* è¡Œã®è§£æãŒå®Œäº†ã—ã¦ã„ãªã„å ´åˆ */
 
 			static struct DATINDEX_LINE ab =
 			{
-				{"‚ ‚Ú[‚ñ", 8},
-				{"‚ ‚Ú[‚ñ", 8},
-				{"‚ ‚Ú[‚ñ", 8},
-				{"‚ ‚Ú[‚ñ", 8},
+				{"ã‚ã¼ãƒ¼ã‚“", 8},
+				{"ã‚ã¼ãƒ¼ã‚“", 8},
+				{"ã‚ã¼ãƒ¼ã‚“", 8},
+				{"ã‚ã¼ãƒ¼ã‚“", 8},
 				0, 0
 			};
 
 			*line = ab;
 		}
 
-		line->len = ofs - orig_ofs;	/* \n ‚Ü‚Å‚Ì’·‚³ */
+		line->len = ofs - orig_ofs;	/* \n ã¾ã§ã®é•·ã• */
 
-		/* ‚ ‚Ú[‚ñs‚Å‚ ‚é‚Æ‚«‚ÍA
-		   lastmod ‚ªÅV‚Ì‚Ü‚Ü‚Å‚ ‚é‚Í‚¸ */
+		/* ã‚ã¼ãƒ¼ã‚“è¡Œã§ã‚ã‚‹ã¨ãã¯ã€
+		   lastmod ãŒæœ€æ–°æ™‚åˆ»ã®ã¾ã¾ã§ã‚ã‚‹ã¯ãš */
 		if (*newest_lastmod < lastmod)
 			*newest_lastmod = lastmod;
 	}
@@ -222,13 +222,13 @@ static int buildup_line(struct DATINDEX_LINE *line,
 	return ofs;
 }
 /****************************************************************
- *	—pˆÓ‚³‚ê‚½—Ìˆæ‚É
- *	V‚½‚ÉƒCƒ“ƒfƒNƒX‚ğ‚Â‚­‚è‚ ‚°‚é
- *	private_dat‚Éƒtƒ@ƒCƒ‹‚ª“Ç‚Ü‚ê‚Ä‚¢‚é‚Ì‚ª‘O’ñ
- *	‚±‚¢‚Â‚Í–¼‚ğs‚í‚È‚¢
- *	idx ‚É NULL ‚ğ—^‚¦‚é‚±‚Æ‚ÅA
- *	sƒCƒ“ƒfƒNƒX‚Ì‚İXV‚Å‚«‚éB
- *	ˆ—‚µ‚½ÅIs”‚ğ•Ô‚·
+ *	ç”¨æ„ã•ã‚ŒãŸé ˜åŸŸã«
+ *	æ–°ãŸã«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ã¤ãã‚Šã‚ã’ã‚‹
+ *	private_datã«ãƒ•ã‚¡ã‚¤ãƒ«ãŒèª­ã¾ã‚Œã¦ã„ã‚‹ã®ãŒå‰æ
+ *	ã“ã„ã¤ã¯ç½²åã‚’è¡Œã‚ãªã„
+ *	idx ã« NULL ã‚’ä¸ãˆã‚‹ã“ã¨ã§ã€
+ *	è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã®ã¿æ›´æ–°ã§ãã‚‹ã€‚
+ *	å‡¦ç†ã—ãŸæœ€çµ‚è¡Œæ•°ã‚’è¿”ã™
  ****************************************************************/
 static int buildup_index(DATINDEX_OBJ *dat,
 			 int linenum,	/* 0 origin */
@@ -240,7 +240,7 @@ static int buildup_index(DATINDEX_OBJ *dat,
 	char const *const p = dat->private_dat;
 	int n_line_processed;
 
-	/* .dat ‚Ì mtime ‚Í‹L˜^‚µ‚Ä‚¨‚­ */
+	/* .dat ã® mtime ã¯è¨˜éŒ²ã—ã¦ãŠã */
 	if (idx)
 		idx->lastmod = dat->dat_stat.st_mtime;
 
@@ -263,7 +263,7 @@ static int buildup_index(DATINDEX_OBJ *dat,
 		n = DATINDEX_CHUNK_SIZE * chunk + linenum;
 		line = &dat->line[n];
 
-		/* sƒCƒ“ƒfƒNƒX‚ğ¶¬‚³‚¹‚é */
+		/* è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ç”Ÿæˆã•ã›ã‚‹ */
 		ofs += buildup_line(line,
 				    DATINDEX_CHUNK_SIZE - linenum,
 				    &p[ofs],
@@ -274,23 +274,23 @@ static int buildup_index(DATINDEX_OBJ *dat,
 		if (!idx)
 			continue;
 
-		/* ˆÈ~Aidx‚ÌXV‚É“ü‚é */
+		/* ä»¥é™ã€idxã®æ›´æ–°ã«å…¥ã‚‹ */
 
 		if (linenum == 0
 		    && n_line_processed == DATINDEX_CHUNK_SIZE) {
-			/* chunk‚ğŠ®‘S‚É‘¨‚¦‚«‚Á‚Ä‚¢‚È‚¢‚Æ
-			   ƒCƒ“ƒfƒNƒX‚ÍXV‚µ‚È‚¢ */
+			/* chunkã‚’å®Œå…¨ã«æ‰ãˆãã£ã¦ã„ãªã„ã¨
+			   ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã¯æ›´æ–°ã—ãªã„ */
 			idx->idx[chunk].lastmod = chunk_lastmod;
 			idx->idx[chunk].nextofs = ofs;
 
-			/* —LŒø‚Ès‚É‘Î‚µ‚Äƒtƒ‰ƒO—§‚Ä‚Ä‚­ */
+			/* æœ‰åŠ¹ãªè¡Œã«å¯¾ã—ã¦ãƒ•ãƒ©ã‚°ç«‹ã¦ã¦ã */
 			for (i = 0; i < n_line_processed; i++) {
 				if (line[i].lastmod)
 					idx->idx[chunk].valid_bitmap |= 1 << i;
 			}
 		}
 
-		/* ƒTƒuƒWƒFƒNƒg‚ªÌ‚ê‚Ä‚¢‚»‚¤‚¾‚Á‚½‚çAÌ‚é */
+		/* ã‚µãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ¡ã‚Œã¦ã„ãã†ã ã£ãŸã‚‰ã€æ¡ã‚‹ */
 		if (n == 0
 		    && line->len
 		    && memcmp(&line->text.p[line->text.len],
@@ -301,8 +301,8 @@ static int buildup_index(DATINDEX_OBJ *dat,
 					  + line->text.len + 2);
 	}
 
-	/* linenum ‚ª CHUNK_SIZE ‚ğ’´‚¦‚Ä‚éê‡‚ª‚ ‚é‚ªA
-	   ‰º‹L‚Ì®‚Í“KØ‚É“­‚­B */
+	/* linenum ãŒ CHUNK_SIZE ã‚’è¶…ãˆã¦ã‚‹å ´åˆãŒã‚ã‚‹ãŒã€
+	   ä¸‹è¨˜ã®å¼ã¯é©åˆ‡ã«åƒãã€‚ */
 	linenum = DATINDEX_CHUNK_SIZE * chunk + linenum;
 	
 	if (idx)
@@ -311,9 +311,9 @@ static int buildup_index(DATINDEX_OBJ *dat,
 	return linenum;
 }
 /****************************************************************
- *	ƒq[ƒv‚É—Ìˆæ‚ğŠm•Û‚µAƒCƒ“ƒfƒNƒX‚ğ‹‚‚İã‚°‚é
- *	‚±‚¢‚Â‚à–¼‚ğs‚í‚È‚¢
- *	‚±‚¢‚Â‚Íì¬‚µ‚½INDEX‚ğ•Ô‚·‚±‚Æ‚É’ˆÓ
+ *	ãƒ’ãƒ¼ãƒ—ã«é ˜åŸŸã‚’ç¢ºä¿ã—ã€ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’æ±²ã¿ä¸Šã’ã‚‹
+ *	ã“ã„ã¤ã‚‚ç½²åã‚’è¡Œã‚ãªã„
+ *	ã“ã„ã¤ã¯ä½œæˆã—ãŸINDEXã‚’è¿”ã™ã“ã¨ã«æ³¨æ„
  ****************************************************************/
 static DATINDEX *create_local_index(DATINDEX_OBJ *dat)
 {
@@ -322,9 +322,9 @@ static DATINDEX *create_local_index(DATINDEX_OBJ *dat)
 		return 0;
 	dat->shared_idx = idx;
 	if (buildup_index(dat,
-			  0,	/* ŠJns */
+			  0,	/* é–‹å§‹è¡Œ */
 			  idx,
-			  0,	/* ƒtƒ@ƒCƒ‹ƒIƒtƒZƒbƒg */
+			  0,	/* ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ•ã‚»ãƒƒãƒˆ */
 			  dat->dat_stat.st_size)) {
 		dat->linenum = idx->linenum;
 		return idx;
@@ -332,8 +332,8 @@ static DATINDEX *create_local_index(DATINDEX_OBJ *dat)
 		return NULL;
 }
 /****************************************************************
- *	ƒCƒ“ƒfƒNƒXƒtƒ@ƒCƒ‹‚ğì¬‚µ‚Ä‚İ‚é
- *	ì¬‚Å‚«‚È‚¢‚Æ‚«‚Íƒ[ƒJƒ‹‚Éì‚é
+ *	ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ã¦ã¿ã‚‹
+ *	ä½œæˆã§ããªã„ã¨ãã¯ãƒ­ãƒ¼ã‚«ãƒ«ã«ä½œã‚‹
  ****************************************************************/
 static int create_index(DATINDEX_OBJ *dat,
 			char const *fn)
@@ -341,30 +341,30 @@ static int create_index(DATINDEX_OBJ *dat,
 	int fd;
 	DATINDEX *tidx;
 
-	/* ‚Ü‚¸Aƒ[ƒJƒ‹‚ÉƒCƒ“ƒfƒNƒX‚ğì‚Á‚Ä‚İ‚é
-	   dat’†ŠeƒtƒB[ƒ‹ƒh‚ÍAƒ[ƒJƒ‹“à—e‚Å
-	   –‚½‚³‚ê‚é‚Ì‚ÅA‚±‚Ì‚Ü‚Ü‹A‚Á‚Ä‚à‚È‚È‚¢B */
+	/* ã¾ãšã€ãƒ­ãƒ¼ã‚«ãƒ«ã«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ä½œã£ã¦ã¿ã‚‹
+	   datä¸­å„ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯ã€ãƒ­ãƒ¼ã‚«ãƒ«å†…å®¹ã§
+	   æº€ãŸã•ã‚Œã‚‹ã®ã§ã€ã“ã®ã¾ã¾å¸°ã£ã¦ã‚‚æ°ãªãªã„ã€‚ */
 	tidx = create_local_index(dat);
 	if (!tidx) {
-		/* .datƒtƒ@ƒCƒ‹‚ª•s³‚¾‚Á‚½‚Æ‚İ‚È‚· */
+		/* .datãƒ•ã‚¡ã‚¤ãƒ«ãŒä¸æ­£ã ã£ãŸã¨ã¿ãªã™ */
 		return 0;
 	}
 
 	fd = open(fn, O_CREAT | O_EXCL | O_RDWR, 0666);
 	if (fd < 0) {
-		/* ‚½‚Æ‚¦‚ÎAidxƒfƒBƒŒƒNƒgƒŠ‚ª
-		   ‘¶İ‚µ‚È‚©‚Á‚½ê‡‚Å‚àAopen(2)‚Í
-		   ¸”s‚·‚éBƒCƒ“ƒfƒNƒX‚Íƒ[ƒJƒ‹‚Éì¬‚³‚ê‚é */
-		return 1;	/* ƒ[ƒJƒ‹ƒCƒ“ƒfƒNƒX‚ğ‚Á‚Ä‹A‚é */
+		/* ãŸã¨ãˆã°ã€idxãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãŒ
+		   å­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã§ã‚‚ã€open(2)ã¯
+		   å¤±æ•—ã™ã‚‹ã€‚ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã¯ãƒ­ãƒ¼ã‚«ãƒ«ã«ä½œæˆã•ã‚Œã‚‹ */
+		return 1;	/* ãƒ­ãƒ¼ã‚«ãƒ«ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’æŒã£ã¦å¸°ã‚‹ */
 	}
 
-	/* ƒtƒ@ƒCƒ‹—Ìˆæ‚ğì‚èo‚·
-	   ì¬‚µ‚Ä‚à‚ç‚Á‚½ private idx ‚ğ‘‚«o‚·*/
+	/* ãƒ•ã‚¡ã‚¤ãƒ«é ˜åŸŸã‚’ä½œã‚Šå‡ºã™
+	   ä½œæˆã—ã¦ã‚‚ã‚‰ã£ãŸ private idx ã‚’æ›¸ãå‡ºã™*/
 	if (write(fd, tidx, sizeof(DATINDEX)) < 0) {
-		/* XXX –{—ˆ‚È‚ç‚Î unlink ‚µ‚½•û‚ª‚¢‚¢ */
+		/* XXX æœ¬æ¥ãªã‚‰ã° unlink ã—ãŸæ–¹ãŒã„ã„ */
 		return 0;
 	}
-	/* ‘‚«‚¾‚µ‚½‚à‚Ì‚ğAmap‚·‚é */
+	/* æ›¸ãã ã—ãŸã‚‚ã®ã‚’ã€mapã™ã‚‹ */
 	dat->shared_idx = mmap(NULL,
 			       sizeof(DATINDEX),
 			       PROT_READ | PROT_WRITE,
@@ -375,17 +375,17 @@ static int create_index(DATINDEX_OBJ *dat,
 		return 0;
 	}
 
-	/* ÅŒã‚ÉA–¼‚È‚Ç‚ğ‘‚«“ü‚ê‚é */
+	/* æœ€å¾Œã«ã€ç½²åãªã©ã‚’æ›¸ãå…¥ã‚Œã‚‹ */
 	dat->shared_idx->signature = DATINDEX_VERSION;
 	dat->shared_idx->version   = DATINDEX_VERSION;
 
 	return 1;
 }
 /****************************************************************
- *	–{‘Ì.dat‚ªƒƒ‚ƒŠ‚É
- *	ŒÅ’è‚Å‚«‚é‚©‚Ç‚¤‚©’§í‚µ‚Ä‚İ‚é
- *	‚¢‚Ü‚ÍBigBuffer‚Ì‚±‚Æ‚Íl—¶‚µ‚Ä‚È‚¢
- *	.dat‚ğŠJ‚­ƒ‚ƒWƒ…[ƒ‹‚ÍA‚±‚ê‚¾‚¯‚Å‚ ‚éB
+ *	æœ¬ä½“.datãŒãƒ¡ãƒ¢ãƒªã«
+ *	å›ºå®šã§ãã‚‹ã‹ã©ã†ã‹æŒ‘æˆ¦ã—ã¦ã¿ã‚‹
+ *	ã„ã¾ã¯BigBufferã®ã“ã¨ã¯è€ƒæ…®ã—ã¦ãªã„
+ *	.datã‚’é–‹ããƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã¯ã€ã“ã‚Œã ã‘ã§ã‚ã‚‹ã€‚
  ****************************************************************/
 static int open_dat(DATINDEX_OBJ *dat,
 		    char const *bs, long ky)
@@ -393,7 +393,7 @@ static int open_dat(DATINDEX_OBJ *dat,
 	int fd;
 	char fn[64];
 
-	/* sƒCƒ“ƒfƒNƒX‚ğA‹ó‚Ìó‘Ô‚Åì¬ */
+	/* è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ã€ç©ºã®çŠ¶æ…‹ã§ä½œæˆ */
 	dat->line = calloc(sizeof(dat->line[0]),
 			   DATINDEX_MAX_ARTICLES);
 	if (!dat->line)
@@ -414,14 +414,14 @@ static int open_dat(DATINDEX_OBJ *dat,
 	if (dat->private_dat == MAP_FAILED)
 		return 0;
 
-	/* ¬Œ÷‚µ‚½‚Æ‚¢‚¤‚±‚Æ‚É‚µ‚Ä‚¨‚±‚¤
-	   ‚à‚¿‚ë‚ñ fd ‚ÌŒãn––‚ÍƒTƒ{‚é XXX */
+	/* æˆåŠŸã—ãŸã¨ã„ã†ã“ã¨ã«ã—ã¦ãŠã“ã†
+	   ã‚‚ã¡ã‚ã‚“ fd ã®å¾Œå§‹æœ«ã¯ã‚µãƒœã‚‹ XXX */
 
 	return 1;
 }
 /****************************************************************
- *	ƒCƒ“ƒfƒNƒXƒtƒ@ƒCƒ‹‚ğƒƒ‚ƒŠ‚ÉŒÅ’è‚·‚é
- *	ŒÅ’è‚Å‚«‚È‚¢‚Æ‚«‚ÍAƒGƒ‰[‚ğ•Ô‚·
+ *	ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ¡ãƒ¢ãƒªã«å›ºå®šã™ã‚‹
+ *	å›ºå®šã§ããªã„ã¨ãã¯ã€ã‚¨ãƒ©ãƒ¼ã‚’è¿”ã™
  ****************************************************************/
 int datindex_open(DATINDEX_OBJ *dat,
 		  char const *bs, long ky)
@@ -433,23 +433,23 @@ int datindex_open(DATINDEX_OBJ *dat,
 
 	char fn[64];
 
-	/* ‚Ü‚¸‚Í–{‘Ì.dat‚ªƒƒ‚ƒŠ‚É
-	   ŒÅ’è‚Å‚«‚é‚©‚Ç‚¤‚©’§í‚µ‚Ä‚İ‚é
-	   ‚¢‚Ü‚ÍBigBuffer‚Ì‚±‚Æ‚Íl—¶‚µ‚Ä‚È‚¢ */
+	/* ã¾ãšã¯æœ¬ä½“.datãŒãƒ¡ãƒ¢ãƒªã«
+	   å›ºå®šã§ãã‚‹ã‹ã©ã†ã‹æŒ‘æˆ¦ã—ã¦ã¿ã‚‹
+	   ã„ã¾ã¯BigBufferã®ã“ã¨ã¯è€ƒæ…®ã—ã¦ãªã„ */
 	if (!open_dat(dat, bs, ky))
 		return 0;
 
-	/* idx ‚Ìƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚ğƒI[ƒvƒ“ */
+	/* idx ã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³ */
 	sprintf(fn, "../%.64s/" DATINDEX_PATH "/%ld.idx", bs, ky);
 	fd = open(fn, O_RDWR);
 	if (fd < 0) {
-		/* ƒCƒ“ƒfƒNƒX‚ğì¬
-		   (‚à‚µ‚©‚·‚é‚Æƒ[ƒJƒ‹‚É
-		   ì‚ç‚ê‚é‚©‚à‚µ‚ê‚È‚¢) */
+		/* ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’ä½œæˆ
+		   (ã‚‚ã—ã‹ã™ã‚‹ã¨ãƒ­ãƒ¼ã‚«ãƒ«ã«
+		   ä½œã‚‰ã‚Œã‚‹ã‹ã‚‚ã—ã‚Œãªã„) */
 		return create_index(dat, fn);
 	}
 
-	/* ‚Ü‚¸‚Í map ‚ğ÷‚èó‚¯‚é */
+	/* ã¾ãšã¯ map ã‚’è­²ã‚Šå—ã‘ã‚‹ */
 	dat->shared_idx = mmap(NULL,
 			       sizeof(DATINDEX),
 			       PROT_READ | PROT_WRITE,
@@ -457,42 +457,42 @@ int datindex_open(DATINDEX_OBJ *dat,
 			       fd,
 			       0);
 	if (dat->shared_idx == MAP_FAILED) {
-		/* ©—Í‚ÅƒCƒ“ƒfƒNƒXì‚ê */
+		/* è‡ªåŠ›ã§ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ä½œã‚Œ */
 		return !!create_local_index(dat);
 	}
 
-	/* ƒCƒ“ƒfƒNƒX‚Ìƒo[ƒWƒ‡ƒ“‚ğŒŸ¸ */
+	/* ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã‚’æ¤œæŸ» */
 	ver = dat->shared_idx->version;
 	if (ver == 0) {
-		/* v‚¢‚Á‚«‚èŠÔ‚ªŒo‚Á‚Ä‚È‚¢‚©‚¢? */
+		/* æ€ã„ã£ãã‚Šæ™‚é–“ãŒçµŒã£ã¦ãªã„ã‹ã„? */
 		struct stat idx_stat;
 		if (fstat(fd, &idx_stat) >= 0
 		    && time(NULL) >= idx_stat.st_mtime + DATINDEX_EXPIRATION
 		    && unlink(fn) >= 0) {
-			/* ‚ ‚Ü‚èŠÔ‚ªŒo‚¿‚·‚¬‚Èƒ„ƒc‚ÍA
-			   ‘¢‚è‘¹‚Ë‚Æl‚¦A
-			   ‚à‚¢‚¿‚Çì¬‚ğ‚İ‚é */
+			/* ã‚ã¾ã‚Šæ™‚é–“ãŒçµŒã¡ã™ããªãƒ¤ãƒ„ã¯ã€
+			   é€ ã‚Šæã­ã¨è€ƒãˆã€
+			   ã‚‚ã„ã¡ã©ä½œæˆã‚’è©¦ã¿ã‚‹ */
 			return create_index(dat, fn);
 		}
 
-		/* ©—Í‚ÅƒCƒ“ƒfƒNƒXì‚ê‚â */
+		/* è‡ªåŠ›ã§ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ä½œã‚Œã‚„ */
 		return !!create_local_index(dat);
 	} else if (ver > DATINDEX_VERSION) {
-		/* –¢’m‚Ìƒo[ƒWƒ‡ƒ“‚È‚Ì‚Å‹ƒ‚«Q“ü‚è */
+		/* æœªçŸ¥ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãªã®ã§æ³£ãå¯å…¥ã‚Š */
 		return !!create_local_index(dat);
 	} else if (ver < DATINDEX_VERSION
 		   || dat->shared_idx->signature != DATINDEX_VERSION) {
-		/* ’×‚µ‚Äì‚è’¼‚µ‚â */
+		/* æ½°ã—ã¦ä½œã‚Šç›´ã—ã‚„ */
 		if (unlink(fn) >= 0)
 			return create_index(dat, fn);
 	}
 
-	/* ‚·‚×‚Ä‚ª‘µ‚Á‚½
-	   ‚±‚±‚©‚ç‚ªƒzƒ“ƒg‚Ì“¬‚¢
-	   ‚Ü‚¸‚ÍAƒCƒ“ƒfƒNƒX‚É‘«‚è‚È‚¢
-	   sƒCƒ“ƒfƒNƒX(ƒ[ƒJƒ‹‚¾)‚Â‚­‚Á‚Æ‚­ */
+	/* ã™ã¹ã¦ãŒæƒã£ãŸ
+	   ã“ã“ã‹ã‚‰ãŒãƒ›ãƒ³ãƒˆã®é—˜ã„
+	   ã¾ãšã¯ã€ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã«è¶³ã‚Šãªã„
+	   è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹(ãƒ­ãƒ¼ã‚«ãƒ«ã )ã¤ãã£ã¨ã */
 
-	/* ‚·‚Å‚É—pˆÓ‚³‚ê‚Ä‚¢‚éƒCƒ“ƒfƒNƒX‚ğŒvã */
+	/* ã™ã§ã«ç”¨æ„ã•ã‚Œã¦ã„ã‚‹ã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹ã‚’è¨ˆä¸Š */
 	local_ofs = 0;
 	for (i = 0; 
 	     i < DATINDEX_IDX_SIZE
@@ -502,37 +502,37 @@ int datindex_open(DATINDEX_OBJ *dat,
 
 	local_st = DATINDEX_CHUNK_SIZE * i;
 
-	/* Ÿ‚ÉAƒ[ƒJƒ‹sƒCƒ“ƒfƒNƒX(•s‘«•ª)‚ğ\’z */
+	/* æ¬¡ã«ã€ãƒ­ãƒ¼ã‚«ãƒ«è¡Œã‚¤ãƒ³ãƒ‡ã‚¯ã‚¹(ä¸è¶³åˆ†)ã‚’æ§‹ç¯‰ */
 	dat->linenum = buildup_index(dat,
 				     local_st,
 				     NULL,
 				     local_ofs,
 				     dat->dat_stat.st_size);
-	/* XVs‚ª‚È‚©‚Á‚½ê‡‚Í‰½‚à‚·‚é‚±‚Æ‚ª‚È‚¢A‚Í‚¸ */
+	/* æ›´æ–°è¡ŒãŒãªã‹ã£ãŸå ´åˆã¯ä½•ã‚‚ã™ã‚‹ã“ã¨ãŒãªã„ã€ã¯ãš */
 	if (!dat->linenum)
 		return 1;
 
-	/* index‚ğXV‚·‚×‚«‚©‚Ç‚¤‚©‚Ì”»’f */
+	/* indexã‚’æ›´æ–°ã™ã¹ãã‹ã©ã†ã‹ã®åˆ¤æ–­ */
 	current_n = dat->shared_idx->linenum;
 	if (current_n >= dat->linenum)
 		return 1;
 
-	/* i‚ñ‚¾•ª‚ğ\¿ */
+	/* é€²ã‚“ã åˆ†ã‚’ç”³è«‹ */
 	old_n = DATINDEX_CMPXCHG(dat->shared_idx->linenum,
 				 current_n,
 				 dat->linenum);
 
-	/* \¿‚ª’Ê‚ç‚È‚©‚Á‚½‚çA‚ ‚«‚ç‚ß‚Ä‹A‚ê */
+	/* ç”³è«‹ãŒé€šã‚‰ãªã‹ã£ãŸã‚‰ã€ã‚ãã‚‰ã‚ã¦å¸°ã‚Œ */
 	if (old_n == dat->linenum)
 		return 1;
 
-	/* chunk boundary‚ğ‚Ü‚½‚¢‚Å‚¢‚È‚©‚Á‚½‚çA‰½‚à‚·‚é•K—vƒiƒV */
+	/* chunk boundaryã‚’ã¾ãŸã„ã§ã„ãªã‹ã£ãŸã‚‰ã€ä½•ã‚‚ã™ã‚‹å¿…è¦ãƒŠã‚· */
 	if (old_n / DATINDEX_CHUNK_SIZE
 	    == dat->linenum / DATINDEX_CHUNK_SIZE)
 		return 1;
 
-	/* \¿‚ª’Ê‚Á‚ÄA‚©‚ÂAchunk boundary‚ğ
-	   ‚Ü‚½‚¢‚¾‚çAchunk index‚ğXV‚·‚é‹`–±‚ğ•‰‚¤ */
+	/* ç”³è«‹ãŒé€šã£ã¦ã€ã‹ã¤ã€chunk boundaryã‚’
+	   ã¾ãŸã„ã ã‚‰ã€chunk indexã‚’æ›´æ–°ã™ã‚‹ç¾©å‹™ã‚’è² ã† */
 	for (i = old_n / DATINDEX_CHUNK_SIZE;
 	     i < dat->linenum / DATINDEX_CHUNK_SIZE;
 	     i++) {
@@ -547,12 +547,12 @@ int datindex_open(DATINDEX_OBJ *dat,
 }
 
 /****************************************************************
- *	lastmod‚ğE‚¢ã‚°‚é
- *	first ‚ÍA!is_nofirst() ‚Å‚ ‚é‚±‚Æ‚É’ˆÓ
- *	—^‚¦‚ç‚ê‚éƒpƒ‰ƒ[ƒ^‚ÍA1 origin‚ğ‘z’èB
+ *	lastmodã‚’æ‹¾ã„ä¸Šã’ã‚‹
+ *	first ã¯ã€!is_nofirst() ã§ã‚ã‚‹ã“ã¨ã«æ³¨æ„
+ *	ä¸ãˆã‚‰ã‚Œã‚‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€1 originã‚’æƒ³å®šã€‚
  ****************************************************************/
 time_t datindex_lastmod(DATINDEX_OBJ const *dat,
-			int first,	/* 1”Ô–Ú‚ğŠÜ‚ß‚é */
+			int first,	/* 1ç•ªç›®ã‚’å«ã‚ã‚‹ */
 			int st,
 			int to)
 {
