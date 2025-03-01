@@ -11,6 +11,8 @@
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
 
-#include "readcgi/read.h"
+extern "C" {
+	#include "readcgi/read.h"
+}
 
 void init();
