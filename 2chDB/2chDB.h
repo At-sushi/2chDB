@@ -7,6 +7,7 @@
 #include <array>
 #include <string>
 #include <fstream>
+#include <format>
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
 
