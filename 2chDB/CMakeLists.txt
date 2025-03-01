@@ -1,6 +1,7 @@
 ﻿# CMakeList.txt : 2chDB の CMake プロジェクト。ソースを含めて、次を定義します:
 # プロジェクト専用ロジックはこちらです。
 #
+set(CMAKE_C_FLAGS "-funsigned-char -O2 -DHAVE_READ2CH_H")
 
 # ソースをこのプロジェクトの実行可能ファイルに追加します。
 add_executable (2chDB "2chDB.cpp" "2chDB.h" "readcgi/read.c")

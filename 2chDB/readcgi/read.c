@@ -7,7 +7,9 @@
 #include	<fcntl.h>
 #include	<time.h>
 #include	<unistd.h>
+#ifdef HAVE_READ2CH_H
 # include	"read2ch.h"
+#endif
 #ifdef USE_MMAP
 #include	<sys/mman.h>
 #endif
