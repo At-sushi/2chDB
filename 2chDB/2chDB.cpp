@@ -5,7 +5,7 @@
 
 extern "C" {
 #include "readcgi/read.h"
-	extern int rawmode;
+	extern int rawmode, isbusytime;
 	extern void atexitfunc();
 }
 
@@ -13,7 +13,7 @@ void init();
 void testWrite(const char* bbs, const char* key, const char* source);
 const char* queryFromReadCGI(const char* bbs, const char* key);	
 
-std::string create_fname(const char* bbs, const char* key) {
+inline static constexpr std::string create_fname(const char* bbs, const char* key) {
 	return std::format("{}/dat/{}.dat", bbs, key);
 }
 
@@ -32,6 +32,7 @@ int main()
 void init()
 {
 	rawmode = 1;
+	isbusytime = 1;
 	atexit(atexitfunc);
 }
 
