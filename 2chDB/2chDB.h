@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include <format>
+#include <ranges>
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
 
