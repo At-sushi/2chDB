@@ -9,3 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+/.vs/2chDB/CopilotIndices
+/.vs/2chDB/copilot-chat/a4ac6c3d/sessions
+/.vs/2chDB/FileContentIndex
+/.vs/2chDB/v17/ipch/AutoPCH
+/out/build/x64-debug

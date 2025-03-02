@@ -2,8 +2,12 @@
 //
 
 #include "2chDB.h"
-std::string create_fname(const char* bbs, const char* key);
-extern int rawmode;
+
+extern "C" {
+#include "readcgi/read.h"
+	extern int rawmode;
+	extern void atexitfunc();
+}
 
 void init();
 void testWrite(const char* bbs, const char* key, const char* source);
@@ -28,6 +32,7 @@ int main()
 void init()
 {
 	rawmode = 1;
+	atexit(atexitfunc);
 }
 
 const char* queryFromReadCGI(const char* bbs, const char* key) {
@@ -40,7 +45,7 @@ const char* queryFromReadCGI(const char* bbs, const char* key) {
 void testWrite(const char* bbs, const char* key, const char* source) {
 	const std::string fname = create_fname(bbs, key);
 	
-	std::ofstream ofs(fname);
+	std::ofstream ofs(fname, std::ios_base::out | std::ios_base::binary);
 	if (!ofs) {
 		std::cerr << "Failed to open file: " << fname.data() << std::endl;
 		return;
