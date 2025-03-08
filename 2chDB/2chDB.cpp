@@ -36,7 +36,8 @@ int main()
         std::string command;
 
         iss >> command;
-        std::ranges::views::transform(command, command.begin(), std::tolower); // Use std::transform to convert to lowercase
+        for (auto&& i : command)
+            i = std::tolower(i);
 
         if (command == "exit") {
             break;
