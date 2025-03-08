@@ -3,6 +3,7 @@
 
 #include "2chDB.h"  
 #include <sstream> // Add this include to fix E0070 error
+#include <algorithm> // Add this include to use std::transform
 
 extern "C" {  
 #include "readcgi/read.h"  
@@ -18,8 +19,6 @@ inline static constexpr std::string create_fname(const char* bbs, const char* ke
     // TODO: sanitize bbs and key
     return std::format("{}/dat/{}.dat", bbs, key);  
 }  
-
-#include <algorithm> // Add this include to use std::transform
 
 // ...
 
@@ -37,7 +36,7 @@ int main()
         std::string command;
 
         iss >> command;
-        std::ranges::views::transform(command, std::tolower); // Use std::transform to convert to lowercase
+        std::ranges::views::transform(command, command.begin(), std::tolower); // Use std::transform to convert to lowercase
 
         if (command == "exit") {
             break;
