@@ -1,7 +1,8 @@
-// test_2chDB.cpp
+ï»¿// test_2chDB.cpp
 
 #include <cppunit/extensions/HelperMacros.h>
 #include "2chDB.h"
+#include <filesystem>
 
 class 2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(2chDBTest);
@@ -9,25 +10,28 @@ class 2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST(testWrites);
     CPPUNIT_TEST_SUITE_END();
 
+    constexpr char* TEST_STR = "Hello, 2chDB.",
+                    TEST_BBS = "news4vip";
+
 public:
     void setUp() override {
-        // ‰Šú‰»ƒR[ƒh
+        // åˆæœŸåŒ–ã‚³ãƒ¼ãƒ‰
         init();
+        std::filesystem::create_directories(std::format("{}/dat", TEST_BBS));
     }
 
     void tearDown() override {
-        // ƒNƒŠ[ƒ“ƒAƒbƒvƒR[ƒh
+        // ã‚¯ãƒªãƒ¼ãƒ³ã‚¢ãƒƒãƒ—ã‚³ãƒ¼ãƒ‰
+        std::filesystem::remove_all(TEST_BBS);
     }
 
     void testQueryFromReadCGI() {
     }
 
     void testWrites() {
-        constexpr char* TEST_STR = "Hello, 2chDB.";
-
-        testWrite("news4vip", "1234567890", TEST_STR);
-        // ƒtƒ@ƒCƒ‹‚Ì“à—e‚ğŠm”F‚·‚éƒR[ƒh
-        const char* result = queryFromReadCGI("news4vip", "1234567890");
+        testWrite(TEST_BBS, "1234567890", TEST_STR);
+        // ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ç¢ºèªã™ã‚‹ã‚³ãƒ¼ãƒ‰
+        const char* result = queryFromReadCGI(TEST_BBS, "1234567890");
         CPPUNIT_ASSERT(result != nullptr);
         CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR, std::string(result));
     }

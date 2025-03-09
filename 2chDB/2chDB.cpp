@@ -63,6 +63,16 @@ int main()
             std::getline(iss, source);
             testWrite(bbs.c_str(), key.c_str(), source.data());
         }
+        else if (command == "del")
+        {
+            std::string bbs, key;
+
+            iss >> bbs >> key;
+
+            const auto path = create_fname(bbs, key);
+            std::cout << std::filesystem::remove(path) << std::endl;
+        }
+        
         else if (command == "create") {
             std::string bbs;
 
@@ -75,7 +85,7 @@ int main()
         }
         else if (command == "remove") {
             std::string bbs;
-            
+
             iss >> bbs;
             std::filesystem::remove_all(bbs);
             std::cout << "Remove Completed" << std::endl;
