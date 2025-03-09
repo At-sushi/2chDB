@@ -74,6 +74,8 @@ int main()
                 std::cout << "Created" << std::endl;
         }
         else if (command == "remove") {
+            std::string bbs;
+            
             iss >> bbs;
             std::filesystem::remove_all(bbs);
             std::cout << "Remove Completed" << std::endl;
