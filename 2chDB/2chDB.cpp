@@ -38,7 +38,7 @@ int main()
     std::cout << "Hello CMake." << std::endl;
     std::cout << queryFromReadCGI("news4vip", "1234567890") << std::endl;
 
-    std::string line, command, bbs, key, source;
+    std::string line, command;
     while (std::getline(std::cin, line))
     {
         std::istringstream iss(line); // This line is now valid
@@ -47,25 +47,25 @@ int main()
         for (auto &&i : command)
             i = std::tolower(i);
 
-        switch (command)
-        {
-        case "exit":
-            exit(0);
+        if (command == "exit") {
             break;
+        }
+        else if (command == "get") {
+            std::string bbs, key;
 
-        case "get":
             iss >> bbs >> key;
             std::cout << queryFromReadCGI(bbs.c_str(), key.c_str()) << std::endl;
-            break;
+        }
+        else if (command == "set") {
+            std::string bbs, key, source;
 
-        case "set":
             iss >> bbs >> key;
             std::getline(iss, source);
             testWrite(bbs.c_str(), key.c_str(), source.data());
-            break;
+        }
+        else if (command == "create") {
+            std::string bbs;
 
-        case "create":
-        {
             iss >> bbs;
 
             const auto directory = std::format("{}/dat", bbs);
@@ -73,15 +73,10 @@ int main()
             if (std::filesystem::create_directories(directory))
                 std::cout << "Created" << std::endl;
         }
-        break;
-
-        case "remove":
+        else if (command == "remove") {
             iss >> bbs;
             std::filesystem::remove_all(bbs);
             std::cout << "Remove Completed" << std::endl;
-            break;
-
-        default:
             break;
         }
     }
