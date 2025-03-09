@@ -10,10 +10,10 @@ class 2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST(testWrites);
     CPPUNIT_TEST_SUITE_END();
 
+public:
     constexpr char* TEST_STR = "Hello, 2chDB.",
                     TEST_BBS = "news4vip";
 
-public:
     void setUp() override {
         // 初期化コード
         init();
