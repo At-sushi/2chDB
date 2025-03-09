@@ -4,16 +4,16 @@
 #include "2chDB.h"
 #include <filesystem>
 
-class 2chDBTest : public CppUnit::TestFixture {
-    CPPUNIT_TEST_SUITE(2chDBTest);
+class T2chDBTest : public CppUnit::TestFixture {
+    CPPUNIT_TEST_SUITE(T2chDBTest);
     CPPUNIT_TEST(testQueryFromReadCGI);
     CPPUNIT_TEST(testWrites);
     CPPUNIT_TEST_SUITE_END();
 
-public:
-    constexpr char* TEST_STR = "Hello, 2chDB.",
-                    TEST_BBS = "news4vip";
+    static constexpr char *TEST_STR = "Hello, 2chDB.",
+                          *TEST_BBS = "news4vip";
 
+public:
     void setUp() override {
         // 初期化コード
         init();
@@ -33,8 +33,8 @@ public:
         // ファイルの内容を確認するコード
         const char* result = queryFromReadCGI(TEST_BBS, "1234567890");
         CPPUNIT_ASSERT(result != nullptr);
-        CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR, std::string(result));
+        CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR), std::string(result));
     }
 };
 
-CPPUNIT_TEST_SUITE_REGISTRATION(2chDBTest);
+CPPUNIT_TEST_SUITE_REGISTRATION(T2chDBTest);

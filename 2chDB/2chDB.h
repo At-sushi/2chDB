@@ -13,3 +13,5 @@
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
 
 void init();
+void testWrite(const char *bbs, const char *key, const char *source);
+const char *queryFromReadCGI(const char *bbs, const char *key);
