@@ -1,8 +1,10 @@
 ﻿// test_2chDB.cpp
 
 #include <cppunit/extensions/HelperMacros.h>
-#include "2chDB.h"
+#include <cppunit/extensions/TestFactoryRegistry.h>
+#include <cppunit/ui/text/TestRunner.h>
 #include <filesystem>
+#include "2chDB.h"
 
 class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(T2chDBTest);
@@ -38,3 +40,12 @@ public:
 };
 
 CPPUNIT_TEST_SUITE_REGISTRATION(T2chDBTest);
+
+int main() {
+    CppUnit::TextUi::TestRunner runner;
+
+    runner.addTest(CppUnit::TestFactoryRegistry::getRegistry().makeTest());
+    runner.run();
+
+    return 0;
+}
