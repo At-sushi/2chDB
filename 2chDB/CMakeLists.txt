@@ -13,4 +13,4 @@ endif()
 # TODO: テストを追加し、必要な場合は、ターゲットをインストールします。
 # 2chDB/CMakeLists.txt
 
-find_package(Boost 1.87.0 REQUIRED)
+find_package(Boost 1.83.0 REQUIRED)
