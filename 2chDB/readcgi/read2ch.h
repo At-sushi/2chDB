@@ -14,7 +14,7 @@
 #define	SIZE_BUF	0xa000
 
 /* 英語版にする(r2chhtml.h ではなく r2chhtml_en.h がインクルードされる) */ 
-/* #define ENGLISH */
+#define ENGLISH
 
 #define CONFIG_TIMEZONE "JST-9"
 #define	LIMIT_PM	22
@@ -121,7 +121,7 @@
 #define USE_MMAP
 
 /* munmap(2)等の明示的な資源開放 */
-/* #undef EXPLICIT_RELEASE */
+#undef EXPLICIT_RELEASE
 
 /* read.cgi側によるindexの実装(experimental) */
 /* #define USE_INDEX */
