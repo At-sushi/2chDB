@@ -17,3 +17,5 @@ endif()
 
 find_package(Boost 1.83.0 REQUIRED)
 target_link_libraries(2chDBTest cppunit)
+enable_testing()
+add_test(NAME 2chDBTest COMMAND 2chDBTest)

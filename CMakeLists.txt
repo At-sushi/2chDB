@@ -10,6 +10,7 @@ if (POLICY CMP0141)
 endif()
 
 project ("2chDB")
+enable_testing()
 
 # サブプロジェクトを含めます。
 add_subdirectory ("2chDB")
