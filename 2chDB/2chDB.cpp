@@ -4,19 +4,16 @@
 #include "2chDB.h"
 #include <sstream>   // Add this include to fix E0070 error
 #include <filesystem>
-#include <boost/asio.hpp>
+#include <unordered_set>
 
 // ...
 
 int main()
 {
     init();
-    testWrite("news4vip", "1234567890", "Hello, 2chDB.");
-
-    std::cout << "Hello CMake." << std::endl;
-    std::cout << queryFromReadCGI("news4vip", "1234567890") << std::endl;
 
     std::string line, command;
+    // std::unordered_set<std::string> delete_list;
     while (std::getline(std::cin, line))
     {
         std::istringstream iss(line); // This line is now valid
@@ -75,13 +72,3 @@ int main()
 }
 
 // ...
-
-void onAccept(const boost::system::error_code &error)
-{
-    if (error)
-    {
-        /* code */
-        std::cerr << "Failed to connect: " << error.message() << std::endl;
-        return;
-    }
-}
