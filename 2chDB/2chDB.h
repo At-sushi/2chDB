@@ -10,6 +10,7 @@
 #include <fstream>
 #include <format>
 #include <ranges>
+#include <filesystem>
 #include <concepts>
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
@@ -18,20 +19,18 @@ void init();
 void testWrite(const char *bbs, const char *key, const char *source);
 const char *queryFromReadCGI(const char *bbs, const char *key);
 
-template <typename T>
-    requires std::is_convertible_v<T, std::string_view>
-inline std::uint16_t get_hash(const T &key)
+inline constexpr std::uint16_t get_hash(const std::string_view &key)
 {
     std::uint16_t hash = 5381;
-    for (auto &&i : key)
+    for (const auto i : key)
         hash = (hash << 5) + hash + i;
     return hash;
 }
 
 template <typename T>
     requires std::is_convertible_v<T, std::string_view>
-inline std::string create_fname(const T &bbs, const T &key)
+inline constexpr std::string create_fname(const T &bbs, const T &key)
 {
     // TODO: sanitize bbs and key
-    return std::format("{}/dat/{0:8x}/{}.dat", bbs, get_hash(key), key);
+    return std::format("{}/dat/{:04x}/{}.dat", bbs, get_hash(key), key);
 }

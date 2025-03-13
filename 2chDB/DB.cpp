@@ -32,7 +32,7 @@ const char *queryFromReadCGI(const char *bbs, const char *key)
 void testWrite(const char *bbs, const char *key, const char *source)
 {
     // create a directory if it does not exist
-    const auto directory = std::format("{}/dat/{0:8x}", bbs, get_hash(key));
+    const auto directory = std::format("{}/dat/{:04x}", bbs, get_hash(key));
     std::filesystem::create_directory(directory);
 
     const std::string fname = create_fname(bbs, key);
