@@ -8,12 +8,36 @@
 
 // ...
 
+// struct FileHeader
+// {
+//     std::uint16_t magic;
+//     std::uint16_t version;
+//     std::uint32_t size;
+// };
+
+struct BBSKey {
+    std::string bbs;
+    std::string key;
+
+    auto operator <=> (const BBSKey&) const = default;
+};
+
+template <> struct std::hash<BBSKey>{
+    using argument_type = BBSKey;
+    using result_type = std::size_t;
+
+    result_type operator()(const argument_type &arg) const noexcept
+    {
+        return std::hash<std::string>{}(arg.bbs) ^ std::hash<std::string>{}(arg.key);
+    }
+};
+
 int main()
 {
     init();
 
+    std::unordered_set<BBSKey> delete_flag;
     std::string line, command;
-    // std::unordered_set<std::string> delete_list;
     while (std::getline(std::cin, line))
     {
         std::istringstream iss(line); // This line is now valid
@@ -29,6 +53,12 @@ int main()
             std::string bbs, key;
 
             iss >> bbs >> key;
+            if (delete_flag.contains({bbs, key}))
+            {
+                std::cout << "-ERR Not Found" << std::endl;
+                continue;
+            }
+            
             std::cout << queryFromReadCGI(bbs.c_str(), key.c_str()) << std::endl;
         }
         else if (command == "set") {
@@ -37,6 +67,8 @@ int main()
             iss >> bbs >> key;
             std::getline(iss, source);
             testWrite(bbs.c_str(), key.c_str(), source.data());
+
+            delete_flag.erase({std::move(bbs), std::move(key)});
         }
         else if (command == "del")
         {
@@ -44,10 +76,8 @@ int main()
 
             iss >> bbs >> key;
 
-            const auto path = create_fname(bbs, key);
-            std::cout << std::filesystem::remove(path) << std::endl;
+            delete_flag.insert({std::move(bbs), std::move(key)});
         }
-        
         else if (command == "create") {
             std::string bbs;
 
@@ -64,8 +94,13 @@ int main()
             iss >> bbs;
             std::filesystem::remove_all(bbs);
             std::cout << "Remove Completed" << std::endl;
-            break;
         }
+    }
+
+    for (const auto &i : delete_flag)
+    {
+        const auto path = create_fname(i.bbs, i.key);
+        std::filesystem::remove(path);
     }
 
     return 0;
