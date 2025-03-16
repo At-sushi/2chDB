@@ -1,11 +1,15 @@
+#include <memory>
+
 #include "TCPServer.h"
 
-TCPServer::TCPServer(boost::asio::io_context &io_context)
-{
-    boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), 8080);
+namespace asio = boost::asio;
+using asio::ip::tcp;
 
-    acceptor = boost::asio::ip::tcp::acceptor(io_context, endpoint);
-    acceptor.async_accept([this](const boost::system::error_code &error) { onAccept(error); });
+TCPServer::TCPServer(asio::io_context &io_context)
+    : io_context(io_context)
+    , acceptor(io_context, tcp::endpoint(tcp::v4(), 8080))
+{
+    startAccept();
 
     try {
         io_context.run();
@@ -16,13 +20,40 @@ TCPServer::TCPServer(boost::asio::io_context &io_context)
 
 TCPServer::~TCPServer()
 {
+    acceptor.close();
 }
 
-void TCPServer::onAccept(const boost::system::error_code &error)
+void TCPServer::startAccept()
 {
+    auto socket = std::make_shared<tcp::socket>(io_context);
+
+    acceptor.async_accept(*socket, [this, socket](const boost::system::error_code &error) { onAccept(*socket, error); });
+}
+
+void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &error)
+{
+    startAccept();
+
     if (error)
     {
         std::cerr << "Failed to connect: " << error.message() << std::endl;
         return;
+    }
+
+    std::cout << "Connected from: " << socket.remote_endpoint() << std::endl;
+
+    for (;;) {
+        std::string buffer;
+        boost::system::error_code ec;
+        asio::read(socket, asio::buffer(buffer), ec);
+
+        if (ec)
+        {
+            std::cerr << "Failed to read: " << ec.message() << std::endl;
+        }
+        else
+        {
+            std::cout << "Received: " << buffer << std::endl;
+        }
     }
 }
