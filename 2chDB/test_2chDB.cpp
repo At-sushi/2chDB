@@ -5,11 +5,13 @@
 #include <cppunit/ui/text/TestRunner.h>
 #include <filesystem>
 #include "2chDB.h"
+#include "TCPServer.h"
 
 class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(T2chDBTest);
     CPPUNIT_TEST(testQueryFromReadCGI);
     CPPUNIT_TEST(testWrites);
+    CPPUNIT_TEST(testTCPServer);
     CPPUNIT_TEST_SUITE_END();
 
     static constexpr char *TEST_STR = "Hello, 2chDB.",
@@ -36,6 +38,17 @@ public:
         const char* result = queryFromReadCGI(TEST_BBS, "1234567890");
         CPPUNIT_ASSERT(result != nullptr);
         CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR), std::string(result));
+
+        // ファイルの削除
+        testWrite(TEST_BBS, "1234567890", "");
+        result = queryFromReadCGI(TEST_BBS, "1234567890");
+        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT_EQUAL(std::string(""), std::string(result));
+    }
+
+    void testTCPServer() {
+        boost::asio::io_context io_context;
+        TCPServer server(io_context);
     }
 };
 
