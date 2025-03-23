@@ -1,4 +1,4 @@
-#include	<stdio.h>
+ï»¿#include	<stdio.h>
 #include	<stdlib.h>
 #include	<string.h>
 #include	<sys/stat.h>
@@ -22,7 +22,7 @@
 
 #ifdef ZLIB
 # ifndef GZIP
-#  define GZIP			/* gzip—R—ˆ‚ÌƒR[ƒh‚àg—p‚·‚é‚Ì‚Å */
+#  define GZIP			/* gzipç”±æ¥ã®ã‚³ãƒ¼ãƒ‰ã‚‚ä½¿ç”¨ã™ã‚‹ã®ã§ */
 # endif
 #endif
 #if	defined(ZLIB) || defined(PUT_ETAG)
@@ -42,21 +42,21 @@ static int pid;
 
 #ifdef PREVENTRELOAD
 # ifndef FORCE_304_TIME
-#  define FORCE_304_TIME  30    /* •b‚Åw’è */
+#  define FORCE_304_TIME  30    /* ç§’ã§æŒ‡å®š */
 # endif
 # include        "util_date.h" /* from Apache 1.3.20 */
 #endif
 
 #if	('\xFF' != 0xFF)
 #error	-funsigned-char required.
-	/* ‚±‚ÌƒVƒXƒeƒ€‚Å‚ÍA-funsigned-char‚ğ—v‹‚·‚é */
+	/* ã“ã®ã‚·ã‚¹ãƒ†ãƒ ã§ã¯ã€-funsigned-charã‚’è¦æ±‚ã™ã‚‹ */
 #endif
 
 #if	(defined(CHUNK_ANCHOR) && CHUNK_NUM > RES_NORMAL) 
 # error "Too large CHUNK_NUM!!"
 #endif
 
-/* CHUNK_ANCHOR ‚ÌƒR[ƒh‚ÉˆË‘¶‚µ‚Ä‚¢‚é */
+/* CHUNK_ANCHOR ã®ã‚³ãƒ¼ãƒ‰ã«ä¾å­˜ã—ã¦ã„ã‚‹ */
 #if defined(SEPARATE_CHUNK_ANCHOR) && !defined(CHUNK_ANCHOR)
 #error	SEPARATE_CHUNK_ANCHOR require CHUNK_ANCHOR
 #endif
@@ -77,8 +77,8 @@ char const *zz_script_name;
 int need_basehref;
 
 char const *zz_path_info;
-/* 0 ‚Ì‚Æ‚«‚ÍApath‚Í“K—p‚³‚ê‚Ä‚¢‚È‚¢
-   read.cgi/tech/998845501/ ‚Ì‚Æ‚«‚ÍA3‚É‚È‚é */
+/* 0 ã®ã¨ãã¯ã€pathã¯é©ç”¨ã•ã‚Œã¦ã„ãªã„
+   read.cgi/tech/998845501/ ã®ã¨ãã¯ã€3ã«ãªã‚‹ */
 int path_depth;
 char const *zz_query_string;
 char *zz_temp;
@@ -121,7 +121,7 @@ char zz_nf[1024];
 char zz_im[1024];
 char zz_parent_link[128];
 char zz_cgi_path[128];
-long nn_ky;	/* zz_ky‚ğ”š‚É‚µ‚½‚à‚Ì */
+long nn_ky;	/* zz_kyã‚’æ•°å­—ã«ã—ãŸã‚‚ã® */
 #ifdef RAWOUT
 char zz_rw[1024];
 #endif
@@ -136,7 +136,7 @@ int zz_log_type;	/* 0: non-TYPE_TERI  1: TYPE_TERI */
 #endif
 int nn_st, nn_to, nn_ls;
 
-#define RANGE_MAX_RES (65535) /* ƒŒƒX”Ô†‚æ‚è\•ª‚É‘å‚«‚È” */
+#define RANGE_MAX_RES (65535) /* ãƒ¬ã‚¹ç•ªå·ã‚ˆã‚Šååˆ†ã«å¤§ããªæ•° */
 #define MAX_RANGE 20 
 struct range {
 	int count;
@@ -190,7 +190,7 @@ void html_reload(int);
 #endif
 #ifdef RAWOUT
 int rawmode;
-int raw_lastnum, raw_lastsize; /* client‚ª‚Á‚Ä‚¢‚éƒf[ƒ^‚Ì”Ô†‚ÆƒTƒCƒY */
+int raw_lastnum, raw_lastsize; /* clientãŒæŒã£ã¦ã„ã‚‹ãƒ‡ãƒ¼ã‚¿ã®ç•ªå·ã¨ã‚µã‚¤ã‚º */
 #ifdef	Katjusha_DLL_REPLY
 int zz_katjusha_raw;
 #endif
@@ -200,23 +200,23 @@ int need_tail_comment = 0;
 #endif
 
 #ifdef ZLIB
-/*  zlib‘Î‰ */
+/*  zlibå¯¾å¿œ */
 gzFile pStdout; /*  = (gzFile) stdout; */
 zz_printf_t pPrintf = (zz_printf_t) fprintf;
 
-/* zlib“Æ©‰ü‘¢ */
+/* zlibç‹¬è‡ªæ”¹é€  */
 extern int gz_getdata(char **buf);
 /*
- * gzdopen(0,"w")‚Åmemory‚Éˆ³k‚µ‚½Œ‹‰Ê‚ğó‚¯æ‚é
+ * gzdopen(0,"w")ã§memoryã«åœ§ç¸®ã—ãŸçµæœã‚’å—ã‘å–ã‚‹
  * len = gz_getdata(&data);
- *   int   len  : ˆ³kŒã‚Ìbyte”
- *   char *data : ˆ³kŒã‚Ìƒf[ƒ^Ag—pŒãfree()‚·‚×‚«•¨
+ *   int   len  : åœ§ç¸®å¾Œã®byteæ•°
+ *   char *data : åœ§ç¸®å¾Œã®ãƒ‡ãƒ¼ã‚¿ã€ä½¿ç”¨å¾Œfree()ã™ã¹ãç‰©
  */
 #endif
 
 #ifdef	USE_SETTING_FILE
 /*
-	SETTING_R.TXT‚Í
+	SETTING_R.TXTã¯
 	---
 	FORCE_304_TIME=30
 	LIMIT_PM=23
@@ -224,19 +224,19 @@ extern int gz_getdata(char **buf);
 	MAX_FILESIZE=512
 	LINKTAGCUT=0
 	---
-	‚È‚ÇB‹ós‰ÂB
-	#‚Æ;‚©‚çŠJn‚ÍƒRƒƒ“ƒgEEE‚Æ‚¢‚¤‚æ‚èA
-	=‚ª‚È‚©‚Á‚½‚èAƒ}ƒbƒ`‚µ‚È‚©‚Á‚½‚è‚µ‚½‚ç–³‹
-	ÅŒã‚Ìs‚É‰üs‚ª“ü‚Á‚Ä‚È‚©‚Á‚½‚çA‚»‚ê‚à–³‹‚³‚ê‚é(ƒoƒO‚Æ‘‚¢‚Äd—l‚Æ“Ç‚Ş)
+	ãªã©ã€‚ç©ºè¡Œå¯ã€‚
+	#ã¨;ã‹ã‚‰é–‹å§‹ã¯ã‚³ãƒ¡ãƒ³ãƒˆãƒ»ãƒ»ãƒ»ã¨ã„ã†ã‚ˆã‚Šã€
+	=ãŒãªã‹ã£ãŸã‚Šã€ãƒãƒƒãƒã—ãªã‹ã£ãŸã‚Šã—ãŸã‚‰ç„¡è¦–
+	æœ€å¾Œã®è¡Œã«æ”¹è¡ŒãŒå…¥ã£ã¦ãªã‹ã£ãŸã‚‰ã€ãã‚Œã‚‚ç„¡è¦–ã•ã‚Œã‚‹(ãƒã‚°ã¨æ›¸ã„ã¦ä»•æ§˜ã¨èª­ã‚€)
 	
-	RES_YELLOW-RES_NORMAL‚Ü‚Å‚ÍA#define‚Ì‚Ü‚Ü‚Å‚¢‚¢‚©‚àB
+	RES_YELLOW-RES_NORMALã¾ã§ã¯ã€#defineã®ã¾ã¾ã§ã„ã„ã‹ã‚‚ã€‚
 */
 struct {
 	int	Res_Yellow;
 	int Res_RedZone;
 	int	Res_Imode;
 	int Res_Normal;
-	int Max_FileSize;	/*	‚±‚¢‚Â‚¾‚¯AKByte’PˆÊ	*/
+	int Max_FileSize;	/*	ã“ã„ã¤ã ã‘ã€KByteå˜ä½	*/
 	int Limit_PM;
 	int Limit_AM;
 #ifdef PREVENTRELOAD
@@ -262,9 +262,9 @@ struct {
 	const char *str;
 	int *val;
 	int len;
-	/*	•¶š—ñ‚Ì’·‚³‚ğ‚ ‚ç‚©‚¶‚ß”‚¦‚½‚èA‚Q•ª’Tõ—p‚É•À‚×‚Ä‚¨‚­‚Ì‚ÍA
-		Šg’£‚·‚é‚É‚¿‚å‚Á‚ÆB
-		•‰‰×‚ªŒÀŠE‚É‚«‚Ä‚¢‚½‚çl‚¦‚é‚×‚µB
+	/*	æ–‡å­—åˆ—ã®é•·ã•ã‚’ã‚ã‚‰ã‹ã˜ã‚æ•°ãˆãŸã‚Šã€ï¼’åˆ†æ¢ç´¢ç”¨ã«ä¸¦ã¹ã¦ãŠãã®ã¯ã€
+		æ‹¡å¼µã™ã‚‹æ™‚ã«ã¡ã‚‡ã£ã¨ã€‚
+		è² è·ãŒé™ç•Œã«ãã¦ã„ãŸã‚‰è€ƒãˆã‚‹ã¹ã—ã€‚
 	*/
 } SettingParam[] = {
 	{	"RES_YELLOW",	&Settings.Res_Yellow,	},
@@ -304,12 +304,12 @@ struct {
 #define	LINKTAGCUT	Settings.LinkTagCut
 #endif	/*	USE_SETTING_FILE	*/
 
-/* <ctype.h>“™‚Æ‚©‚Ô‚Á‚Ä‚½‚çA—v’uŠ· */
+/* <ctype.h>ç­‰ã¨ã‹ã¶ã£ã¦ãŸã‚‰ã€è¦ç½®æ› */
 #define false (0)
 #define true (!false)
-#define _C_ (1<<0) /* datƒ`ƒFƒbƒN—p‹æØ‚è•¶š“™ */
-#define _U_ (1<<1) /* URL‚Ég‚¤•¶š */
-#define _S_ (1<<2) /* SJIS1ƒoƒCƒg–Ú<br>ƒ^ƒO’¼‘O‚Ì‹ó”’‚ªíœ‰Â‚©‚ğ“K“–‚É”»’è */
+#define _C_ (1<<0) /* datãƒã‚§ãƒƒã‚¯ç”¨åŒºåˆ‡ã‚Šæ–‡å­—ç­‰ */
+#define _U_ (1<<1) /* URLã«ä½¿ã†æ–‡å­— */
+#define _S_ (1<<2) /* SJIS1ãƒã‚¤ãƒˆç›®ï¼<br>ã‚¿ã‚°ç›´å‰ã®ç©ºç™½ãŒå‰Šé™¤å¯ã‹ã‚’é©å½“ã«åˆ¤å®š */
 
 /* #define isCheck(c) (flagtable[(unsigned char)(c)] & _C_) */
 #define isCheck(c) (flagtable[/*(unsigned char)*/(c)] & _C_)
@@ -317,7 +317,7 @@ struct {
 #define hrefStop(c) (!(flagtable[(unsigned char)(c)] & _U_))
 
 #define	LINK_URL_MAXLEN		256
-		/*	ƒŒƒX’†‚ÅURL‚Æ‚İ‚È‚·•¶š—ñ‚ÌÅ‘å’·B’Z‚¢H	*/
+		/*	ãƒ¬ã‚¹ä¸­ã§URLã¨ã¿ãªã™æ–‡å­—åˆ—ã®æœ€å¤§é•·ã€‚çŸ­ã„ï¼Ÿ	*/
 
 #define _0____ (1<<0)
 #define __1___ (1<<1)
@@ -333,9 +333,9 @@ struct {
 
 
 /*
-	'\n'‚Æ':'‚ğ isCheck(_C_) ‚É’Ç‰Á
-	TYPE_TERI‚Ì‚ÍA'\x81'‚Æ','‚ğ‚Í‚¸‚µ‚Ä‚İ‚½
-	‚·‚±[[‚µ‚¾‚¯ˆá‚¤‚©‚à
+	'\n'ã¨':'ã‚’ isCheck(_C_) ã«è¿½åŠ 
+	TYPE_TERIã®æ™‚ã¯ã€'\x81'ã¨','ã‚’ã¯ãšã—ã¦ã¿ãŸ
+	ã™ã“ãƒ¼ãƒ¼ã—ã ã‘é•ã†ã‹ã‚‚
 */
 char flagtable[256] = {
 	_0____,______,______,______,______,______,______,______, /*  00-07 */
@@ -381,26 +381,26 @@ char flagtable[256] = {
 };
 
 typedef struct { /*  class... */
-	char **buffers; /* csv‚Ì—v‘f */
-	int rest; /* c‚è‚Ìƒoƒbƒtƒ@ƒTƒCƒYEEŒµ–§‚É‚Í”»’è‚µ‚Ä‚È‚¢‚Ì‚ÅA”ƒoƒCƒg‚Í—]—T‚ª—~‚µ‚¢ */
+	char **buffers; /* csvã®è¦ç´  */
+	int rest; /* æ®‹ã‚Šã®ãƒãƒƒãƒ•ã‚¡ã‚µã‚¤ã‚ºãƒ»ãƒ»å³å¯†ã«ã¯åˆ¤å®šã—ã¦ãªã„ã®ã§ã€æ•°ãƒã‚¤ãƒˆã¯ä½™è£•ãŒæ¬²ã—ã„ */
 } ressplitter;
 
 /****************************************************************/
-/* ”ÍˆÍƒŠƒXƒg range ‚Ö’Ç‰Á‚·‚é
+/* ç¯„å›²ãƒªã‚¹ãƒˆ range ã¸è¿½åŠ ã™ã‚‹
  *
- * st, to‚ÌŠú‘Ò“à—e(aaa,bbb‚ÍÀÛ‚Í”š):
- *   “ü—Í•¶š—ñ   st    to
- *   ""        -> "-"   "-"    –³‹
- *   "aaa"     -> "aaa" "-"    ’P“Æ
- *   "aaa-"    -> "aaa" ""     æ“ªw’è
- *   "-bbb"    -> "-"   "bbb"  ––”öw’è
- *   "-"       -> "-"   ""     ‘S”ÍˆÍ
- *   "aaa-bbb" -> "aaa" "bbb"  —¼’[w’è
+ * st, toã®æœŸå¾…å†…å®¹(aaa,bbbã¯å®Ÿéš›ã¯æ•°å­—):
+ *   å…¥åŠ›æ–‡å­—åˆ—   st    to
+ *   ""        -> "-"   "-"    ç„¡è¦–
+ *   "aaa"     -> "aaa" "-"    å˜ç‹¬
+ *   "aaa-"    -> "aaa" ""     å…ˆé ­æŒ‡å®š
+ *   "-bbb"    -> "-"   "bbb"  æœ«å°¾æŒ‡å®š
+ *   "-"       -> "-"   ""     å…¨ç¯„å›²
+ *   "aaa-bbb" -> "aaa" "bbb"  ä¸¡ç«¯æŒ‡å®š
  *
- * aaa > bbb ‚È‚ç‚Î aaa ‚Ì‚İ‚Æ‚µ‚Äˆµ‚¤B
+ * aaa > bbb ãªã‚‰ã° aaa ã®ã¿ã¨ã—ã¦æ‰±ã†ã€‚
  *
- * range‚Ì“à—e‚Íí‚É¸‡‚ğˆÛ‚·‚éB
- * range‚ª–”t‚È‚ç‚Î’Ç‰Á‚µ‚È‚¢B
+ * rangeã®å†…å®¹ã¯å¸¸ã«æ˜‡é †ã‚’ç¶­æŒã™ã‚‹ã€‚
+ * rangeãŒæº€æ¯ãªã‚‰ã°è¿½åŠ ã—ãªã„ã€‚
  */
 static void add_range( struct range *range, const char *st, const char *to )
 {
@@ -461,8 +461,8 @@ static void add_range( struct range *range, const char *st, const char *to )
 	range->array[hole].to = i_to;
 }
 
-/* range‚Ìã‰ºŒÀæ“¾
- * *stˆÈ~‘S•”‚È‚ç *to = 0‚Æ‚È‚é
+/* rangeã®ä¸Šä¸‹é™å–å¾—
+ * *stä»¥é™å…¨éƒ¨ãªã‚‰ *to = 0ã¨ãªã‚‹
  */
 int get_range_minmax( const struct range * range, int * st, int *to )
 {
@@ -480,8 +480,8 @@ int get_range_minmax( const struct range * range, int * st, int *to )
 	return true;
 }
 
-/* range“à”»’è
-   range‚ª‹ó‚È‚ç‚Îfalse‚ğ•Ô‚µ‚Ä‚µ‚Ü‚¤‚Ì‚Å’ˆÓ
+/* rangeå†…åˆ¤å®š
+   rangeãŒç©ºãªã‚‰ã°falseã‚’è¿”ã—ã¦ã—ã¾ã†ã®ã§æ³¨æ„
  */
 int in_range( const struct range * range, int lineNo )
 {
@@ -498,7 +498,7 @@ int in_range( const struct range * range, int lineNo )
 	return false;
 }
 
-/* ”šAƒnƒCƒtƒ“AƒJƒ“ƒ}‚¾‚¯‚©‚ç‚È‚é•¶š—ñ‚©‚çrange‚ğ‘g‚İ—§‚Ä‚é
+/* æ•°å­—ã€ãƒã‚¤ãƒ•ãƒ³ã€ã‚«ãƒ³ãƒã ã‘ã‹ã‚‰ãªã‚‹æ–‡å­—åˆ—ã‹ã‚‰rangeã‚’çµ„ã¿ç«‹ã¦ã‚‹
  */
 const char *add_ranges_simple( struct range *range, const char *p )
 {
@@ -532,8 +532,8 @@ const char *add_ranges_simple( struct range *range, const char *p )
 }
 
 /****************************************************************/
-/* link‚Ìæ“ª•”•ª(”Â‚Ü‚Å)‚Ì¶¬
- * –ß‚è’l‚ÍI’[null•¶š‚ğw‚·
+/* linkã®å…ˆé ­éƒ¨åˆ†(æ¿ã¾ã§)ã®ç”Ÿæˆ
+ * æˆ»ã‚Šå€¤ã¯çµ‚ç«¯nullæ–‡å­—ã‚’æŒ‡ã™
  */
 char *create_link_head(char * url_expr)
 {
@@ -564,7 +564,7 @@ char *create_link_head(char * url_expr)
 	return p;
 }
 
-/* link‚Ì’†ŠÔ•”•ª‚Ì¶¬
+/* linkã®ä¸­é–“éƒ¨åˆ†ã®ç”Ÿæˆ
  */
 char *create_link_mid(char * p, int st, int to, int ls)
 {
@@ -580,10 +580,10 @@ char *create_link_mid(char * p, int st, int to, int ls)
 		} else {
 			if ( st != to ) {
 				if ( st > 1 )
-					p += sprintf(p, "%d", st); /* n“_ */
+					p += sprintf(p, "%d", st); /* å§‹ç‚¹ */
 				*p++ = '-';
 			}
-			p += sprintf(p, "%d", to); /* I“_ */
+			p += sprintf(p, "%d", to); /* çµ‚ç‚¹ */
 		}
 #ifdef	CREATE_OLD_LINK
 	} else {
@@ -601,7 +601,7 @@ char *create_link_mid(char * p, int st, int to, int ls)
 	return p;
 }
 
-/* link‚Ì––”ö•”•ª‚Ì¶¬
+/* linkã®æœ«å°¾éƒ¨åˆ†ã®ç”Ÿæˆ
  */
 char *create_link_tail(char * url_expr, char * p, int st, int nf, int sst)
 {
@@ -618,7 +618,7 @@ char *create_link_tail(char * url_expr, char * p, int st, int nf, int sst)
 		}
 #endif
 		if ( p == url_expr )
-			p += sprintf(p, "./"); /* ‘S•” */
+			p += sprintf(p, "./"); /* å…¨éƒ¨ */
 #ifdef	CREATE_OLD_LINK
 	} else {
 		if (nf)
@@ -638,11 +638,11 @@ char *create_link_tail(char * url_expr, char * p, int st, int nf, int sst)
 	return p;
 }
 
-/* read.cgiŒÄ‚Ño‚µ‚ÌLINKæì¬ */
-/* ˆê‚Â‚Ì pPrintf() ‚Åˆê“x‚µ‚©g‚Á‚Ä‚Í‚¢‚¯‚È‚¢ */
-/* st,to,ls,nf‚ÍA‚»‚ê‚¼‚ê‚ÌŒÄ‚ÑæBnf=1‚Ånofirst=true
-** g‚í‚È‚¢‚à‚Ì‚ÍA0‚É‚µ‚ÄŒÄ‚Ô
-** sst‚ÍACHUNK_LINK‚Ìê‡‚Ì#”Ô†
+/* read.cgiå‘¼ã³å‡ºã—ã®LINKå…ˆä½œæˆ */
+/* ä¸€ã¤ã® pPrintf() ã§ä¸€åº¦ã—ã‹ä½¿ã£ã¦ã¯ã„ã‘ãªã„ */
+/* st,to,ls,nfã¯ã€ãã‚Œãã‚Œã®å‘¼ã³å…ˆã€‚nf=1ã§nofirst=true
+** ä½¿ã‚ãªã„ã‚‚ã®ã¯ã€0ã«ã—ã¦å‘¼ã¶
+** sstã¯ã€CHUNK_LINKã®å ´åˆã®#ç•ªå·
 */
 const char *create_link(int st, int to, int ls, int nf, int sst)
 {
@@ -652,18 +652,18 @@ const char *create_link(int st, int to, int ls, int nf, int sst)
 	if ( !mid_start )
 		mid_start = create_link_head(url_expr);
 	p = mid_start;
-	if (is_imode() && st==0 && to==0)	/* imode‚Ì0-0‚Íls=10‘Š“– */
+	if (is_imode() && st==0 && to==0)	/* imodeã®0-0ã¯ls=10ç›¸å½“ */
 		ls = 10;
 	if ( nf && ls == 0 )
-		if ( st == 1 || st == to )	/* ’P“_‚Æ1‚ğŠÜ‚Ş‚Æ‚«‚Í‚Í'n'•s—v */
+		if ( st == 1 || st == to )	/* å˜ç‚¹ã¨1ã‚’å«ã‚€ã¨ãã¯ã¯'n'ä¸è¦ */
 			nf = 0;
 	p = create_link_mid(p, st, to, ls);
 	create_link_tail(url_expr, p, st, nf, sst);
 	return url_expr;
 }
 
-/* range‚É]‚Á‚ÄƒŠƒ“ƒN¶¬
- * –ß‚è’l‚Í•¶š”
+/* rangeã«å¾“ã£ã¦ãƒªãƒ³ã‚¯ç”Ÿæˆ
+ * æˆ»ã‚Šå€¤ã¯æ–‡å­—æ•°
  */
 int create_link_range(char * url_expr, const struct range * range, int nf, int sst)
 {
@@ -675,10 +675,10 @@ int create_link_range(char * url_expr, const struct range * range, int nf, int s
 	get_range_minmax( range, &st, &to );
 
 	p = create_link_head(url_expr);
-	if (is_imode() && st==0 && to==0) {	/* imode‚Ì0-0‚Íls=10‘Š“– */
+	if (is_imode() && st==0 && to==0) {	/* imodeã®0-0ã¯ls=10ç›¸å½“ */
 		p = create_link_mid(p, 0, 0, 10);
   	} else {
-		if ( st <= 1 || st == to )	/* ’P“_‚Æ1‚ğŠÜ‚Ş‚Æ‚«‚Í‚Í'n'•s—v */
+		if ( st <= 1 || st == to )	/* å˜ç‚¹ã¨1ã‚’å«ã‚€ã¨ãã¯ã¯'n'ä¸è¦ */
 			nf = 0;
 		for ( i = 0 ; i < range->count ; ++i ) {
 			int i_to;
@@ -701,10 +701,10 @@ int create_link_range(char * url_expr, const struct range * range, int nf, int s
 	return p - url_expr;
 }
 
-/* ƒfƒBƒŒƒNƒgƒŠ‚ğw’è’iã‚ª‚é•¶š—ñ‚ğì¬‚·‚é
+/* ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æŒ‡å®šæ®µä¸ŠãŒã‚‹æ–‡å­—åˆ—ã‚’ä½œæˆã™ã‚‹
  *
- * –ß‚è’l‚Í¶¬•¶š”
- * buf‚ÌƒTƒCƒY‚Í (up * 3 + 1)•K—v
+ * æˆ»ã‚Šå€¤ã¯ç”Ÿæˆæ–‡å­—æ•°
+ * bufã®ã‚µã‚¤ã‚ºã¯ (up * 3 + 1)å¿…è¦
  */
 int up_path( char * buf, size_t up )
 {
@@ -721,7 +721,7 @@ int up_path( char * buf, size_t up )
 	return w - buf;
 }
 
-/* Œf¦”Â‚É–ß‚é‚ÌLINKæì¬ */
+/* æ²ç¤ºæ¿ã«æˆ»ã‚‹ã®LINKå…ˆä½œæˆ */
 void zz_init_parent_link(void)
 {
 	char * p = zz_parent_link;
@@ -751,7 +751,7 @@ void zz_init_parent_link(void)
 #endif
 }
 
-/* bbs.cgi‚ÌLINKæì¬ */
+/* bbs.cgiã®LINKå…ˆä½œæˆ */
 void zz_init_cgi_path(void)
 {
 	zz_cgi_path[0] = '\0';
@@ -759,10 +759,10 @@ void zz_init_cgi_path(void)
 }
 
 /*
-  ‰Šú‰»
-  toparray ƒ|ƒCƒ“ƒ^”z—ñ‚ÌƒAƒhƒŒƒX
-  buff ƒRƒs[æ‚Ìƒoƒbƒtƒ@‚Ìæ“ª
-  bufsize Œµ–§‚É‚Í”»’è‚µ‚Ä‚È‚¢‚Ì‚ÅA”ƒoƒCƒg‚Í—]—T‚ª—~‚µ‚¢
+  åˆæœŸåŒ–
+  toparray ãƒã‚¤ãƒ³ã‚¿é…åˆ—ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
+  buff ã‚³ãƒ”ãƒ¼å…ˆã®ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­
+  bufsize å³å¯†ã«ã¯åˆ¤å®šã—ã¦ãªã„ã®ã§ã€æ•°ãƒã‚¤ãƒˆã¯ä½™è£•ãŒæ¬²ã—ã„
   */
 
 void ressplitter_init(ressplitter *This, char **toparray, char *buff, int bufsize)
@@ -772,23 +772,23 @@ void ressplitter_init(ressplitter *This, char **toparray, char *buff, int bufsiz
 	*This->buffers = buff;
 }
 
-/* <a href="xxx">‚ğPATHŒü‚¯‚É‘Å‚¿’¼‚·
-   *sp‚Í"<a "‚©‚çn‚Ü‚Á‚Ä‚¢‚é‚±‚ÆB
-   dp, sp ‚Íƒ|ƒCƒ“ƒ^‚ği‚ß‚ç‚ê‚é
-   ‘‚«Š·‚¦‚éê‡‚Í</a>‚Ü‚Åˆ—‚·‚é‚ªA
-   ‘‚«Š·‚¦•s—v‚Èê‡‚Í<a ....>‚Ü‚Åƒ}ƒ}ƒRƒs(‚à‚µ‚­‚Íí‚é)‚¾‚¯
-   ‘–¸•s”\‚Èê‡‚ÍA0 ‚ğ–ß‚·
+/* <a href="xxx">ã‚’PATHå‘ã‘ã«æ‰“ã¡ç›´ã™
+   *spã¯"<a "ã‹ã‚‰å§‹ã¾ã£ã¦ã„ã‚‹ã“ã¨ã€‚
+   dp, sp ã¯ãƒã‚¤ãƒ³ã‚¿ã‚’é€²ã‚ã‚‰ã‚Œã‚‹
+   æ›¸ãæ›ãˆã‚‹å ´åˆã¯</a>ã¾ã§å‡¦ç†ã™ã‚‹ãŒã€
+   æ›¸ãæ›ãˆä¸è¦ãªå ´åˆã¯<a ....>ã¾ã§ãƒãƒã‚³ãƒ”(ã‚‚ã—ãã¯å‰Šã‚‹)ã ã‘
+   èµ°æŸ»ä¸èƒ½ãªå ´åˆã¯ã€0 ã‚’æˆ»ã™
 
-   ad hoc‚ÉA’†g‚ª&gt;‚Ån‚Ü‚Á‚Ä‚½‚ç
-   hrefî•ñ‚ğ‚º‚ñ‚ÔÌ‚Ä‚ÄA
-   <A></A>‚ÅˆÍ‚Ü‚ê‚½•”ˆÊ‚ğæ‚èo‚µA
-   ©‚ç‘Å‚¿’¼‚·‚æ‚¤‚É‚·‚é
-   ‘z’èƒtƒH[ƒ}ƒbƒg‚ÍˆÈ‰º‚Ì‚à‚ÌB
+   ad hocã«ã€ä¸­èº«ãŒ&gt;ã§å§‹ã¾ã£ã¦ãŸã‚‰
+   hrefæƒ…å ±ã‚’ãœã‚“ã¶æ¨ã¦ã¦ã€
+   <A></A>ã§å›²ã¾ã‚ŒãŸéƒ¨ä½ã‚’å–ã‚Šå‡ºã—ã€
+   è‡ªã‚‰æ‰“ã¡ç›´ã™ã‚ˆã†ã«ã™ã‚‹
+   æƒ³å®šãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä»¥ä¸‹ã®ã‚‚ã®ã€‚
    &gt;&gt;nnn
    &gt;&gt;xxx-yyy */
-static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
-			 char const **sp,	/* “Ç‚İo‚µƒ|ƒCƒ“ƒ^ */
-			 int istagcut)		/* ƒ^ƒOƒJƒbƒg‚µ‚Ä‚¢‚¢‚©? */
+static int rewrite_href(char **dp,		/* æ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿ */
+			 char const **sp,	/* èª­ã¿å‡ºã—ãƒã‚¤ãƒ³ã‚¿ */
+			 int istagcut)		/* ã‚¿ã‚°ã‚«ãƒƒãƒˆã—ã¦ã„ã„ã‹? */
 {
 	char *d = *dp;
 	char const *s = *sp;
@@ -803,7 +803,7 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 	while (*s != '>' && *s != '\n')
 		s++;
 	if (memcmp(s, ">http://", 8) == 0 ) {
-		/* URLƒŠƒ“ƒN‚¾‚Á‚½ê‡A‚»‚Ì‚Ü‚Üo—Í‚µ‚Ä‚İ‚é */
+		/* URLãƒªãƒ³ã‚¯ã ã£ãŸå ´åˆã€ãã®ã¾ã¾å‡ºåŠ›ã—ã¦ã¿ã‚‹ */
 		s += 8; /* skip ">http://" */
 		s = strstr(s, "</a>");
 		if ( !s )
@@ -842,7 +842,7 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 		!(istagcut && isprinted(st) && isprinted(to))) {
 			close_anchor = true;
 #ifdef CREATE_NAME_ANCHOR
-			/* V‚µ‚¢•\Œ»‚ğƒuƒ`‚Ş */
+			/* æ–°ã—ã„è¡¨ç¾ã‚’ãƒ–ãƒè¾¼ã‚€ */
 			if (isprinted(st) && isprinted(to)) {
 				d += sprintf(d, "<a href=#%u>", st);
 			} else
@@ -855,12 +855,12 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 				int nofirst = true;
 #if defined(CHUNK_ANCHOR) && defined(CREATE_NAME_ANCHOR) && defined(USE_CHUNK_LINK)
 				nofirst = false;
-				/* chunkd—l‚ğ¶‚©‚·‚½‚ß‚Ìkludge‚ÍˆÈ‰º‚ÉB */
+				/* chunkä»•æ§˜ã‚’ç”Ÿã‹ã™ãŸã‚ã®kludgeã¯ä»¥ä¸‹ã«ã€‚ */
 				mst = (st - 1) / CHUNK_NUM;
 				mto = (to - 1) / CHUNK_NUM;
 
 				if (range.count <= 1 && mst == mto && (st != 1 || to != 1) ) {
-					/* chunk”ÍˆÍ */
+					/* chunkç¯„å›² */
 					mst = mst * CHUNK_NUM + 1;
 					mto = mto * CHUNK_NUM + CHUNK_NUM;
 					range.count = 1;
@@ -869,7 +869,7 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 				} else 
 #endif
 				{
-					/* chunk‚ğ‚Ü‚½‚¬‚»‚¤‚È‚Ì‚ÅAÅ¬’PˆÊ‚ğB*/
+					/* chunkã‚’ã¾ãŸããã†ãªã®ã§ã€æœ€å°å˜ä½ã‚’ã€‚*/
 				}
 				d += sprintf(d, "<a href=" );
 				d += create_link_range( d, &range, nofirst, st );
@@ -877,7 +877,7 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 			}
 	}
 
-	/* "&gt;&gt;"‚Í >> ‚É’u‚«Š·‚¦A‚Â‚Ã‚«.."</a>"‚ğŠÛÊ‚µ */
+	/* "&gt;&gt;"ã¯ >> ã«ç½®ãæ›ãˆã€ã¤ã¥ã.."</a>"ã‚’ä¸¸å†™ã— */
 	*d++ = '>';
 	*d++ = '>';
 	memcpy( d, copy_start, copy_len );
@@ -898,10 +898,10 @@ static int rewrite_href(char **dp,		/* ‘‚«‚İƒ|ƒCƒ“ƒ^ */
 	return 1;
 }
 /*
-	p‚ÍA"http://"‚Ì':'‚ğw‚µ‚Ä‚é‚æ‚ñ
-	‰½•¶š‚³‚©‚Ì‚Ú‚é‚©‚ğ•Ô‚·B0‚È‚çnon-match
-	‚S•¶š‘O(http‚Ìê‡)‚©‚çƒXƒLƒƒƒ“‚µ‚Ä‚¢‚é‚Ì‚ÅA
-	ˆÀ‘S‚ğŠm”F‚µ‚Ä‚©‚çŒÄ‚Ô
+	pã¯ã€"http://"ã®':'ã‚’æŒ‡ã—ã¦ã‚‹ã‚ˆã‚“
+	ä½•æ–‡å­—ã•ã‹ã®ã¼ã‚‹ã‹ã‚’è¿”ã™ã€‚0ãªã‚‰non-match
+	ï¼”æ–‡å­—å‰(httpã®å ´åˆ)ã‹ã‚‰ã‚¹ã‚­ãƒ£ãƒ³ã—ã¦ã„ã‚‹ã®ã§ã€
+	å®‰å…¨ã‚’ç¢ºèªã—ã¦ã‹ã‚‰å‘¼ã¶
 */
 static int isurltop(const char *p)
 {
@@ -912,9 +912,9 @@ static int isurltop(const char *p)
 	return 0;
 }
 /*
-	p‚ÍA"http://www.2ch.net/..."‚ÌÅ‰‚Ì'w'‚ğw‚µ‚Ä‚é
-	http://wwwwwwwww“™‚à‚Å‚«‚é‚¾‚¯”»•Ê
-	url‚Å‚È‚¢‚Æ‚İ‚È‚µ‚½‚çA0‚ğ•Ô‚·
+	pã¯ã€"http://www.2ch.net/..."ã®æœ€åˆã®'w'ã‚’æŒ‡ã—ã¦ã‚‹
+	http://wwwwwwwwwç­‰ã‚‚ã§ãã‚‹ã ã‘åˆ¤åˆ¥
+	urlã§ãªã„ã¨ã¿ãªã—ãŸã‚‰ã€0ã‚’è¿”ã™
 */
 static int geturltaillen(const char *p)
 {
@@ -922,7 +922,7 @@ static int geturltaillen(const char *p)
 	int len = 0;
 	while (!hrefStop(*p)) {
 		if (*p == '&') {
-			/* &quot;‚ÅˆÍ‚Ü‚ê‚½URL‚Ì––”ö”»’è */
+			/* &quot;ã§å›²ã¾ã‚ŒãŸURLã®æœ«å°¾åˆ¤å®š */
 			if (strncmp(p, "&quot;", 6) == 0)
 				break;
 			if (strncmp(p, "&lt;", 4) == 0)
@@ -934,18 +934,18 @@ static int geturltaillen(const char *p)
 		++p;
 	}
 	if (len) {
-		if (memchr(top, '.', len) == NULL	/* '.'‚ªŠÜ‚Ü‚ê‚È‚¢URL‚Í–³‚¢ */
-			|| *(top + len - 1) == '.')	/* '.'‚ÅI‚í‚éURL‚Í(•’Ê)–³‚¢ */
+		if (memchr(top, '.', len) == NULL	/* '.'ãŒå«ã¾ã‚Œãªã„URLã¯ç„¡ã„ */
+			|| *(top + len - 1) == '.')	/* '.'ã§çµ‚ã‚ã‚‹URLã¯(æ™®é€š)ç„¡ã„ */
 			len = 0;
-		if (len > LINK_URL_MAXLEN)	/* ’·‚·‚¬‚½‚ç‹p‰º */
+		if (len > LINK_URL_MAXLEN)	/* é•·ã™ããŸã‚‰å´ä¸‹ */
 			len = 0;
 	}
 	return len;
 }
 
 /*
-	url‚©‚çn‚Ü‚éurllen•ª‚Ì•¶š—ñ‚ğURL‚Æ‚İ‚È‚µ‚Äbufp‚ÉƒRƒs[B
-	‡Œv‰½•¶šƒoƒbƒtƒ@‚É“ü‚ê‚½‚©‚ğ•Ô‚·B
+	urlã‹ã‚‰å§‹ã¾ã‚‹urllenåˆ†ã®æ–‡å­—åˆ—ã‚’URLã¨ã¿ãªã—ã¦bufpã«ã‚³ãƒ”ãƒ¼ã€‚
+	åˆè¨ˆä½•æ–‡å­—ãƒãƒƒãƒ•ã‚¡ã«å…¥ã‚ŒãŸã‹ã‚’è¿”ã™ã€‚
 */
 static int urlcopy(char *bufp, const char *url, int urllen)
 {
@@ -955,10 +955,10 @@ static int urlcopy(char *bufp, const char *url, int urllen)
 }
 
 /*
-	resno‚ªA
-	o—Í‚³‚ê‚éƒŒƒX”Ô†‚Å‚ ‚éê‡true
-	”ÍˆÍŠO‚Å‚ ‚éê‡false
-	”»’è‚Ídat_out()‚ğŠî–{‚É
+	resnoãŒã€
+	å‡ºåŠ›ã•ã‚Œã‚‹ãƒ¬ã‚¹ç•ªå·ã§ã‚ã‚‹å ´åˆtrue
+	ç¯„å›²å¤–ã§ã‚ã‚‹å ´åˆfalse
+	åˆ¤å®šã¯dat_out()ã‚’åŸºæœ¬ã«
 */
 static int isprinted(int lineNo)
 {
@@ -983,7 +983,7 @@ static int isprinted(int lineNo)
 	((bufp) != (buftop) && isSJIS1(*((bufp)-1)))
 
 #ifdef	CUT_TAIL_BLANK
-/* ’¼‘O‚Ì•¶š‚ªƒVƒtƒgJIS‚PƒoƒCƒg–Ú‚Å‚ ‚é‚©‚ğ•Ô‚·B */
+/* ç›´å‰ã®æ–‡å­—ãŒã‚·ãƒ•ãƒˆJISï¼‘ãƒã‚¤ãƒˆç›®ã§ã‚ã‚‹ã‹ã‚’è¿”ã™ã€‚ */
 static int needspace_strict(const char *buftop, const char *bufp)
 {
 	const char *p = bufp-1;
@@ -1015,31 +1015,31 @@ static int needspace_strict(const char *buftop, const char *bufp)
 #define		IS_TYPE_TERI	0
 #endif
 /*
-	ƒŒƒX‚ğ‘S‘–¸‚·‚é‚ªAƒRƒs[‚Æ•ÏŠ·(‚Æíœ)‚ğ“¯‚És‚¤
-	p ƒRƒs[‘O‚ÌƒŒƒX(BigBuffer“à‚Ì‚PƒŒƒX)
-	resnumber	ƒŒƒX–{•¶‚Å‚ ‚éê‡‚ÉƒŒƒX”Ô†(s”Ô†{‚P)A‚»‚êˆÈŠO‚Í0‚ğ“n‚·
-	istagcut	<a href=...>‚Æ</a>‚ğcut‚·‚é‚©
-	Return		Ÿ‚Ìp‚Ìæ“ª
-	non-TYPE_TERI‚Èdat‚É‚Í,"<>"‚ÍŠÜ‚Ü‚ê‚È‚¢‚Í‚¸‚È‚Ì‚ÅA#ifdef TYPE_TERI ‚Í—ª
+	ãƒ¬ã‚¹ã‚’å…¨èµ°æŸ»ã™ã‚‹ãŒã€ã‚³ãƒ”ãƒ¼ã¨å¤‰æ›(ã¨å‰Šé™¤)ã‚’åŒæ™‚ã«è¡Œã†
+	p ã‚³ãƒ”ãƒ¼å‰ã®ãƒ¬ã‚¹(BigBufferå†…ã®ï¼‘ãƒ¬ã‚¹)
+	resnumber	ãƒ¬ã‚¹æœ¬æ–‡ã§ã‚ã‚‹å ´åˆã«ãƒ¬ã‚¹ç•ªå·(è¡Œç•ªå·ï¼‹ï¼‘)ã€ãã‚Œä»¥å¤–ã¯0ã‚’æ¸¡ã™
+	istagcut	<a href=...>ã¨</a>ã‚’cutã™ã‚‹ã‹
+	Return		æ¬¡ã®pã®å…ˆé ­
+	non-TYPE_TERIãªdatã«ã¯,"<>"ã¯å«ã¾ã‚Œãªã„ã¯ãšãªã®ã§ã€#ifdef TYPE_TERI ã¯ç•¥
 */
 const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 {
 	char *bufp = *This->buffers;
 	int bufrest = This->rest;
 	int istagcut = (LINKTAGCUT && isbusytime && resnumber > 1) || is_imode();
-	/*	ƒ‹[ƒv’†A*This->Buffers‚Íƒoƒbƒtƒ@‚Ìæ“ª‚ğ•Û‚µ‚Ä‚¢‚é	*/
+	/*	ãƒ«ãƒ¼ãƒ—ä¸­ã€*This->Buffersã¯ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚’ä¿æŒã—ã¦ã„ã‚‹	*/
 	while (--bufrest > 0) {
 		int ch = *p;
 		if (isCheck(ch)) {
 			switch (ch) {
 			case ' ':
-				/* –³ˆÓ–¡‚È‹ó”’‚Í‚P‚Â‚¾‚¯‚É‚·‚é */
+				/* ç„¡æ„å‘³ãªç©ºç™½ã¯ï¼‘ã¤ã ã‘ã«ã™ã‚‹ */
 				while (*(p+1) == ' ')
 					p++;
 				if (*(p+1) != '<')
 					break;
 				if (*(p+2) == '>') {
-					if (bufp == *This->buffers) /* –¼‘O—“‚ª”¼Šp‹ó”’‚P‚Â‚Ìê‡‚É•K—v */
+					if (bufp == *This->buffers) /* åå‰æ¬„ãŒåŠè§’ç©ºç™½ï¼‘ã¤ã®å ´åˆã«å¿…è¦ */
 						*bufp++ = ' ';
 					p += 3;
 					goto Teri_Break;
@@ -1052,7 +1052,7 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 					continue;
 				}
 				break;
-			case '<': /*  X‚¢‚ª */
+			case '<': /*  é†œã„ãŒ */
 				if (*(p+1) == '>') {
 					p += 2;
 					goto Teri_Break;
@@ -1062,7 +1062,7 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 					char *tdp = bufp;
 					char const *tsp = p;
 					if (!rewrite_href(&tdp, &tsp, istagcut))
-						break; /* ‘–¸•s”\‚È<a >ƒ^ƒO‚Í‚»‚Ì‚Ü‚Üo—Í‚µA‘±s */
+						break; /* èµ°æŸ»ä¸èƒ½ãª<a >ã‚¿ã‚°ã¯ãã®ã¾ã¾å‡ºåŠ›ã—ã€ç¶šè¡Œ */
 					bufrest -= tdp - bufp;
 					bufp = tdp;
 					p = tsp;
@@ -1075,25 +1075,25 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 					if (*(p + 4) != ';')
 						p += 4 - 1;
 				}
-				/* &MAIL->&amp;MAIL‚Ì•ÏŠ·‚ÍAdat’¼“Ç‚İ‚Ì‚©‚¿‚ã`‚µ‚á‚ª‘Î‰‚µ‚È‚¢‚Æ–³—
-				   ‚à‚µ•ÏŠ·‚·‚é‚È‚çbbs.cgi */
+				/* &MAIL->&amp;MAILã®å¤‰æ›ã¯ã€datç›´èª­ã¿ã®ã‹ã¡ã‚…ï½ã—ã‚ƒãŒå¯¾å¿œã—ãªã„ã¨ç„¡ç†
+				   ã‚‚ã—å¤‰æ›ã™ã‚‹ãªã‚‰bbs.cgi */
 				break;
 			case ':':
 #ifndef NO_LINK_URL_BUSY
 				if (resnumber)
 #else
 				if (resnumber && !istagcut)
-					/* url‚ÌƒŠƒ“ƒN‚ğ(ŠÔ‘Ñ‚É‚æ‚Á‚Ä)”p~‚·‚é‚È‚ç */
+					/* urlã®ãƒªãƒ³ã‚¯ã‚’(æ™‚é–“å¸¯ã«ã‚ˆã£ã¦)å»ƒæ­¢ã™ã‚‹ãªã‚‰ */
 #endif
 				{
 					if (*(p+1) == '/' && *(p+2) == '/' && isalnum(*(p+3))) {
 						/*
-							³í‚Èdat(–¼‘O—“‚ª­‚È‚­‚Æ‚à1•¶š)‚È‚ç‚ÎA
-							p‚Ì’¼‘O‚ÍÅ’áA" ,,,"‚Æ‚È‚Á‚Ä‚¢‚é(‚³‚ç‚É“Še“ú‚Ì—]—T‚ª‚ ‚é)B
-							‚È‚Ì‚ÅA4•¶š("http")‚Ü‚Å‚ÍƒI[ƒo[ƒtƒ[‚ÌŠëŒ¯‚Í‚È‚¢
-							‚½‚¾‚µA‚±‚ê‚ç‚ÍAresnumber‚ªA³Šm‚É“n‚³‚ê‚Ä‚¢‚é‚Ì‚ª‘O’ñB
+							æ­£å¸¸ãªdat(åå‰æ¬„ãŒå°‘ãªãã¨ã‚‚1æ–‡å­—)ãªã‚‰ã°ã€
+							pã®ç›´å‰ã¯æœ€ä½ã€" ,,,"ã¨ãªã£ã¦ã„ã‚‹(ã•ã‚‰ã«æŠ•ç¨¿æ—¥ã®ä½™è£•ãŒã‚ã‚‹)ã€‚
+							ãªã®ã§ã€4æ–‡å­—("http")ã¾ã§ã¯ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã®å±é™ºã¯ãªã„
+							ãŸã ã—ã€ã“ã‚Œã‚‰ã¯ã€resnumberãŒã€æ­£ç¢ºã«æ¸¡ã•ã‚Œã¦ã„ã‚‹ã®ãŒå‰æã€‚
 						*/
-						int pdif = isurltop(p);	/*	http://‚Ìê‡A4‚ª•Ô‚é	*/
+						int pdif = isurltop(p);	/*	http://ã®å ´åˆã€4ãŒè¿”ã‚‹	*/
 						if (pdif) {
 							int taillen = geturltaillen(p + 3);
 							if (taillen && bufrest > taillen * 2 + 60) {
@@ -1111,9 +1111,9 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 				goto Break;
 				/*	break;	*/
 #if	!defined(TYPE_TERI) || defined(AUTO_LOGTYPE)
-			case COMMA_SUBSTITUTE_FIRSTCHAR: /*  *"—"(8197)  "M"(814d) */
+			case COMMA_SUBSTITUTE_FIRSTCHAR: /*  *"ï¼ "(8197)  "ï½€"(814d) */
 				if (!IS_TYPE_TERI) {
-					/* ‚±‚±‚Í“Á‚É•p“x‚ª’á‚¢‚½‚ßA‰Â“Ç«A•Ûç«‚Ì‚Ù‚¤‚ªd—v */
+					/* ã“ã“ã¯ç‰¹ã«é »åº¦ãŒä½ã„ãŸã‚ã€å¯èª­æ€§ã€ä¿å®ˆæ€§ã®ã»ã†ãŒé‡è¦ */
 					if (memcmp(p, COMMA_SUBSTITUTE, COMMA_SUBSTITUTE_LEN) == 0) {
 						ch = ',';
 						p += 4 - 1;
@@ -1130,7 +1130,7 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 			case '\0':
 				if (p >= BigBuffer + zz_fileSize)
 					goto Break;
-				/* “Ç‚İ”ò‚Î‚µ‚Ì‚Ù‚¤‚ªA“®ì‚Æ‚µ‚Ä‚Í“KØ‚©‚à */
+				/* èª­ã¿é£›ã°ã—ã®ã»ã†ãŒã€å‹•ä½œã¨ã—ã¦ã¯é©åˆ‡ã‹ã‚‚ */
 				ch = '*';
 				break;
 			default:
@@ -1141,7 +1141,7 @@ const char *ressplitter_split(ressplitter *This, const char *p, int resnumber)
 		p++;
 	}
 Teri_Break:
-	/* –¼‘O—“‚É','‚ª“ü‚Á‚Ä‚¢‚é‚Ésplit‚ğƒ~ƒX‚é‚Ì‚ÅAŒ©Œë‚é‰Â”\«‚ª‚ ‚é‚Ì‚ÅA */
+	/* åå‰æ¬„ã«','ãŒå…¥ã£ã¦ã„ã‚‹æ™‚ã«splitã‚’ãƒŸã‚¹ã‚‹ã®ã§ã€è¦‹èª¤ã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹ã®ã§ã€ */
 	/* This->isTeri = true; */
 Break:
 	add_tailspace(*This->buffers, bufp);
@@ -1149,7 +1149,7 @@ Break:
 	This->rest -= bufp - *This->buffers;
 	*++This->buffers = bufp;
 	
-	/* ‹æØ‚è’¼Œã‚Ì‹ó”’‚ğíœ */
+	/* åŒºåˆ‡ã‚Šç›´å¾Œã®ç©ºç™½ã‚’å‰Šé™¤ */
 	if (*p == ' ') {
 		if (!IS_TYPE_TERI) {
 			if (!(*(p+1) == ','))
@@ -1195,7 +1195,7 @@ static void check_logtype()
 #define	check_logtype()		/*	*/
 #endif
 
-/* ƒ^ƒCƒgƒ‹‚ğæ“¾‚µ‚Äzz_title‚ÉƒRƒs[
+/* ã‚¿ã‚¤ãƒˆãƒ«ã‚’å–å¾—ã—ã¦zz_titleã«ã‚³ãƒ”ãƒ¼
 */
 static void get_title()
 {
@@ -1209,7 +1209,7 @@ static void get_title()
 	}
 }
 
-/* ƒXƒgƒbƒp[E1000 Over‚Ì”»’è
+/* ã‚¹ãƒˆãƒƒãƒ‘ãƒ¼ãƒ»1000 Overã®åˆ¤å®š
 */
 static int isthreadstopped()
 {
@@ -1239,7 +1239,7 @@ static int isthreadstopped()
 
 /****************************************************************/
 /*	BadAccess						*/
-/* ‹–‰Â=0, •s‹–‰Â=1‚ğ•Ô‚·                                       */
+/* è¨±å¯=0, ä¸è¨±å¯=1ã‚’è¿”ã™                                       */
 /****************************************************************/
 int BadAccess(void)
 {
@@ -1431,7 +1431,7 @@ static int out_html(int level, int line, int lineNo)
 					lineNo + RES_IMODE, 0,0,0),
 				RES_IMODE);
 			pPrintf(pStdout, R2CH_HTML_IMODE_TAIL2("%s", "%d"),
-				create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imode‚ÍƒXƒŒ‚Åls=10ˆµ‚¢ */
+				create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imodeã¯ã‚¹ãƒ¬ã§ls=10æ‰±ã„ */
 				RES_IMODE);
 #endif
 			return 1;
@@ -1468,7 +1468,7 @@ int dat_out_raw(void)
 #ifdef	RAWOUT_PARTIAL
 	if (raw_lastnum == 0 && raw_lastsize == 0
 		&& (nn_st || nn_to || nn_ls > 1)) {
-		/* nn_xx‚Ínofirst‚ÌŠÖŒW“™‚Å•Ï‰»‚µ‚Ä‚¢‚é‚©‚à‚µ‚ê‚È‚¢‚Ì‚ÅÄZo */
+		/* nn_xxã¯nofirstã®é–¢ä¿‚ç­‰ã§å¤‰åŒ–ã—ã¦ã„ã‚‹ã‹ã‚‚ã—ã‚Œãªã„ã®ã§å†ç®—å‡º */
 		int st = atoi(zz_st), to = atoi(zz_to), ls = atoi(zz_ls);
 		
 		first = 1, last = lineMax;
@@ -1486,19 +1486,19 @@ int dat_out_raw(void)
 		vp += sprintf(vp, "+PARTIAL");
 	} else
 #endif
-	/* ‚à‚µ•ñ‚³‚ê‚½ÅIƒŒƒX”Ô†‚¨‚æ‚ÑƒTƒCƒY‚ªˆê’v‚µ‚Ä‚¢‚È‚¯
-	   ‚ê‚ÎAÅ‰‚Ìs‚É‚»‚Ì|‚ğ¦‚· */
-	/* raw_lastsize > 0 ‚É‚·‚é‚Ænnn.0‚Å‚ ‚Ú[‚ñŒŸo‚ğ–³Œø‚É‚Å‚«‚é‚ª
-	   ƒT[ƒo[‚Åíœ‚µ‚½‚à‚Ì‚ÍƒNƒ‰ƒCƒAƒ“ƒg‚Å‚àíœ‚³‚ê‚é‚×‚«‚Å‚ ‚é */
+	/* ã‚‚ã—å ±å‘Šã•ã‚ŒãŸæœ€çµ‚ãƒ¬ã‚¹ç•ªå·ãŠã‚ˆã³ã‚µã‚¤ã‚ºãŒä¸€è‡´ã—ã¦ã„ãªã‘
+	   ã‚Œã°ã€æœ€åˆã®è¡Œã«ãã®æ—¨ã‚’ç¤ºã™ */
+	/* raw_lastsize > 0 ã«ã™ã‚‹ã¨nnn.0ã§ã‚ã¼ãƒ¼ã‚“æ¤œå‡ºã‚’ç„¡åŠ¹ã«ã§ãã‚‹ãŒ
+	   ã‚µãƒ¼ãƒãƒ¼ã§å‰Šé™¤ã—ãŸã‚‚ã®ã¯ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã§ã‚‚å‰Šé™¤ã•ã‚Œã‚‹ã¹ãã§ã‚ã‚‹ */
 	if(raw_lastnum > 0
 		&& raw_lastsize >= 0
 		&& !(raw_lastnum <= lineMax
 		 && BigLine[raw_lastnum] - BigBuffer == raw_lastsize)) {
 		vp += sprintf(vp, "-INCR");
-		/* ‘S•”‚ğ‘—M‚·‚é‚æ‚¤‚É•ÏX */
+		/* å…¨éƒ¨ã‚’é€ä¿¡ã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ */
 	} else {
 		vp += sprintf(vp, "+OK");
-		/* ·•ª‘—M—p‚Éæ“ª‚ğİ’è */
+		/* å·®åˆ†é€ä¿¡ç”¨ã«å…ˆé ­ã‚’è¨­å®š */
 		begin = BigLine[raw_lastnum];
 	}
 	vp += sprintf(vp, " %d/%dK", end - begin, MAX_FILESIZE / 1024);
@@ -1516,7 +1516,7 @@ int dat_out_raw(void)
 			"\t""Status:Stopped",
 			"\t""Location:temp/",
 			"\t""Location:kako/",
-			/* ³Šm‚ÈˆÊ’u‚ğ’m‚ç‚¹‚é•K—v‚Í‚È‚¢‚Í‚¸ */
+			/* æ­£ç¢ºãªä½ç½®ã‚’çŸ¥ã‚‰ã›ã‚‹å¿…è¦ã¯ãªã„ã¯ãš */
 		};
 		int where = zz_dat_where;
 		if (where || isthreadstopped())
@@ -1525,7 +1525,7 @@ int dat_out_raw(void)
 	}
 #endif
 	pPrintf(pStdout, "%s\n", statusline);
-	/* raw_lastnum ‚©‚ç‘S•”‚ğ‘—M‚·‚é */
+	/* raw_lastnum ã‹ã‚‰å…¨éƒ¨ã‚’é€ä¿¡ã™ã‚‹ */
 #ifdef ZLIB
 	if (gzip_flag)
 		gzwrite(pStdout, (const voidp)begin, end - begin);
@@ -1555,7 +1555,7 @@ static int split_multireq(const char *req, char *bbs, char *key)
 	return atoi(p+1);
 }
 
-/* ƒGƒ‰[ˆ—‚ÅŠy‚ğ‚·‚é‚½‚ß */
+/* ã‚¨ãƒ©ãƒ¼å‡¦ç†ã§æ¥½ã‚’ã™ã‚‹ãŸã‚ */
 struct multiout_resource {
 	char *Buffer;
 	int fd;
@@ -1563,10 +1563,10 @@ struct multiout_resource {
 	char *info;
 };
 
-/* –ß‚è’l‚Í
-   0   ³íI—¹
-   -1  –¢XVoræ“¾Ï‚İ‚Ì”ÍˆÍ‚ª0ˆÈ‰º  ("+OK 0/512K"‚ğ•Ô‚·)
-   ³  html_error_t‚ÌƒGƒ‰[ƒR[ƒh +1  ("-ERR ..."‚ğ•Ô‚·) */
+/* æˆ»ã‚Šå€¤ã¯
+   0   æ­£å¸¸çµ‚äº†
+   -1  æœªæ›´æ–°orå–å¾—æ¸ˆã¿ã®ç¯„å›²ãŒ0ä»¥ä¸‹  ("+OK 0/512K"ã‚’è¿”ã™)
+   æ­£  html_error_tã®ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ +1  ("-ERR ..."ã‚’è¿”ã™) */
 static int exec_multiout(struct multiout_resource *rp, const char *req)
 {
 	int lastsize;
@@ -1605,7 +1605,7 @@ static int exec_multiout(struct multiout_resource *rp, const char *req)
 	rp->Buffer = malloc(rp->fileSize);
 	if (!rp->Buffer)
 		return 1 + ERROR_NO_MEMORY;
-	/* ‘S•”“Ç‚Ş‚Ì‚Í–³‘Ê‚¾‚ªAŠî–{“I‚Émmap‚ªg‚í‚ê‚é‚Í‚¸‚È‚Ì‚Å‹C‚É‚µ‚È‚¢ */
+	/* å…¨éƒ¨èª­ã‚€ã®ã¯ç„¡é§„ã ãŒã€åŸºæœ¬çš„ã«mmapãŒä½¿ã‚ã‚Œã‚‹ã¯ãšãªã®ã§æ°—ã«ã—ãªã„ */
 	read(rp->fd, rp->Buffer, rp->fileSize);
 #endif
 	if (rp->Buffer[lastsize-1] != '\n')
@@ -1621,11 +1621,11 @@ static int exec_multiout(struct multiout_resource *rp, const char *req)
 #endif
 		fwrite(rp->Buffer + lastsize, 1, rp->fileSize - lastsize, pStdout);
 	
-	/* ‘Œ¹‚Ì‰ğ•ú‚Í–ß‚Á‚Ä‚©‚ç */
+	/* è³‡æºã®è§£æ”¾ã¯æˆ»ã£ã¦ã‹ã‚‰ */
 	return 0;
 }
 
-/* ˆ—‚µ‚½ŒÂ”‚ğ•Ô‚·
+/* å‡¦ç†ã—ãŸå€‹æ•°ã‚’è¿”ã™
 */
 int rawout_multi()
 {
@@ -1639,7 +1639,7 @@ int rawout_multi()
 	while ((query = GetString(query, buff, sizeof(buff), "dat")) != NULL) {
 		int retcode;
 		buff[40] = '\0';
-		/* è”²‚«—p‚Ì‰Šú‰» */
+		/* æ‰‹æŠœãç”¨ã®åˆæœŸåŒ– */
 		res.Buffer = NULL;
 		res.fd = -1;
 		res.fileSize = 0;
@@ -1647,7 +1647,7 @@ int rawout_multi()
 		
 		retcode = exec_multiout(&res, buff);
 		if (retcode) {
-			/* ƒGƒ‰[‚Ìˆ— */
+			/* ã‚¨ãƒ©ãƒ¼æ™‚ã®å‡¦ç† */
 			if (retcode < 0) {
 				pPrintf(pStdout, "+OK 0/%dK" "%s" "\n", MAX_FILESIZE / 1024, info);
 			} else {
@@ -1655,7 +1655,7 @@ int rawout_multi()
 			}
 		}
 		
-		/* è”²‚«‚Ì‘Œ¹‰ğ•ú */
+		/* æ‰‹æŠœãã®è³‡æºè§£æ”¾ */
 		if (res.fd >= 0)
 			close(res.fd);
 #ifdef	USE_MMAP
@@ -1677,8 +1677,8 @@ int rawout_multi()
 
 /****************************************************************/
 /*	Get file size(dat_out)					*/
-/*	Level=0‚Ì‚Æ‚«‚ÍAŠO‘¤‚Ìo—Í				*/
-/*	Level=1‚Ì‚Æ‚«‚ÍA“à‘¤‚Ìo—Í				*/
+/*	Level=0ã®ã¨ãã¯ã€å¤–å´ã®å‡ºåŠ›				*/
+/*	Level=1ã®ã¨ãã¯ã€å†…å´ã®å‡ºåŠ›				*/
 /****************************************************************/
 
 int dat_out(int level) 
@@ -1689,7 +1689,7 @@ int dat_out(int level)
 #ifdef READ_KAKO
 	if (read_kako[0]) {
 		threadStopped = 1;
-		/* ‰ß‹ƒƒO‚ÍFORM‚àRELOADLINK‚à”ñ•\¦‚É‚·‚é‚½‚ß */
+		/* éå»ãƒ­ã‚°ã¯FORMã‚‚RELOADLINKã‚‚éè¡¨ç¤ºã«ã™ã‚‹ãŸã‚ */
 	}
 #endif
 	for (line = 0; line < lineMax; line++) { 
@@ -1698,12 +1698,12 @@ int dat_out(int level)
 			continue; 
 		if (out_html(level, line, lineNo)) { 
 			line++; 
-			break; /* ”ñ0‚ª•Ô‚é‚Ì‚ÍAƒGƒ‰[‚ÆRES_NORMAL/RES_IMODE‚É’B‚µ‚½ */ 
+			break; /* é0ãŒè¿”ã‚‹ã®ã¯ã€ã‚¨ãƒ©ãƒ¼æ™‚ã¨RES_NORMAL/RES_IMODEã«é”ã—ãŸæ™‚ */ 
 		} 
 		if (lineNo==1 && is_imode() && nn_st<=1 && nn_ls==0) 
 			++out_resN; 
 	} 
-	out_html1(level); /* ƒŒƒX‚ª‚P‚Â‚à•\¦‚³‚ê‚Ä‚¢‚È‚¢‚Éƒwƒbƒ_‚ğ•\¦‚·‚é */ 
+	out_html1(level); /* ãƒ¬ã‚¹ãŒï¼‘ã¤ã‚‚è¡¨ç¤ºã•ã‚Œã¦ã„ãªã„æ™‚ã«ãƒ˜ãƒƒãƒ€ã‚’è¡¨ç¤ºã™ã‚‹ */ 
 
 	if (isthreadstopped())
 		threadStopped=1;
@@ -1731,7 +1731,7 @@ int dat_out(int level)
 }
 /****************************************************************/
 /*	Get file size(dat_read)					*/
-/*	BigBuffer, BigLine, LineMax‚ªXV‚³‚ê‚é‚Í‚¸		*/
+/*	BigBuffer, BigLine, LineMaxãŒæ›´æ–°ã•ã‚Œã‚‹ã¯ãš		*/
 /****************************************************************/
 int dat_read(char const *fname,
 	     int st,
@@ -1749,7 +1749,7 @@ int dat_read(char const *fname,
 	if (zz_fileSize > MAX_FILESIZE)
 		html_error(ERROR_TOO_HUGE);
 	if (zz_fileSize < 0)
-		html_error(ERROR_NOT_FOUND); /* ƒGƒ‰[í•Ê‚Í•Ê‚É‚µ‚½•û‚ª‚¢‚¢‚©‚à */
+		html_error(ERROR_NOT_FOUND); /* ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥ã¯åˆ¥ã«ã—ãŸæ–¹ãŒã„ã„ã‹ã‚‚ */
 
 	nn_st = st;
 	nn_to = to;
@@ -1811,17 +1811,17 @@ int getLineMax(void)
 	if (!p)
 		return -8;
 
-	p1 = BigBuffer + zz_fileSize;	/* p1 = ÅŒã‚Ì\n‚ÌŸ‚Ìƒ|ƒCƒ“ƒ^ */
-	while (p < p1 && *(p1-1) != '\n')	/* ÅŒã‚Ìs––‚ğ’T‚· ³í‚Èdat‚È‚ç–â‘è–³‚µ */
+	p1 = BigBuffer + zz_fileSize;	/* p1 = æœ€å¾Œã®\nã®æ¬¡ã®ãƒã‚¤ãƒ³ã‚¿ */
+	while (p < p1 && *(p1-1) != '\n')	/* æœ€å¾Œã®è¡Œæœ«ã‚’æ¢ã™ æ­£å¸¸ãªdatãªã‚‰å•é¡Œç„¡ã— */
 		p1--;
-	if (p1 - p < 10)	/* “K“–‚¾‚¯‚ÇA–â‘è‚Ío‚È‚¢‚Í‚¸ */
+	if (p1 - p < 10)	/* é©å½“ã ã‘ã©ã€å•é¡Œã¯å‡ºãªã„ã¯ãš */
 		return -8;
 	do {
 		if ( line >= (sizeof BigLine) / (sizeof BigLine[0]) - 1 )
 		{
-			/* ãŒÀs”‚ğ’´‚¦‚é‚æ‚¤‚È‚çA‚±‚±‚ğˆÈ‚Á‚Äƒtƒ@ƒCƒ‹––”ö‚Æ‚İ‚È‚·
-			   ‚±‚¤‚·‚é‚±‚Æ‚É‚æ‚Á‚Äˆì‚ê‚½•ª‚·‚×‚Ä‚ğ‹‘å‚È1s‚Æ‚µ‚Äˆ—‚µ‚Ä
-			   ‚µ‚Ü‚í‚È‚¢‚æ‚¤‚É‚·‚é
+			/* ä¸Šé™è¡Œæ•°ã‚’è¶…ãˆã‚‹ã‚ˆã†ãªã‚‰ã€ã“ã“ã‚’ä»¥ã£ã¦ãƒ•ã‚¡ã‚¤ãƒ«æœ«å°¾ã¨ã¿ãªã™
+			   ã“ã†ã™ã‚‹ã“ã¨ã«ã‚ˆã£ã¦æº¢ã‚ŒãŸåˆ†ã™ã¹ã¦ã‚’å·¨å¤§ãª1è¡Œã¨ã—ã¦å‡¦ç†ã—ã¦
+			   ã—ã¾ã‚ãªã„ã‚ˆã†ã«ã™ã‚‹
 			*/
 			zz_fileSize = p - BigBuffer;
 			break;
@@ -1835,9 +1835,9 @@ int getLineMax(void)
 	} while (p < p1);
 	
 	/*
-		ÅŒã‚ÌƒŒƒX‚ÌŸ‚ÉAƒtƒ@ƒCƒ‹––‚Ö‚Ìƒ|ƒCƒ“ƒ^‚ğ“ü‚ê‚Ä‚¨‚­B
-		‚±‚ê‚É‚æ‚èAƒŒƒX‚Ì’·‚³‚Íƒ|ƒCƒ“ƒ^‚Ì·‚Å‚·‚ŞB
-		(dat_out_raw‚Åstrlen‚µ‚Ä‚¢‚é•”•ª‚Ö‚Ì‘Î‰)
+		æœ€å¾Œã®ãƒ¬ã‚¹ã®æ¬¡ã«ã€ãƒ•ã‚¡ã‚¤ãƒ«æœ«ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å…¥ã‚Œã¦ãŠãã€‚
+		ã“ã‚Œã«ã‚ˆã‚Šã€ãƒ¬ã‚¹ã®é•·ã•ã¯ãƒã‚¤ãƒ³ã‚¿ã®å·®ã§ã™ã‚€ã€‚
+		(dat_out_rawã§strlenã—ã¦ã„ã‚‹éƒ¨åˆ†ã¸ã®å¯¾å¿œ)
 	*/
 	BigLine[line] = BigBuffer + zz_fileSize;
 	return line;
@@ -1877,25 +1877,25 @@ int get_lastmod_str(char *buf, time_t lastmod)
 	return (1);
 }
 /****************************************************************/
-/*	PATH_INFO‚ğ‰ğÍ						*/
+/*	PATH_INFOã‚’è§£æ						*/
 /*	/board/							*/
 /*	/board/							*/
-/*	/board/datnnnnnn/[range] ‚Å‚ ‚é‚Æ‚İ‚È‚·			*/
-/*	return: path‚ª—LŒø‚¾‚Á‚½‚ç1‚ğ•Ô‚·			*/
-/*	•›ì—p: zz_bs, zz_ky, zz_st, zz_to, zz_nf		*/
-/*		‚È‚Ç‚ªXV‚³‚ê‚éê‡‚ª‚ ‚é			*/
+/*	/board/datnnnnnn/[range] ã§ã‚ã‚‹ã¨ã¿ãªã™			*/
+/*	return: pathãŒæœ‰åŠ¹ã ã£ãŸã‚‰1ã‚’è¿”ã™			*/
+/*	å‰¯ä½œç”¨: zz_bs, zz_ky, zz_st, zz_to, zz_nf		*/
+/*		ãªã©ãŒæ›´æ–°ã•ã‚Œã‚‹å ´åˆãŒã‚ã‚‹			*/
 /****************************************************************/
 static void parse_path_param(const char *s)
 {
-	/* st/to ‘¶İ‚Ù‚©‚Ìƒ`ƒFƒbƒN‚Ì‚½‚ß "-"‚ğ“ü‚ê‚Ä‚¨‚­ */
+	/* st/to å­˜åœ¨ã»ã‹ã®ãƒã‚§ãƒƒã‚¯ã®ãŸã‚ "-"ã‚’å…¥ã‚Œã¦ãŠã */
 	strcpy(zz_st, "-");
 	strcpy(zz_to, "-");
 
-	/* strtok()‚ÅØ‚èo‚µ‚½ƒoƒbƒtƒ@‚Í‘’·§ŒÀ‚ª
-	   ‚©‚©‚Á‚Ä‚¢‚é‚Ì‚ÅAbuffer overrun‚Í‚È‚¢‚Í‚¸ */
+	/* strtok()ã§åˆ‡ã‚Šå‡ºã—ãŸãƒãƒƒãƒ•ã‚¡ã¯ç·é•·åˆ¶é™ãŒ
+	   ã‹ã‹ã£ã¦ã„ã‚‹ã®ã§ã€buffer overrunã¯ãªã„ã¯ãš */
 	while (s[0]) {
 		char *p;
-		/* ”ÍˆÍw’è‚ÌƒtƒH[ƒ}ƒbƒg‚ÍˆÈ‰º‚Ì‚à‚Ì‚ª‚ ‚é
+		/* ç¯„å›²æŒ‡å®šã®ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã¯ä»¥ä¸‹ã®ã‚‚ã®ãŒã‚ã‚‹
 
 		   /4	(st=4&to=4)
 		   /4-	(st=4)
@@ -1906,10 +1906,10 @@ static void parse_path_param(const char *s)
 		   /.   (nofirst=false)
 		   /n   (nofirst=true)
 
-		   ƒJƒLƒR1‚Í“Á•Êˆµ‚¢‚ÅAnofirst‚É‚æ‚è
-		   “®ì‚ª¶‰E‚³‚ê‚é‚Á‚Û‚¢‚Ì‚ÅA‚Ç‚¤‚µ‚æ‚¤ */
+		   ã‚«ã‚­ã‚³1ã¯ç‰¹åˆ¥æ‰±ã„ã§ã€nofirstã«ã‚ˆã‚Š
+		   å‹•ä½œãŒå·¦å³ã•ã‚Œã‚‹ã£ã½ã„ã®ã§ã€ã©ã†ã—ã‚ˆã† */
 
-		/* st ‚ğæ‚èo‚· */
+		/* st ã‚’å–ã‚Šå‡ºã™ */
 		if (isdigit(*s)) {
 			for (p = zz_st; isdigit(*s); p++, s++)
 				*p = *s;
@@ -1925,27 +1925,27 @@ static void parse_path_param(const char *s)
 			s++;
 		} else if (*s == 'l') {
 			s++;
-			/* ls‚ğæ‚èo‚· */
+			/* lsã‚’å–ã‚Šå‡ºã™ */
 			if (isdigit(*s)) {
 				for (p = zz_ls; isdigit(*s); p++, s++)
 					*p = *s;
 				*p = 0;
 			}
 #if 0
-			/* ls= ‚Ínofirst=true ‚ğ•W€‚É */
+			/* ls= ã¯nofirst=true ã‚’æ¨™æº–ã« */
 			if (!zz_nf[0]) {
 				set_nofirst_true();
 			}
 #endif
 		} else if (*s == '-') {
 			s++;
-			/* to‚ğæ‚èo‚· */
+			/* toã‚’å–ã‚Šå‡ºã™ */
 			if (isdigit(*s)) {
 				for (p = zz_to; isdigit(*s); p++, s++)
 					*p = *s;
 				*p = 0;
 			} else {
-				/* to=‡‚Æ‚·‚é */
+				/* to=âˆã¨ã™ã‚‹ */
 				zz_to[0] = '\0';
 			}
 		} else if (*s == ',') {
@@ -1953,7 +1953,7 @@ static void parse_path_param(const char *s)
 			add_range( &nn_range, zz_st, zz_to );
 			*zz_st = *zz_to = '-';
 		} else {
-			/* ‹K’è‚³‚ê‚Ä‚È‚¢•¶š‚ª—ˆ‚½‚Ì‚Å•]‰¿‚ğ‚â‚ß‚é */
+			/* è¦å®šã•ã‚Œã¦ãªã„æ–‡å­—ãŒæ¥ãŸã®ã§è©•ä¾¡ã‚’ã‚„ã‚ã‚‹ */
 			if (strchr(s, '/'))
 				need_basehref = 1;
 			break;
@@ -1968,7 +1968,7 @@ static void parse_path_param(const char *s)
 
 		sprintf( zz_st, "%d", nn_st );
 		if ( nn_st > 0 && nn_st == nn_to ) {
-			/* ’P“_‚ÍAnofirst=true‚ğdefault‚É */
+			/* å˜ç‚¹ã¯ã€nofirst=trueã‚’defaultã« */
 			if (!zz_nf[0]) {
 				set_nofirst_true();
 			}
@@ -1995,7 +1995,7 @@ static int get_path_info(char const *path_info)
 	char const *s = path_info;
 
 #if	1
-	/* index.html ‚ªbase‚ğo—Í‚µ‚½ê‡‚Éˆê‰”õ‚¦‚éB×–‚‚È‚çÁ‚µ‚ÄB */
+	/* index.html ãŒbaseã‚’å‡ºåŠ›ã—ãŸå ´åˆã«ä¸€å¿œå‚™ãˆã‚‹ã€‚é‚ªé­”ãªã‚‰æ¶ˆã—ã¦ã€‚ */
 	static const char index_based_path[] = "/test/" CGINAME;
 	if (memcmp(s, index_based_path, sizeof(index_based_path)-1) == 0) {
 		s += sizeof(index_based_path)-1;
@@ -2003,11 +2003,11 @@ static int get_path_info(char const *path_info)
 	}
 #endif
 	path_depth = 0;
-	/* PATH_INFO ‚ÍA'/' ‚Ån‚Ü‚Á‚Ä‚é‚æ‚¤‚È‹C‚ª‚µ‚½‚è */
+	/* PATH_INFO ã¯ã€'/' ã§å§‹ã¾ã£ã¦ã‚‹ã‚ˆã†ãªæ°—ãŒã—ãŸã‚Š */
 	if (s[0] != '/')
 		return 0;
 	
-	/* ’·‚·‚¬‚éPATH_INFO‚Í•|‚¢‚Ì‚Åó‚¯•t‚¯‚È‚¢ */
+	/* é•·ã™ãã‚‹PATH_INFOã¯æ€–ã„ã®ã§å—ã‘ä»˜ã‘ãªã„ */
 	if (strlen(s) >= 256)
 		return 0;
 	
@@ -2026,7 +2026,7 @@ static int get_path_info(char const *path_info)
 	s = get_path_token(s, zz_ky);
 	
 	if (!*zz_ky && isdigit(*s)/* && strlen(s) >= 9*/) {
-		/* /test/read.cgi/board/999999999 ‚Å‚àƒŠƒ“ƒN‚·‚é‚½‚ß‚Ìˆ’u */
+		/* /test/read.cgi/board/999999999 ã§ã‚‚ãƒªãƒ³ã‚¯ã™ã‚‹ãŸã‚ã®å‡¦ç½® */
 		strcpy(zz_ky, s);
 #ifdef	READ_KAKO
 		if (read_kako[0]) {
@@ -2040,17 +2040,17 @@ static int get_path_info(char const *path_info)
 	}
 
 	parse_path_param(s);
-	/* ˆ—‚ÍŠ®—¹‚µ‚½‚à‚Ì‚Æ‚İ‚È‚· */
+	/* å‡¦ç†ã¯å®Œäº†ã—ãŸã‚‚ã®ã¨ã¿ãªã™ */
 	return 1;
 }
 
 /****************************************************************/
-/*	SETTING_R.TXT‚Ì“Ç‚İ‚±‚İ					*/
+/*	SETTING_R.TXTã®èª­ã¿ã“ã¿					*/
 /****************************************************************/
 #ifdef	USE_SETTING_FILE
 static void parseSetting(const void *mmptr, int size)
 {
-	/* SETTING_R.TXT‚ğ“Ç‚Ş */
+	/* SETTING_R.TXTã‚’èª­ã‚€ */
 	char const *cptr;
 	char const *endp;
 	int i;
@@ -2099,7 +2099,7 @@ void readSettingFile(const char *bbsname)
 		close(fd);
 #endif
 #else
-		/* ‚Ü‚ İ’èƒtƒ@ƒCƒ‹‚ª8kˆÈãÀ‚©‚È‚¯‚ê‚Î‚¢‚¢‚Æ‚¢‚¤‚±‚Æ‚Å */
+		/* ã¾ã‚è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãŒ8kä»¥ä¸Šé€ã‹ãªã‘ã‚Œã°ã„ã„ã¨ã„ã†ã“ã¨ã§ */
 		char mmbuf[8192];
 		int size = read(fd, mmbuf, sizeof(mmbuf));
 		parseSetting(mmbuf, size);
@@ -2189,7 +2189,7 @@ void zz_GetEnv(void)
 	if (!zz_http_referer)
 		zz_http_referer = KARA;
 	if (!zz_path_info)
-		zz_path_info = "";	/* XXX KARA‚ğg‚¢‰ñ‚·‚Ì‚Í•|‚¢ */
+		zz_path_info = "";	/* XXX KARAã‚’ä½¿ã„å›ã™ã®ã¯æ€–ã„ */
 	if (!zz_query_string)
 		zz_query_string = KARA;
 	if (!zz_temp)
@@ -2202,8 +2202,8 @@ void zz_GetEnv(void)
 	zz_bs[0] = zz_ky[0] = zz_ls[0] = zz_st[0] = '\0';
 	zz_to[0] = zz_nf[0] = zz_im[0] = '\0';
 	if (!get_path_info(zz_path_info)) {
-		/* ‚±‚êˆÈ~Apath ‚ª•t—^‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ì
-		   ”»’è‚Í zz_path_info ‚ÌƒeƒXƒg‚Ås‚Á‚Ä‚­‚ê */
+		/* ã“ã‚Œä»¥é™ã€path ãŒä»˜ä¸ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã®
+		   åˆ¤å®šã¯ zz_path_info ã®ãƒ†ã‚¹ãƒˆã§è¡Œã£ã¦ãã‚Œ */
 		zz_path_info = NULL;
 	}
 	GetString(zz_query_string, zz_bs, sizeof(zz_bs), "bbs");
@@ -2229,8 +2229,8 @@ void zz_GetEnv(void)
 		strcpy(zz_ky, zz_ky+5);
 	}
 #endif
-	/* zz_ky ‚Í’P‚È‚é32ƒrƒbƒg”’l‚È‚Ì‚ÅA
-	   ˆÈ~A”š‚Å‚àˆµ‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­ */
+	/* zz_ky ã¯å˜ãªã‚‹32ãƒ“ãƒƒãƒˆæ•°å€¤ãªã®ã§ã€
+	   ä»¥é™ã€æ•°å­—ã§ã‚‚æ‰±ãˆã‚‹ã‚ˆã†ã«ã—ã¦ãŠã */
 	nn_ky = atoi(zz_ky);
 
 #if	defined(GZIP) || defined(RAWOUT)
@@ -2260,7 +2260,7 @@ void zz_GetEnv(void)
 		if(raw_lastnum<0)
 			raw_lastnum = 0;
 		if(!p || raw_lastsize < 0) {
-			raw_lastsize = 0;	/* -INCR ‚ğ•Ô‚·‚½‚ß */
+			raw_lastsize = 0;	/* -INCR ã‚’è¿”ã™ãŸã‚ */
 		}
 #ifdef	Katjusha_DLL_REPLY
 		zz_katjusha_raw = (zz_rw[0] == '.' && raw_lastsize > 0
@@ -2275,11 +2275,11 @@ void zz_GetEnv(void)
 }
 
 /*----------------------------------------------------------------------
-	I—¹ˆ—
+	çµ‚äº†å‡¦ç†
 ----------------------------------------------------------------------*/
 void atexitfunc(void)
 {
-	/* html_error()‚Å‚Ì“ñdŒÄ‚Ño‚µ–h~ */
+	/* html_error()ã§ã®äºŒé‡å‘¼ã³å‡ºã—é˜²æ­¢ */
 	static int isCalled = 0;
 	if (isCalled) return;
 	isCalled = 1;
@@ -2291,7 +2291,7 @@ void atexitfunc(void)
 		close(zz_mmap_fd);
 	}
 #else
-	/* ‚ ‚¿‚±‚¿‚ÉU‚ç‚Î‚Á‚Ä‚½‚Ì‚Å‚Ü‚Æ‚ß‚Ä‚İ‚½ */
+	/* ã‚ã¡ã“ã¡ã«æ•£ã‚‰ã°ã£ã¦ãŸã®ã§ã¾ã¨ã‚ã¦ã¿ãŸ */
 	if (BigBuffer)
 		free(BigBuffer);
 #endif
@@ -2302,10 +2302,10 @@ void atexitfunc(void)
 		char *outbuf;
 
 		gzclose(pStdout);
-		outlen = gz_getdata(&outbuf);	/* ˆ³kƒf[ƒ^‚ğó‚¯æ‚é */
+		outlen = gz_getdata(&outbuf);	/* åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹ */
 
 		if ( outlen != 0 && outbuf == NULL ) {
-			/* ˆ³k’†‚ÉmallocƒGƒ‰[”­¶ */
+			/* åœ§ç¸®ä¸­ã«mallocã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ */
 			pPrintf = (zz_printf_t) fprintf;
 			pStdout = (gzFile) stdout;
 			putchar('\n');
@@ -2322,22 +2322,22 @@ void atexitfunc(void)
 
 		if ( !is_head() )
 			fwrite(outbuf,1,outlen,stdout);
-		/* fflush(stdout); XXX ‚±‚Ìfflush()‚Á‚Ä•K—vH */
-		/* free(outbuf); outbuf‚Ífree‚·‚×‚«•¨ exit‚È‚Ì‚Å‚Ù‚Á‚Æ‚­ */
+		/* fflush(stdout); XXX ã“ã®fflush()ã£ã¦å¿…è¦ï¼Ÿ */
+		/* free(outbuf); outbufã¯freeã™ã¹ãç‰© exitãªã®ã§ã»ã£ã¨ã */
 	}
 #elif defined(GZIP)
 	if(gzip_flag) {
 		fflush(stdout);
-		close(1);		/* gzip‚ğI—¹‚³‚¹‚é‚½‚ßclose‚·‚é */
+		close(1);		/* gzipã‚’çµ‚äº†ã•ã›ã‚‹ãŸã‚closeã™ã‚‹ */
 		waitpid(pid, NULL, 0);
 	}
 #endif
 }
 
 #ifdef	PUT_ETAG
-/* ‚Æ‚è‚ ‚¦‚¸
-   ETag: "‘—M•”‚Ìcrc32-‘S‘Ì‚ÌƒTƒCƒY-‘S‘Ì‚ÌƒŒƒX”-‘—M•”‚ÌƒTƒCƒY-‘—M•”‚ÌƒŒƒX”-flag"
-   ‚ğ%x‚Åo—Í‚·‚é‚æ‚¤‚É‚µ‚Ä‚İ‚½B
+/* ã¨ã‚Šã‚ãˆãš
+   ETag: "é€ä¿¡éƒ¨ã®crc32-å…¨ä½“ã®ã‚µã‚¤ã‚º-å…¨ä½“ã®ãƒ¬ã‚¹æ•°-é€ä¿¡éƒ¨ã®ã‚µã‚¤ã‚º-é€ä¿¡éƒ¨ã®ãƒ¬ã‚¹æ•°-flag"
+   ã‚’%xã§å‡ºåŠ›ã™ã‚‹ã‚ˆã†ã«ã—ã¦ã¿ãŸã€‚
 */
 typedef struct {
 	unsigned long crc;
@@ -2346,7 +2346,7 @@ typedef struct {
 	int size;
 	int res;
 	int flag;
-		/*	¡‚Ì‚Æ‚±‚ëA
+		/*	ä»Šã®ã¨ã“ã‚ã€
 			((isbusytime) 		<< 0)
 		  |	((nn_to > lineMax)	<< 1)
 		*/
@@ -2373,7 +2373,7 @@ static void etag_calc(etagval *v)
 		line = 1;
 /*	if (line > lineMax)
 		line = lineMax;
-	‚±‚ê‚ğ‚Â‚¯‚é‚ÆA–{•¶‚Ìo—Í”ÍˆÍ‚ÆH‚¢ˆá‚¢‚ªo‚éB
+	ã“ã‚Œã‚’ã¤ã‘ã‚‹ã¨ã€æœ¬æ–‡ã®å‡ºåŠ›ç¯„å›²ã¨é£Ÿã„é•ã„ãŒå‡ºã‚‹ã€‚
 */
 	memset(v, 0, sizeof(*v));
 	v->allsize = zz_fileSize;
@@ -2403,7 +2403,7 @@ int need_etag(int st, int to, int ls)
 {
 	const char *env;
 	
-	if (BadAccess())	/* u‚È‚ñ‚©•Ï‚Å‚·v‚Ìê‡‚Ìdat‚Ì“Ç‚İ‚±‚İ‚ğ”ğ‚¯‚é‚½‚ß */
+	if (BadAccess())	/* ã€Œãªã‚“ã‹å¤‰ã§ã™ã€ã®å ´åˆã®datã®èª­ã¿ã“ã¿ã‚’é¿ã‘ã‚‹ãŸã‚ */
 		return false;
 	
 	env = getenv("SERVER_PROTOCOL");
@@ -2411,11 +2411,11 @@ int need_etag(int st, int to, int ls)
 		return false;
 	if (strstr(env, "HTTP/1.1") == NULL)
 		return false;
-	/* ‚±‚±‚É‚ÍAIf-None-Match‚ğ•t‰Á‚µ‚È‚¢UA‚ÌƒŠƒXƒg
-	   (–”‚Í•t‰Á‚·‚éUA‚ÌƒŠƒXƒg)‚ğ’u‚«
-	   –³ˆÓ–¡‚Èê‡‚Éfalse‚ğ•Ô‚·‚Ì‚ª–]‚Ü‚µ‚¢B */
+	/* ã“ã“ã«ã¯ã€If-None-Matchã‚’ä»˜åŠ ã—ãªã„UAã®ãƒªã‚¹ãƒˆ
+	   (åˆã¯ä»˜åŠ ã™ã‚‹UAã®ãƒªã‚¹ãƒˆ)ã‚’ç½®ã
+	   ç„¡æ„å‘³ãªå ´åˆã«falseã‚’è¿”ã™ã®ãŒæœ›ã¾ã—ã„ã€‚ */
 	
-	/* to=nn‚ª‚ ‚éê‡‚¾‚¯ */
+	/* to=nnãŒã‚ã‚‹å ´åˆã ã‘ */
 	if (!to)
 		return false;
 	return true;
@@ -2433,8 +2433,8 @@ int match_etag(const char *etag)
 	etagval val, qry;
 	const char *oldtag;
 	
-	/* CHUNK‚Ì•Ï‰»“™‚ªl‚¦‚ç‚êA‚Ç‚±‚Å•s‹ï‡‚ªo‚é‚©‚à‚í‚©‚ç‚È‚¢‚Ì‚Å
-	   “––ÊAbusytimeˆÈŠO‚ÍV‚µ‚¢‚à‚Ì‚ğ•Ô‚· */
+	/* CHUNKã®å¤‰åŒ–ç­‰ãŒè€ƒãˆã‚‰ã‚Œã€ã©ã“ã§ä¸å…·åˆãŒå‡ºã‚‹ã‹ã‚‚ã‚ã‹ã‚‰ãªã„ã®ã§
+	   å½“é¢ã€busytimeä»¥å¤–ã¯æ–°ã—ã„ã‚‚ã®ã‚’è¿”ã™ */
 	if (!isbusytime)
 		return false;
 	oldtag = getenv("HTTP_IF_NONE_MATCH");
@@ -2446,26 +2446,26 @@ int match_etag(const char *etag)
 	if (val.crc != qry.crc || val.res != qry.res || val.size != qry.size)
 		return false;
 	
-	/* ˆÈ‰º‚ÅA•\¦”ÍˆÍŠO‚É’Ç‰ÁƒŒƒX‚ª‚ ‚Á‚½ê‡‚É
-	   XV‚·‚×‚«‚©‚Ç‚¤‚©‚ğŒˆ‚ß‚é */
+	/* ä»¥ä¸‹ã§ã€è¡¨ç¤ºç¯„å›²å¤–ã«è¿½åŠ ãƒ¬ã‚¹ãŒã‚ã£ãŸå ´åˆã«
+	   æ›´æ–°ã™ã¹ãã‹ã©ã†ã‹ã‚’æ±ºã‚ã‚‹ */
 	
-	/* ’Ç‰Á‚ª100ƒŒƒXˆÈ“à‚È‚çA“¯ˆê‚Æ‚İ‚È‚µ‚Ä‚æ‚¢EE‚Æv‚¤ */
+	/* è¿½åŠ ãŒ100ãƒ¬ã‚¹ä»¥å†…ãªã‚‰ã€åŒä¸€ã¨ã¿ãªã—ã¦ã‚ˆã„ãƒ»ãƒ»ã¨æ€ã† */
 	if (val.allres < qry.allres + 100)
 		return true;
 	
-	/* ƒLƒƒƒbƒVƒ…‚ªbusytimeŠO‚à‚Ì‚È‚ç‚ÎA‚»‚¿‚ç‚ğ—Dæ‚³‚¹‚é‚×‚«EE‚Æv‚¤ */
+	/* ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãŒbusytimeå¤–ã‚‚ã®ãªã‚‰ã°ã€ãã¡ã‚‰ã‚’å„ªå…ˆã•ã›ã‚‹ã¹ããƒ»ãƒ»ã¨æ€ã† */
 	if ((qry.flag & (1 << 0)) == 0)
 		return true;
 	
-	/* •\¦”ÍˆÍ‚ª‹·‚¢ê‡‚ÍACHUNK“™‚Í‹C‚É‚µ‚È‚­‚Ä‚æ‚¢EE‚Æv‚¤ */
+	/* è¡¨ç¤ºç¯„å›²ãŒç‹­ã„å ´åˆã¯ã€CHUNKç­‰ã¯æ°—ã«ã—ãªãã¦ã‚ˆã„ãƒ»ãƒ»ã¨æ€ã† */
 	if (val.res < 40)
 		return true;
 	
-	/* ƒXƒŒ‚Ìõ–½‚ª‹ß•t‚¢‚½‚çAŒx“™‚ğ•\¦‚·‚×‚«EE‚Æv‚¤ */
+	/* ã‚¹ãƒ¬ã®å¯¿å‘½ãŒè¿‘ä»˜ã„ãŸã‚‰ã€è­¦å‘Šç­‰ã‚’è¡¨ç¤ºã™ã¹ããƒ»ãƒ»ã¨æ€ã† */
 	if (val.allres >= RES_YELLOW)
 		return false;
 	
-	/* ‚»‚Ì‘¼A–À‚Á‚½‚ç‚Æ‚è‚ ‚¦‚¸XV‚¹‚¸‚É“®ì•ñ‚ğ‘Ò‚Á‚Ä‚İ‚æ‚¤EE‚Æv‚¤ */
+	/* ãã®ä»–ã€è¿·ã£ãŸã‚‰ã¨ã‚Šã‚ãˆãšæ›´æ–°ã›ãšã«å‹•ä½œå ±å‘Šã‚’å¾…ã£ã¦ã¿ã‚ˆã†ãƒ»ãƒ»ã¨æ€ã† */
 	return true;
 }
 #endif	/* PUT_ETAG */
@@ -2504,7 +2504,7 @@ int can_simplehtml(void)
 	if (nn_st > nn_to || nn_to > lineMax)
 		return false;
 #if	1
-	/* ‚Æ‚è‚ ‚¦‚¸AƒŠƒ“ƒNæ‚ÌƒŒƒX‚ª‚P‚Â‚Ìê‡‚¾‚¯ */
+	/* ã¨ã‚Šã‚ãˆãšã€ãƒªãƒ³ã‚¯å…ˆã®ãƒ¬ã‚¹ãŒï¼‘ã¤ã®å ´åˆã ã‘ */
 	if (nn_st != nn_to || !is_nofirst())
 		return false;
 #else
@@ -2523,7 +2523,7 @@ int can_simplehtml(void)
 			char key[sizeof(zz_ky)];
 			const char * query_string = p+1;
 #if	0
-			/* ˆê•”‚ÅREQUEST_URI‚ªREFERER‚Éİ’è‚³‚ê‚é‚ç‚µ‚¢‚Ì‚Å */
+			/* ä¸€éƒ¨ã§REQUEST_URIãŒREFERERã«è¨­å®šã•ã‚Œã‚‹ã‚‰ã—ã„ã®ã§ */
 			if (strcmp(zz_query_string, p + 1) == 0)
 				return false;
 #endif
@@ -2560,7 +2560,7 @@ int out_simplehtml(void)
 	pPrintf(pStdout, R2CH_SIMPLE_HTML_HEADER_1("%s", ""), zz_title);
 	pPrintf(pStdout, R2CH_HTML_HEADER_2("%s"), zz_title);
 	
-	out_resN++;	/* ƒwƒbƒ_o—Í‚ğ—}~ */
+	out_resN++;	/* ãƒ˜ãƒƒãƒ€å‡ºåŠ›ã‚’æŠ‘æ­¢ */
 	if (!is_nofirst()) {
 		out_html(0, 0, 1);
 		if (n == 1)
@@ -2571,13 +2571,13 @@ int out_simplehtml(void)
 	}
 	
 	/* html_foot() */
-	/* i-mode‚Í—ˆ‚È‚¢‚Í‚¸‚¾‚ªA‚à‚µ—ˆ‚é‚æ‚¤‚É‚·‚é‚È‚çPREFOOTER‚Íimode‚Ío‚³‚È‚¢‚±‚Æ */
+	/* i-modeæ™‚ã¯æ¥ãªã„ã¯ãšã ãŒã€ã‚‚ã—æ¥ã‚‹ã‚ˆã†ã«ã™ã‚‹ãªã‚‰PREFOOTERã¯imodeæ™‚ã¯å‡ºã•ãªã„ã“ã¨ */
 	pPrintf(pStdout, R2CH_HTML_PREFOOTER R2CH_HTML_FOOTER);
 	return 0;
 }
 #endif	/* REFERDRES_SIMPLE */
 
-/* ‹ŒŒ`® /bbs/kako/100/1000888777.*‚É‘Î‰B doko‚Épath‚ğì¬‚·‚é */
+/* æ—§å½¢å¼ /bbs/kako/100/1000888777.*ã«å¯¾å¿œã€‚ dokoã«pathã‚’ä½œæˆã™ã‚‹ */
 static int find_old_kakodir(char *doko, const char *key, const char *ext)
 {
 	sprintf(doko, KAKO_DIR "%.3s/%.50s.%s", zz_bs, key, key, ext);
@@ -2600,7 +2600,7 @@ static int find_tempdir(char *doko, const char *key, const char *ext)
 
 static void create_fname(char *fname, const char *bbs, const char *key)
 {
-	/* ƒvƒƒOƒ‰ƒ€ƒ~ƒX‚É‚æ‚éƒI[ƒo[ƒtƒ[‚Ì‰Â”\«‚ğÁ‚µ‚Ä‚¨‚­ */
+	/* ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒŸã‚¹ã«ã‚ˆã‚‹ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã®å¯èƒ½æ€§ã‚’æ¶ˆã—ã¦ãŠã */
 	zz_bs[60] = zz_ky[60] = '\0';
 #ifdef READ_KAKO
 	if (read_kako[0] == 'k') {
@@ -2615,12 +2615,12 @@ static void create_fname(char *fname, const char *bbs, const char *key)
 
 #ifdef	AUTO_KAKO
 	if (zz_ky[0] && access(fname, 00) != 0) {
-		/* zz_kyƒ`ƒFƒbƒN‚ÍAsubject.txtæ“¾‚ğœŠO‚·‚é‚½‚ß */
+		/* zz_kyãƒã‚§ãƒƒã‚¯ã¯ã€subject.txtå–å¾—æ™‚ã‚’é™¤å¤–ã™ã‚‹ãŸã‚ */
 		char buff[1024];
 		const char *keybase = LastChar(key, '/');
 		int mode = AUTO_KAKO_MODE;
 #if	1
-		/* ¬GŠÔ‘ÑˆÈŠO‚Ì‚İAtemp/,kako/‚Ì‰{——‚ğ‹–‰Â‚·‚éê‡ */
+		/* æ··é›‘æ™‚é–“å¸¯ä»¥å¤–ã®ã¿ã€temp/,kako/ã®é–²è¦§ã‚’è¨±å¯ã™ã‚‹å ´åˆ */
 		if (isbusytime)
 			mode = 0;
 #endif
@@ -2643,18 +2643,18 @@ static void create_fname(char *fname, const char *bbs, const char *key)
 #endif
 
 #ifdef	RAWOUT
-	/* ƒXƒŒˆê——‚ğæ‚è‚ÉÀ‚­ƒ‚[ƒh */
+	/* ã‚¹ãƒ¬ä¸€è¦§ã‚’å–ã‚Šã«é€ããƒ¢ãƒ¼ãƒ‰ */
 	if (1 <= path_depth && path_depth < 3
 #ifndef USE_INDEX
 	&& rawmode
-	/* rawmode‚ÉŒÀ‚èAsubject.txt‚ğ•Ô‚·‚±‚Æ‚ğ‰Â”\‚Æ‚·‚éB
-	   GZIP•¹—p‚Åƒgƒ‰ƒtƒBƒbƒNíŒ¸‚ğ‘_‚¤B
+	/* rawmodeã«é™ã‚Šã€subject.txtã‚’è¿”ã™ã“ã¨ã‚’å¯èƒ½ã¨ã™ã‚‹ã€‚
+	   GZIPä½µç”¨ã§ãƒˆãƒ©ãƒ•ã‚£ãƒƒã‚¯å‰Šæ¸›ã‚’ç‹™ã†ã€‚
 
-	   ‚Æ‚±‚ë‚Å raw‚Ìƒpƒ‰ƒ[ƒ^‚ÍA’Êí––”ö’Ç‰Á‚µ‚©s‚í‚ê‚È‚¢‚±‚Æ‚ğ‘O’ñ‚Æ‚µ‚½d‘g‚İ
-	   ‚Å‚ ‚é‚½‚ßA–ˆ‰ñ‘S‘Ì‚ªXV‚³‚ê‚é subject.txt‚É‚Í“KØ‚Å‚Í‚È‚¢B]‚Á‚ÄŒ»ó‚Í
-	   raw=0.0 ‚ÉŒÀ’è‚µ‚Äg‚¤‚×‚«‚Å‚ ‚éB
-	   subject.txt‚ğ“Ç‚İo‚·ƒ‚[ƒh‚Ì‚Æ‚«‚É‚ÍAraw‚Ìƒpƒ‰ƒ[ƒ^ƒ‹[ƒ‹‚ğ•ÏX‚µA
-	   æ“ª‚©‚çw’è”‚Ì‚İ‚ğæ“¾‰Â”\‚É‚·‚ê‚Î—L—p‚Å‚Í‚È‚¢‚©?
+	   ã¨ã“ã‚ã§ rawã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã¯ã€é€šå¸¸æœ«å°¾è¿½åŠ ã—ã‹è¡Œã‚ã‚Œãªã„ã“ã¨ã‚’å‰æã¨ã—ãŸä»•çµ„ã¿
+	   ã§ã‚ã‚‹ãŸã‚ã€æ¯å›å…¨ä½“ãŒæ›´æ–°ã•ã‚Œã‚‹ subject.txtã«ã¯é©åˆ‡ã§ã¯ãªã„ã€‚å¾“ã£ã¦ç¾çŠ¶ã¯
+	   raw=0.0 ã«é™å®šã—ã¦ä½¿ã†ã¹ãã§ã‚ã‚‹ã€‚
+	   subject.txtã‚’èª­ã¿å‡ºã™ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã«ã¯ã€rawã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ«ãƒ¼ãƒ«ã‚’å¤‰æ›´ã—ã€
+	   å…ˆé ­ã‹ã‚‰æŒ‡å®šæ•°ã®ã¿ã‚’å–å¾—å¯èƒ½ã«ã™ã‚Œã°æœ‰ç”¨ã§ã¯ãªã„ã‹?
 	 */ 
 #endif
 	) {
@@ -2671,9 +2671,9 @@ static void create_fname(char *fname, const char *bbs, const char *key)
 }
 
 #if	defined(READ_KAKO) || defined(READ_TEMP)
-/* ‰ß‹ƒƒO‚Ö‚ÌƒŠƒ“ƒNì¬
+/* éå»ãƒ­ã‚°ã¸ã®ãƒªãƒ³ã‚¯ä½œæˆ
  *
- * path_depth, zz_ky‚ğ‘‚«Š·‚¦‚Ä‚µ‚Ü‚¤‚Ì‚Å’ˆÓ
+ * path_depth, zz_kyã‚’æ›¸ãæ›ãˆã¦ã—ã¾ã†ã®ã§æ³¨æ„
  */
 const char * create_kako_link(const char * dir_type, const char * key)
 {
@@ -2682,7 +2682,7 @@ const char * create_kako_link(const char * dir_type, const char * key)
 	char *wp = result;
 	const char *p;
 
-	*wp++ = '\"'; /* "‚ÅˆÍ‚Ş */
+	*wp++ = '\"'; /* "ã§å›²ã‚€ */
 
 	path_depth = 3;
 	
@@ -2699,24 +2699,24 @@ const char * create_kako_link(const char * dir_type, const char * key)
 	p = create_link(0, 0, 0, 0, 0);
 #endif
 	if (*p == '\"')
-		++p;		/* ‘S‘Ì‚ğ"‚ÅˆÍ‚Ş‚½‚ßA"‚ª•t‚¢‚Ä‚¢‚ê‚Îæ‚èœ‚­ */
+		++p;		/* å…¨ä½“ã‚’"ã§å›²ã‚€ãŸã‚ã€"ãŒä»˜ã„ã¦ã„ã‚Œã°å–ã‚Šé™¤ã */
 	else
-		needs_close_quote = true;	/* pathŒ`®‚ÌÅŒã‚É‚à"‚ğ */
+		needs_close_quote = true;	/* pathå½¢å¼ã®æœ€å¾Œã«ã‚‚"ã‚’ */
 
 	if ( p[0]=='.' && p[1]=='/' )
-		p += 2;	/* "./"‚Í×–‚ */
+		p += 2;	/* "./"ã¯é‚ªé­” */
 
 	wp += sprintf(wp, "%.80s", p);
 
 	if ( needs_close_quote )
-		*wp++ = '\"'; /* "‚ÅˆÍ‚Ş */
+		*wp++ = '\"'; /* "ã§å›²ã‚€ */
 	*wp = '\0';
 	return result;
 }
 #endif
 /****************************************************************/
 /*	ERROR END(html_error)					*/
-/* isshowcode‚Æextinfo‚ÍRAWOUT‚µ‚©g‚í‚È‚¢ */
+/* isshowcodeã¨extinfoã¯RAWOUTæ™‚ã—ã‹ä½¿ã‚ãªã„ */
 /****************************************************************/
 int print_error(enum html_error_t errorcode, int isshowcode, const char *extinfo)
 {
@@ -2753,7 +2753,7 @@ int print_error(enum html_error_t errorcode, int isshowcode, const char *extinfo
 	strcpy(tmp, LastChar(zz_ky, '/'));
 #ifdef RAWOUT
 	if(rawmode) {
-		/* -ERR (message)‚ÍƒGƒ‰[B */
+		/* -ERR (message)ã¯ã‚¨ãƒ©ãƒ¼ã€‚ */
 		char str[512];
 		int retcode = (errorcode + 1) * 100;
 		if (errorcode == ERROR_NOT_FOUND) {
@@ -2791,11 +2791,11 @@ int print_error(enum html_error_t errorcode, int isshowcode, const char *extinfo
 
 	if (errorcode == ERROR_NOT_FOUND) {
 		if (find_kakodir(doko, tmp, "html")) {
-			/* ‰ß‹ƒƒO‘qŒÉ‚Éhtml”­Œ© */
+			/* éå»ãƒ­ã‚°å€‰åº«ã«htmlç™ºè¦‹ */
 			pPrintf(pStdout, R2CH_HTML_ERROR_5_HTML, 
 				zz_cgi_path, doko, tmp);
 		} else if (find_kakodir(doko, tmp, "dat")) {
-			/* ‰ß‹ƒƒO‘qŒÉ‚Édat”­Œ© */
+			/* éå»ãƒ­ã‚°å€‰åº«ã«datç™ºè¦‹ */
 #ifdef READ_KAKO
  			pPrintf(pStdout, R2CH_HTML_ERROR_5_DAT("%s","%s"),
 				create_kako_link("kako", tmp), tmp);
@@ -2840,13 +2840,13 @@ void html_banner(void)
 /****************************************************************/
 int html_error999(char const *mes)
 {
-	char zz_soko[256];	/* ‘qŒÉ”Ô†(3Œ…”š) */
-	char tmp[256];		/* ?ƒXƒŒ”Ô†(9Œ…”š) */
-	char tmp_time[16];	/*  "hh:mm:ss" */
+	char zz_soko[256];	/* å€‰åº«ç•ªå·(3æ¡æ•°å­—) */
+	char tmp[256];		/* ?ã‚¹ãƒ¬ç•ªå·(9æ¡æ•°å­—) */
+	char tmp_time[16];	/* æ™‚åˆ» "hh:mm:ss" */
 	*tmp = '\0';
 #ifdef RAWOUT
 	if(rawmode) {
-		/* -ERR (message)‚ÍƒGƒ‰[B */
+		/* -ERR (message)ã¯ã‚¨ãƒ©ãƒ¼ã€‚ */
 		pPrintf(pStdout, "-ERR %s\n", mes);
 		exit(0);
 	}
@@ -2871,10 +2871,10 @@ int html_error999(char const *mes)
 #define GETSTRING_LINE_DELIM '&'
 #define GETSTRING_VALUE_DELIM '='
 #define MAX_QUERY_STRING 200
-/* d—l•ÏX
-   –ß‚è’l‚Æ‚µ‚ÄAdst‚Å‚Í‚È‚­(g‚í‚ê‚Ä‚¢‚È‚¢‚Ì‚Å)
-   line“à‚ÌŸ‚ÌˆÊ’u‚ğ•Ô‚·‚æ‚¤‚É‚µ‚½B
-   tgt‚ªŒ©‚Â‚©‚ç‚È‚¢‚ÍNULL‚ğ•Ô‚·B */
+/* ä»•æ§˜å¤‰æ›´
+   æˆ»ã‚Šå€¤ã¨ã—ã¦ã€dstã§ã¯ãªã(ä½¿ã‚ã‚Œã¦ã„ãªã„ã®ã§)
+   lineå†…ã®æ¬¡ã®ä½ç½®ã‚’è¿”ã™ã‚ˆã†ã«ã—ãŸã€‚
+   tgtãŒè¦‹ã¤ã‹ã‚‰ãªã„æ™‚ã¯NULLã‚’è¿”ã™ã€‚ */
 char const *GetString(char const *line, char *dst, size_t dat_size, char const *tgt)
 {
 	int	i;
@@ -2890,33 +2890,33 @@ char const *GetString(char const *line, char *dst, size_t dat_size, char const *
 
 	for(i=0;i<MAX_QUERY_STRING;i++)
 	{
-		/* s––‚ğŒ©‚Â‚¯‚é */
+		/* è¡Œæœ«ã‚’è¦‹ã¤ã‘ã‚‹ */
 		delim_ptr = strchr( line, GETSTRING_LINE_DELIM );
 		if ( delim_ptr )
 			line_len = delim_ptr - line;
 		else
 			line_len = strlen(line);
 
-		/* '='‚ğŒ©‚Â‚¯‚é */
+		/* '='ã‚’è¦‹ã¤ã‘ã‚‹ */
 		value_ptr = memchr( line, GETSTRING_VALUE_DELIM, line_len );
 		if ( value_ptr ) {
 			value_start = value_ptr + 1 - line;
 #ifdef GSTR2
-			/* Å‰‚Ìˆê•¶š‚Ìˆê’v */
+			/* æœ€åˆã®ä¸€æ–‡å­—ã®ä¸€è‡´ */
 			if ( *line == *tgt )
 #else
-			/* Š®‘Sˆê’v */
+			/* å®Œå…¨ä¸€è‡´ */
 			if ( tgt_len == (value_start-1) && !memcmp(line, tgt, tgt_len) )
 #endif
 			{
-				/* ’l•”•ª‚ÌŠJnˆÊ’u‚Æ’·‚³ */
+				/* å€¤éƒ¨åˆ†ã®é–‹å§‹ä½ç½®ã¨é•·ã• */
 				value_len = line_len - value_start;
 
-				/* ’·‚³‚ğŠÛ‚ß‚é */
+				/* é•·ã•ã‚’ä¸¸ã‚ã‚‹ */
 				if ( value_len >= dat_size )
 					value_len = dat_size - 1;
 
-				/* ’l‚ğƒRƒs[ */
+				/* å€¤ã‚’ã‚³ãƒ”ãƒ¼ */
 				memcpy( dst, line + value_start, value_len );
 				dst[value_len] = '\0';
 
@@ -2943,7 +2943,7 @@ int IsBusy2ch(void)
 /****************************************************************/
 /*								*/
 /****************************************************************/
- /* src’†‚Ìˆê”Ô––”ö‚ÌƒfƒŠƒ~ƒ^•¶š—ñ c ‚ÌŸ‚Ì•¶šˆÊ’u‚ğ“¾‚é
+ /* srcä¸­ã®ä¸€ç•ªæœ«å°¾ã®ãƒ‡ãƒªãƒŸã‚¿æ–‡å­—åˆ— c ã®æ¬¡ã®æ–‡å­—ä½ç½®ã‚’å¾—ã‚‹
   */
 char const *LastChar(char const *src, char c)
 {
@@ -2956,8 +2956,8 @@ char const *LastChar(char const *src, char c)
 }
 
 #ifdef	CHUNK_ANCHOR
-/* first-last‚Ü‚Å‚ÌCHUNKED anchor‚ğ•\¦
-   first‚Ælast‚ÍƒŒƒX”Ô†Bfirst‚É0‚Í“n‚·‚È[ */
+/* first-lastã¾ã§ã®CHUNKED anchorã‚’è¡¨ç¤º
+   firstã¨lastã¯ãƒ¬ã‚¹ç•ªå·ã€‚firstã«0ã¯æ¸¡ã™ãªãƒ¼ */
 static void html_thread_anchor(int first, int last)
 {
 	int line = ((first - 1)/ CHUNK_NUM) * CHUNK_NUM + 1;
@@ -2985,8 +2985,8 @@ static void html_thread_anchor(int first, int last)
 #define	html_thread_anchor(first, last)		/* (void)0   nothing */
 #endif	/* SEPARATE_CHUNK_ANCHOR */
 
-/* Å‰‚ÆÅŒã‚É•\¦‚³‚ê‚éƒŒƒX”Ô†‚ğ•Ô‚·(ƒŒƒX‚P‚ğœ‚­)
-   isprinted‚Æ“¯‚¶“®ì‚ğB
+/* æœ€åˆã¨æœ€å¾Œã«è¡¨ç¤ºã•ã‚Œã‚‹ãƒ¬ã‚¹ç•ªå·ã‚’è¿”ã™(ãƒ¬ã‚¹ï¼‘ã‚’é™¤ã)
+   isprintedã¨åŒã˜å‹•ä½œã‚’ã€‚
 */
 #if defined(SEPARATE_CHUNK_ANCHOR) || defined(PREV_NEXT_ANCHOR)
 static int calc_first_line(void)
@@ -3003,7 +3003,7 @@ static int calc_last_line(void)
 
 	if (nn_to && nn_to < lineMax)
 		line = nn_to;
-	/* 1-‚ÅŒvZŠÔˆá‚Á‚Ä‚é‚ªA‚»‚Ì•û‚ª“s‡‚ª‚¢‚¢ */
+	/* 1-ã§è¨ˆç®—é–“é•ã£ã¦ã‚‹ãŒã€ãã®æ–¹ãŒéƒ½åˆãŒã„ã„ */
 	if (is_imode()) {
 		int imode_last = first_line + RES_IMODE - 1 + is_nofirst();
 		if (imode_last < line)
@@ -3018,7 +3018,7 @@ static int calc_last_line(void)
 
 void calc_first_last(void)
 {
-	/* •K‚¸ first_line ‚ğæ‚ÉŒvZ‚·‚é */
+	/* å¿…ãš first_line ã‚’å…ˆã«è¨ˆç®—ã™ã‚‹ */
 	first_line = calc_first_line();
 	last_line = calc_last_line();
 }
@@ -3036,7 +3036,7 @@ void html_head(int level, char const *title, int line)
 	if (level) {
 		pPrintf(pStdout, R2CH_HTML_DIGEST_HEADER_2("%s"),
 			title);
-		/* ‚±‚ê‚¾‚¯o—Í‚µ‚Ä‚à‚Ç‚é */
+		/* ã“ã‚Œã ã‘å‡ºåŠ›ã—ã¦ã‚‚ã©ã‚‹ */
 		return;
 	}
 #endif
@@ -3051,8 +3051,8 @@ void html_head(int level, char const *title, int line)
 		pPrintf(pStdout, R2CH_HTML_HEADER_1("%s", "%s"),
 			title, zz_parent_link);
 
-	/* ALL_ANCHOR ‚Íí‚É¶‚«‚É‚·‚é
-	   ‚½‚¾‚µACHUNK_ANCHOR‚ª¶‚«‚ÅA‚©‚Âisbusytime‚É‚Í•\¦‚µ‚È‚¢ */
+	/* ALL_ANCHOR ã¯å¸¸ã«ç”Ÿãã«ã™ã‚‹
+	   ãŸã ã—ã€CHUNK_ANCHORãŒç”Ÿãã§ã€ã‹ã¤isbusytimeã«ã¯è¡¨ç¤ºã—ãªã„ */
 #if defined(CHUNK_ANCHOR) || defined(PREV_NEXT_ANCHOR)
 		if (!isbusytime)
 #endif
@@ -3080,7 +3080,7 @@ void html_head(int level, char const *title, int line)
 		html_thread_anchor(1, lineMax);
 #endif
 
-		/* LATEST_ANCHOR‚Íí‚É */
+		/* LATEST_ANCHORã¯å¸¸ã« */
 		pPrintf(pStdout, R2CH_HTML_LATEST_ANCHOR("%s", "%d"),
 			create_link(0,0, LATEST_NUM, 0,0),
 			LATEST_NUM);
@@ -3090,7 +3090,7 @@ void html_head(int level, char const *title, int line)
 			zz_parent_link,
 			create_link(1,RES_IMODE, 0,0,0) );
 		pPrintf(pStdout, R2CH_HTML_IMODE_HEADER_2("%s", "%d"),
-			create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imode‚ÍƒXƒŒ‚Åls=10ˆµ‚¢ */
+			create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imodeã¯ã‚¹ãƒ¬ã§ls=10æ‰±ã„ */
 			RES_IMODE);
 	}
 
@@ -3136,14 +3136,14 @@ void html_reload(int startline)
 #ifdef PREV_NEXT_ANCHOR
 		return;
 #else
-		/* PREV_NEXT‚ª‹@”\‚ğ‘ãs */
+		/* PREV_NEXTãŒæ©Ÿèƒ½ã‚’ä»£è¡Œ */
 		pPrintf(pStdout, R2CH_HTML_RELOAD_I("%s"),
 			create_link(startline,0, 0, 1,0) );
 #endif
 	else {
 #ifdef PREV_NEXT_ANCHOR
 		if (last_line<lineMax) {
-			if (isbusytime) return;	/* ¬G‚ÍŸ100‚É‚Ü‚©‚¹‚é */
+			if (isbusytime) return;	/* æ··é›‘æ™‚ã¯æ¬¡100ã«ã¾ã‹ã›ã‚‹ */
 			pPrintf(pStdout, R2CH_HTML_AFTER("%s"),
 				create_link(last_line+1,0, 0, 0,0) );
 
@@ -3164,7 +3164,7 @@ static void html_foot(int level, int line, int stopped)
 #ifdef PREV_NEXT_ANCHOR
 	int nchunk;
 #endif
-	/* out_resN = 0;	ƒ_ƒCƒWƒFƒXƒg—p‚ÉÄ‰Šú‰» */
+	/* out_resN = 0;	ãƒ€ã‚¤ã‚¸ã‚§ã‚¹ãƒˆç”¨ã«å†åˆæœŸåŒ– */
 	if (is_imode()) {
 		html_foot_im(line,stopped);
 		return;
@@ -3227,16 +3227,16 @@ static void html_foot(int level, int line, int stopped)
 	pPrintf(pStdout, "<hr>");
 #endif
 	if (last_line < lineMax) {
-		/* RELOADLINK‚Ì•\¦ğŒ‚Ì‹t‚È‚ñ‚¾‚¯‚Ç */
+		/* RELOADLINKã®è¡¨ç¤ºæ¡ä»¶ã®é€†ãªã‚“ã ã‘ã© */
 		html_thread_anchor(last_line + 1, lineMax - LATEST_NUM);
 		if (!(isbusytime && out_resN > RES_NORMAL)) {
-			/* ÅVƒŒƒXnn‚ª‚©‚Ô‚é‚Ì‚Å‹ê“÷‚Ìô
-			   LATEST_ANCHOR‚ğ¶‚«‚É‚µ‚ÄA‚È‚¨‚©‚Â––”ö‚É‚Á‚Ä‚«‚Ä‚¢‚é‚Ì‚Å
-			   out_html“à‚Ì@R2CH_HTML_TAIL‚ğC³‚·‚é‚Ù‚¤‚ª
-			   ˆ—‚Ì—¬‚ê‚Æ‚µ‚Ä‚Í–]‚Ü‚µ‚¢‚ªA
-			   u¬G‚ÉCHUNK_ANCHOR‚ğ”ñ•\¦‚É‚·‚év“™‚Ìê‡‚É‚Í
-			   ÄC³‚ª•K—v‚È‚Ì‚Å•Û—¯ */
-			/* LATEST_ANCHOR‚àí‚É¶‚«‚É‚·‚é */
+			/* æœ€æ–°ãƒ¬ã‚¹nnãŒã‹ã¶ã‚‹ã®ã§è‹¦è‚‰ã®ç­–
+			   LATEST_ANCHORã‚’ç”Ÿãã«ã—ã¦ã€ãªãŠã‹ã¤æœ«å°¾ã«æŒã£ã¦ãã¦ã„ã‚‹ã®ã§
+			   out_htmlå†…ã®ã€€R2CH_HTML_TAILã‚’ä¿®æ­£ã™ã‚‹ã»ã†ãŒ
+			   å‡¦ç†ã®æµã‚Œã¨ã—ã¦ã¯æœ›ã¾ã—ã„ãŒã€
+			   ã€Œæ··é›‘æ™‚ã«CHUNK_ANCHORã‚’éè¡¨ç¤ºã«ã™ã‚‹ã€ç­‰ã®å ´åˆã«ã¯
+			   å†ä¿®æ­£ãŒå¿…è¦ãªã®ã§ä¿ç•™ */
+			/* LATEST_ANCHORã‚‚å¸¸ã«ç”Ÿãã«ã™ã‚‹ */
 			pPrintf(pStdout, R2CH_HTML_LATEST_ANCHOR("%s", "%d"),
 				create_link(0,0, LATEST_NUM, 0,0),
 				LATEST_NUM);
@@ -3279,7 +3279,7 @@ void html_foot_im(int line, int stopped)
 			RES_IMODE );
 	}
 	pPrintf(pStdout, R2CH_HTML_IMODE_TAIL2("%s", "%d"),
-		create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imode‚ÍƒXƒŒ‚Åls=10ˆµ‚¢ */
+		create_link(0, 0, 0 /*RES_IMODE*/, 1,0),	/* imodeã¯ã‚¹ãƒ¬ã§ls=10æ‰±ã„ */
 		RES_IMODE);
 #endif
 	if (line <= RES_RED && !stopped ) {
@@ -3291,7 +3291,7 @@ void html_foot_im(int line, int stopped)
 }
 
 /****************************************************************/
-/*	‰ß‹ƒƒOpath¶¬					*/
+/*	éå»ãƒ­ã‚°pathç”Ÿæˆ					*/
 /****************************************************************/
 void kako_dirname(char *buf, const char *key)
 {

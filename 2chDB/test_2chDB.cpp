@@ -4,6 +4,7 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/ui/text/TestRunner.h>
 #include <filesystem>
+#include <sys/mman.h>
 #include "2chDB.h"
 #include "TCPServer.h"
 
@@ -42,7 +43,7 @@ public:
         // ファイルの削除
         testWrite(TEST_BBS, "1234567890", "");
         result = queryFromReadCGI(TEST_BBS, "1234567890");
-        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT(result != nullptr && result != MAP_FAILED);
         CPPUNIT_ASSERT_EQUAL(std::string(""), std::string(result));
     }
 

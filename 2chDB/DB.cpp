@@ -1,4 +1,6 @@
+#ifdef __unix__
 #include <unistd.h>
+#endif
 
 #include "2chDB.h"
 
@@ -16,9 +18,11 @@ void init()
     atexit(atexitfunc);
 
     // for the security
+    #ifdef __unix__
     chroot(".");
     if (getuid() == 0)
         std::cerr << "WARNING: Running as a root may causes several security issues." << std::endl;
+    #endif
 }
 
 const char *queryFromReadCGI(const char *bbs, const char *key)
