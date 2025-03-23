@@ -5,17 +5,13 @@
 namespace asio = boost::asio;
 using asio::ip::tcp;
 
+constexpr int DEFAULT_PORT = 8082;
+
 TCPServer::TCPServer(asio::io_context &io_context)
     : io_context(io_context)
-    , acceptor(io_context, tcp::endpoint(tcp::v4(), 8080))
+    , acceptor(io_context, tcp::endpoint(tcp::v4(), DEFAULT_PORT))
 {
     startAccept();
-
-    try {
-        io_context.run();
-    } catch (const std::exception &e) {
-        std::cerr << e.what() << std::endl;
-    }
 }
 
 TCPServer::~TCPServer()
@@ -42,6 +38,12 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
 
     std::cout << "Connected from: " << socket.remote_endpoint() << std::endl;
 
+    if (!authenticate(socket))
+    {
+        std::cerr << "Authentication failed" << std::endl;
+        return;
+    }
+
     for (;;) {
         std::string buffer;
         boost::system::error_code ec;
@@ -54,6 +56,19 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         else
         {
             std::cout << "Received: " << buffer << std::endl;
+            processRequest(buffer);
         }
     }
+}
+
+void TCPServer::processRequest(const std::string &request)
+{
+}
+
+bool TCPServer::authenticate(tcp::socket& socket)
+{
+    asio::write(socket, asio::buffer("Please specify your username: "));
+    std::string username;
+    std::getline(std::cin, username);
+    return true;
 }
