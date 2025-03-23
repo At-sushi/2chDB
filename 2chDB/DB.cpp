@@ -1,6 +1,7 @@
 #ifdef __unix__
 #include <unistd.h>
 #endif
+#include <mutex>
 
 #include "2chDB.h"
 
@@ -25,9 +26,13 @@ void init()
     #endif
 }
 
+static std::mutex mtx;
+
 const char *queryFromReadCGI(const char *bbs, const char *key)
 {
     const std::string fname = create_fname(bbs, key);
+    std::lock_guard<std::mutex> lock(mtx);  // lock
+
     if (dat_read(fname.c_str(), 0, 0, 0) == 0)
         return "";
 

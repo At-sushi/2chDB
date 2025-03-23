@@ -1,4 +1,5 @@
 #include <memory>
+#include <sstream>
 
 #include "TCPServer.h"
 
@@ -44,9 +45,10 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         return;
     }
 
+    std::string buffer;
+    boost::system::error_code ec;
+
     for (;;) {
-        std::string buffer;
-        boost::system::error_code ec;
         asio::read(socket, asio::buffer(buffer), ec);
 
         if (ec)
@@ -56,13 +58,66 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         else
         {
             std::cout << "Received: " << buffer << std::endl;
-            processRequest(buffer);
+            if (!processRequest(buffer))
+                break;
         }
     }
 }
 
-void TCPServer::processRequest(const std::string &request)
+bool TCPServer::processRequest(const std::string &request)
 {
+    std::istringstream iss(request);
+    std::string command;
+
+    iss >> command;
+    for (auto &&i : command)
+        i = std::tolower(i);
+
+    if (command == "exit") {
+        return false;
+    }
+    else if (command == "get") {
+        std::string bbs, key;
+
+        iss >> bbs >> key;
+        
+        std::cout << queryFromReadCGI(bbs.c_str(), key.c_str()) << std::endl;
+    }
+    else if (command == "set") {
+        std::string bbs, key, source;
+
+        iss >> bbs >> key;
+        std::getline(iss, source);
+
+        testWrite(bbs.c_str(), key.c_str(), source.data());
+    }
+    else if (command == "del")
+    {
+        std::string bbs, key;
+
+        iss >> bbs >> key;
+
+        testWrite(bbs.c_str(), key.c_str(), "");
+    }
+    else if (command == "create") {
+        std::string bbs;
+
+        iss >> bbs;
+
+        const auto directory = std::format("{}/dat", bbs);
+
+        if (std::filesystem::create_directories(directory))
+            std::cout << "Created" << std::endl;
+    }
+    else if (command == "remove") {
+        std::string bbs;
+
+        iss >> bbs;
+        std::filesystem::remove_all(bbs);
+        std::cout << "Remove Completed" << std::endl;
+    }
+
+    return true;
 }
 
 bool TCPServer::authenticate(tcp::socket& socket)

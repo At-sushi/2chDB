@@ -9,7 +9,7 @@ private:
 
     void startAccept();
     void onAccept(boost::asio::ip::tcp::socket &socket, const boost::system::error_code &error);
-    void processRequest(const std::string &request);
+    bool processRequest(const std::string &request);
     bool authenticate(boost::asio::ip::tcp::socket& socket);
 
 public:
