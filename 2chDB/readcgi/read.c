@@ -1756,7 +1756,7 @@ int dat_read(char const *fname,
 	nn_ls = ls;
 
 	in = open(fname, O_RDONLY);
-	if (in < 0)
+	if (in <= 0)
 	{
 		html_error(ERROR_NOT_FOUND);
 		return 0;

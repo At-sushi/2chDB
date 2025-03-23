@@ -118,7 +118,9 @@
 
 /* mmap(2) を活用。
    資源の開放は積極的にサボりたい。 */
+#ifdef	__unix__
 #define USE_MMAP
+#endif
 
 /* munmap(2)等の明示的な資源開放 */
 #undef EXPLICIT_RELEASE

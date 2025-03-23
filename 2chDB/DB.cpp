@@ -28,7 +28,8 @@ void init()
 const char *queryFromReadCGI(const char *bbs, const char *key)
 {
     const std::string fname = create_fname(bbs, key);
-    dat_read(fname.c_str(), 0, 0, 0);
+    if (dat_read(fname.c_str(), 0, 0, 0) == 0)
+        return "";
 
     return BigBuffer;
 }
