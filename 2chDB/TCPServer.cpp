@@ -12,7 +12,6 @@ TCPServer::TCPServer(asio::io_context &io_context)
     : io_context(io_context)
     , acceptor(io_context, tcp::endpoint(tcp::v4(), DEFAULT_PORT))
 {
-    startAccept();
 }
 
 TCPServer::~TCPServer()
@@ -57,14 +56,16 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         }
         else
         {
-            std::cout << "Received: " << buffer << std::endl;
+            // std::cout << "Received: " << buffer << std::endl;
             if (!processRequest(buffer))
                 break;
         }
     }
+
+    std::cout << "Disconnected: " << socket.remote_endpoint() << std::endl;
 }
 
-bool TCPServer::processRequest(const std::string &request)
+bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
 {
     std::istringstream iss(request);
     std::string command;
@@ -81,7 +82,7 @@ bool TCPServer::processRequest(const std::string &request)
 
         iss >> bbs >> key;
         
-        std::cout << queryFromReadCGI(bbs.c_str(), key.c_str()) << std::endl;
+        socket.send(asio::buffer(queryFromReadCGI(bbs.c_str(), key.c_str())));
     }
     else if (command == "set") {
         std::string bbs, key, source;
@@ -90,6 +91,7 @@ bool TCPServer::processRequest(const std::string &request)
         std::getline(iss, source);
 
         testWrite(bbs.c_str(), key.c_str(), source.data());
+        socket.send(asio::buffer("1"));
     }
     else if (command == "del")
     {
@@ -98,6 +100,7 @@ bool TCPServer::processRequest(const std::string &request)
         iss >> bbs >> key;
 
         testWrite(bbs.c_str(), key.c_str(), "");
+        socket.send(asio::buffer("1"));
     }
     else if (command == "create") {
         std::string bbs;
@@ -107,14 +110,14 @@ bool TCPServer::processRequest(const std::string &request)
         const auto directory = std::format("{}/dat", bbs);
 
         if (std::filesystem::create_directories(directory))
-            std::cout << "Created" << std::endl;
+            socket.send(asio::buffer("Created"));
     }
     else if (command == "remove") {
         std::string bbs;
 
         iss >> bbs;
         std::filesystem::remove_all(bbs);
-        std::cout << "Remove Completed" << std::endl;
+        socket.send(asio::buffer("Remove Completed"));
     }
 
     return true;

@@ -55,6 +55,8 @@ public:
     void testTCPServer() {
         boost::asio::io_context io_context;
         TCPServer server(io_context);
+
+        server.startAccept();
     }
 };
 
