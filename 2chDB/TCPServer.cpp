@@ -56,8 +56,7 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         }
         else
         {
-            // std::cout << "Received: " << buffer << std::endl;
-            if (!processRequest(buffer))
+            if (!processRequest(buffer, socket))
                 break;
         }
     }
@@ -82,7 +81,10 @@ bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
 
         iss >> bbs >> key;
         
-        socket.send(asio::buffer(queryFromReadCGI(bbs.c_str(), key.c_str())));
+        std::string result = queryFromReadCGI(bbs.c_str(), key.c_str());
+        if (result.empty())
+            result = "Not Found";
+        socket.send(asio::buffer(result));
     }
     else if (command == "set") {
         std::string bbs, key, source;
