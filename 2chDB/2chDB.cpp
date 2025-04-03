@@ -44,7 +44,7 @@ int main()
     TCPServer server(io_context);
 
     server.startAccept();
-    // std::cout << "Server started. Listening on port " << DEFAULT_PORT << std::endl;
+    std::cout << "Server started. Listening on port " << DEFAULT_PORT << std::endl;
 
     try {
         io_context.run();

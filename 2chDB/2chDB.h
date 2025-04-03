@@ -15,6 +15,8 @@
 
 // TODO: プログラムに必要な追加ヘッダーをここで参照します。
 
+constexpr int DEFAULT_PORT = 8082;
+
 void init();
 void testWrite(const char *bbs, const char *key, const char *source);
 const char *queryFromReadCGI(const char *bbs, const char *key);

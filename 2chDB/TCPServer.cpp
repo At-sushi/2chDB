@@ -6,11 +6,9 @@
 namespace asio = boost::asio;
 using asio::ip::tcp;
 
-constexpr int DEFAULT_PORT = 8082;
-
-TCPServer::TCPServer(asio::io_context &io_context)
+TCPServer::TCPServer(asio::io_context &io_context, int port)
     : io_context(io_context)
-    , acceptor(io_context, tcp::endpoint(tcp::v4(), DEFAULT_PORT))
+    , acceptor(io_context, tcp::endpoint(tcp::v4(), port))
 {
 }
 

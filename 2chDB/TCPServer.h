@@ -13,7 +13,8 @@ private:
     bool authenticate(boost::asio::ip::tcp::socket& socket);
 
 public:
-    explicit TCPServer(boost::asio::io_context &io_context);
+    explicit TCPServer(boost::asio::io_context &io_context, int port = DEFAULT_PORT);
+    // Destructor to close the acceptor
     ~TCPServer();
 
     void startAccept();
