@@ -11,6 +11,7 @@ class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(T2chDBTest);
     CPPUNIT_TEST(testQueryFromReadCGI);
     CPPUNIT_TEST(testWrites);
+    CPPUNIT_TEST(testNotFound);
     CPPUNIT_TEST(testTCPServer);
     CPPUNIT_TEST_SUITE_END();
 
@@ -73,7 +74,7 @@ public:
         boost::asio::io_context io_context;
         TCPServer server(io_context);
 
-        server.startAccept();
+        CPPUNIT_ASSERT_NO_THROW(server.startAccept());
     }
 };
 
