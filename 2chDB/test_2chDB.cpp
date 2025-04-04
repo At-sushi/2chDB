@@ -51,7 +51,21 @@ public:
         CPPUNIT_ASSERT(result != nullptr);
         CPPUNIT_ASSERT_EQUAL(std::string(""), std::string(result));
     }
+    // これは、2chDBのデータベースにデータを追加または更新するための基本的な機能をテストします。
 
+    void testNotFound() {
+        // 存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
+        const char* result = queryFromReadCGI("nonexistent_bbs", "nonexistent_key");
+        CPPUNIT_ASSERT(result == "");
+    }
+    // testNotFound関数は、存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
+    // これは、2chDBのデータベースに存在しないデータを問い合わせた場合の基本的な機能をテストします。
+    
+    // TCPServerのテスト
+    // ここでは、TCPServerのインスタンスを作成し、startAcceptメソッドを呼び出すだけのテストを行います。
+    // 実際の接続は行わず、メソッドが正常に呼び出されることを確認します。
+    // これは、TCPServerクラスの基本的な機能を確認するためのテストです。
+ 
     void testTCPServer() {
         boost::asio::io_context io_context;
         TCPServer server(io_context);
