@@ -56,7 +56,10 @@ public:
     void testNotFound() {
         // 存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
         const char* result = queryFromReadCGI("nonexistent_bbs", "nonexistent_key");
-        CPPUNIT_ASSERT(result == "");
+        CPPUNIT_ASSERT_EQUAL(std::string(result), std::string(""));
+        // 存在しないキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
+        result = queryFromReadCGI("news4vip", "nonexistent_key");
+        CPPUNIT_ASSERT_EQUAL(std::string(result), std::string(""));
     }
     // testNotFound関数は、存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
     // これは、2chDBのデータベースに存在しないデータを問い合わせた場合の基本的な機能をテストします。
