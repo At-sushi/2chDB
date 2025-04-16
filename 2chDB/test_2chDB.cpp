@@ -6,6 +6,7 @@
 #include <filesystem>
 #include "2chDB.h"
 #include "TCPServer.h"
+#include "DeleteCache.h"
 
 class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(T2chDBTest);
@@ -65,6 +66,26 @@ public:
     // testNotFound関数は、存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
     // これは、2chDBのデータベースに存在しないデータを問い合わせた場合の基本的な機能をテストします。
     
+    void testDeleteCache() {
+        // DeleteCacheクラスのインスタンスを作成
+        DeleteCache cache;
+
+        testWrite(TEST_BBS, "1234567890", "");
+        // ファイルの内容を確認するコード
+        const char* result = queryFromReadCGI(TEST_BBS, "1234567890");
+        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT_EQUAL(std::string(result), std::string(""));
+        CPPUNIT_ASSERT(std::filesystem::exists(std::format("{}/dat/{:04x}/{}.dat", TEST_BBS, get_hash("1234567890"), "1234567890")));
+
+        // データを追加
+        cache.add(TEST_BBS, "1234567890");
+        cache.flush();
+        // データを確認
+        CPPUNIT_ASSERT(!std::filesystem::exists(std::format("{}/dat/{:04x}/{}.dat", TEST_BBS, get_hash("1234567890"), "1234567890")));
+    }
+    // testDeleteCache関数は、DeleteCacheクラスのインスタンスを作成し、データを追加してから削除することを確認します。
+    // これは、DeleteCacheクラスの基本的な機能をテストします。
+
     // TCPServerのテスト
     // ここでは、TCPServerのインスタンスを作成し、startAcceptメソッドを呼び出すだけのテストを行います。
     // 実際の接続は行わず、メソッドが正常に呼び出されることを確認します。

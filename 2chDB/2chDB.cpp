@@ -19,23 +19,6 @@ namespace asio = boost::asio;
 //     std::uint32_t size;
 // };
 
-struct BBSKey {
-    std::string bbs;
-    std::string key;
-
-    auto operator <=> (const BBSKey&) const = default;
-};
-
-template <> struct std::hash<BBSKey>{
-    using argument_type = BBSKey;
-    using result_type = std::size_t;
-
-    result_type operator()(const argument_type &arg) const noexcept
-    {
-        return std::hash<std::string>{}(arg.bbs) ^ std::hash<std::string>{}(arg.key);
-    }
-};
-
 int main()
 {
     init();
