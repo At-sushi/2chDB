@@ -54,6 +54,9 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         }
         else
         {
+            std::cout << "Received: " << buffer << std::endl;
+            if (buffer == "exit")
+                break;
             if (!processRequest(buffer, socket))
                 break;
         }
@@ -91,6 +94,8 @@ bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
         std::getline(iss, source);
 
         testWrite(bbs.c_str(), key.c_str(), source.data());
+        deleteFlag.erase(bbs, key);
+
         socket.send(asio::buffer("1"));
     }
     else if (command == "del")
@@ -100,6 +105,8 @@ bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
         iss >> bbs >> key;
 
         testWrite(bbs.c_str(), key.c_str(), "");
+        deleteFlag.add(bbs, key);
+
         socket.send(asio::buffer("1"));
     }
     else if (command == "create") {
@@ -118,6 +125,36 @@ bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
         iss >> bbs;
         std::filesystem::remove_all(bbs);
         socket.send(asio::buffer("Remove Completed"));
+    }
+    else if (command == "ls") {
+        std::string bbs;
+
+        iss >> bbs;
+        std::ostringstream oss;
+        for (const auto& entry : std::filesystem::directory_iterator(bbs)) {
+            oss << entry.path().stem().string() << "\n";
+        }
+        socket.send(asio::buffer(oss.str()));
+    }
+    else if (command == "help") {
+        const std::string help_message = "Available commands:\n"
+                                    "get <bbs> <key> - Get data\n"
+                                    "set <bbs> <key> <data> - Set data\n"
+                                    "del <bbs> <key> - Delete data\n"
+                                    "create <bbs> - Create directory\n"
+                                    "remove <bbs> - Remove directory\n"
+                                    "ls <bbs> - List files in directory\n"
+                                    "help - Show this help message\n"
+                                    "gc - Run garbage collection\n"
+                                    "exit - Exit the server\n";
+        socket.send(asio::buffer(help_message));
+    }
+    else if (command == "gc") {
+        deleteFlag.flush();
+        socket.send(asio::buffer("Garbage collection completed"));
+    }
+    else {
+        socket.send(asio::buffer("Unknown command"));
     }
 
     return true;

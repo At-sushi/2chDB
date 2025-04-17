@@ -9,7 +9,7 @@
 #include <format>
 #include <string_view>
 
-class DeleteCache
+class DeleteFlag
 {
 private:
     /* data */
@@ -28,8 +28,8 @@ private:
     std::mutex m_mutex; // スレッドセーフのためのミューテックス
 
 public:
-    DeleteCache() = default;
-    ~DeleteCache() {
+    DeleteFlag() = default;
+    ~DeleteFlag() {
         try {
             flush(); // キャッシュをフラッシュ
         }

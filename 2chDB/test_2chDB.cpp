@@ -6,7 +6,7 @@
 #include <filesystem>
 #include "2chDB.h"
 #include "TCPServer.h"
-#include "DeleteCache.h"
+#include "DeleteFlag.h"
 
 class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(T2chDBTest);
@@ -67,9 +67,9 @@ public:
     // testNotFound関数は、存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
     // これは、2chDBのデータベースに存在しないデータを問い合わせた場合の基本的な機能をテストします。
     
-    void testDeleteCache() {
+    void testDeleteFlag() {
         // DeleteCacheクラスのインスタンスを作成
-        DeleteCache cache;
+        DeleteFlag cache;
 
         testWrite(TEST_BBS, "1234567890", "");
         // ファイルの内容を確認するコード

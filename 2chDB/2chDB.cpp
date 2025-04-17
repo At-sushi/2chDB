@@ -36,6 +36,9 @@ int main()
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
+    server.deleteFlaggedFiles(); // Delete flagged files before exiting
+    std::cout << "Server stopped." << std::endl;
+
     return 0;
 }
 

@@ -54,4 +54,11 @@ void testWrite(const char *bbs, const char *key, const char *source)
     }
 
     ofs << source;
+    
+    ofs.close();
+    if (ofs.fail())
+    {
+        std::cerr << "Failed to write to file: " << fname << std::endl;
+        return;
+    }
 }
