@@ -13,7 +13,7 @@ class T2chDBTest : public CppUnit::TestFixture {
     CPPUNIT_TEST(testQueryFromReadCGI);
     CPPUNIT_TEST(testWrites);
     CPPUNIT_TEST(testNotFound);
-    CPPUNIT_TEST(testDeleteCache);
+    CPPUNIT_TEST(testDeleteFlag);
     CPPUNIT_TEST(testTCPServer);
     CPPUNIT_TEST_SUITE_END();
 
