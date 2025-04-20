@@ -46,14 +46,19 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
     boost::system::error_code ec;
 
     for (;;) {
-        asio::read(socket, asio::buffer(buffer), ec);
-
-        if (ec)
-        {
-            std::cerr << "Failed to read: " << ec.message() << std::endl;
+        asio::read_until(socket, asio::buffer(buffer), ec, "\n");
+ 
+        if (ec == asio::error::eof) {
+            break; // Connection closed cleanly by peer
         }
-        else
-        {
+        else if (ec == asio::error::operation_aborted) {
+            break; // Operation was aborted
+        }
+        else if (ec) {
+            std::cerr << "Failed to read: " << ec.message() << std::endl;
+            break;
+        }
+        else {
             std::cout << "Received: " << buffer << std::endl;
             if (buffer == "exit")
                 break;
@@ -164,6 +169,5 @@ bool TCPServer::authenticate(tcp::socket& socket)
 {
     asio::write(socket, asio::buffer("Please specify your username: "));
     std::string username;
-    std::getline(std::cin, username);
     return true;
 }
