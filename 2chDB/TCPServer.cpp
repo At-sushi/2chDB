@@ -42,11 +42,11 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
         return;
     }
 
-    std::string buffer;
+    asio::streambuf response;
     boost::system::error_code ec;
 
     for (;;) {
-        asio::read_until(socket, asio::buffer(buffer), '\n', ec);
+        asio::read_until(socket, response, "\n", ec);
  
         if (ec == asio::error::eof) {
             break; // Connection closed cleanly by peer
@@ -59,10 +59,7 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
             break;
         }
         else {
-            std::cout << "Received: " << buffer << std::endl;
-            if (buffer == "exit")
-                break;
-            if (!processRequest(buffer, socket))
+            if (!processRequest(std::istream(&response), socket))
                 break;
         }
     }
@@ -70,9 +67,8 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
     std::cout << "Disconnected: " << socket.remote_endpoint() << std::endl;
 }
 
-bool TCPServer::processRequest(const std::string &request, tcp::socket& socket)
+bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
 {
-    std::istringstream iss(request);
     std::string command;
 
     iss >> command;

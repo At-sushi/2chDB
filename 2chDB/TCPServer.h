@@ -13,7 +13,7 @@ private:
     DeleteFlag deleteFlag; // DeleteFlagのインスタンスを追加
 
     void onAccept(boost::asio::ip::tcp::socket &socket, const boost::system::error_code &error);
-    bool processRequest(const std::string &request, boost::asio::ip::tcp::socket &socket);
+    bool processRequest(std::istream iss, boost::asio::ip::tcp::socket &socket);
     // Function to handle authentication
     bool authenticate(boost::asio::ip::tcp::socket& socket);
 
