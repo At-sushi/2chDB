@@ -86,7 +86,7 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
         std::string result = queryFromReadCGI(bbs.c_str(), key.c_str());
         if (result.empty())
             result = "Not Found";
-        socket.send(asio::buffer(result));
+        socket.send(asio::buffer(result + "\n"));
     }
     else if (command == "set") {
         std::string bbs, key, source;
@@ -97,7 +97,7 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
         testWrite(bbs.c_str(), key.c_str(), source.data());
         deleteFlag.erase(bbs, key);
 
-        socket.send(asio::buffer("1"));
+        socket.send(asio::buffer("Written\n"));
     }
     else if (command == "del")
     {
@@ -108,7 +108,7 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
         testWrite(bbs.c_str(), key.c_str(), "");
         deleteFlag.add(bbs, key);
 
-        socket.send(asio::buffer("1"));
+        socket.send(asio::buffer("Deleted\n"));
     }
     else if (command == "create") {
         std::string bbs;
@@ -118,14 +118,14 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
         const auto directory = std::format("{}/dat", bbs);
 
         if (std::filesystem::create_directories(directory))
-            socket.send(asio::buffer("Created"));
+            socket.send(asio::buffer("Created\n"));
     }
     else if (command == "remove") {
         std::string bbs;
 
         iss >> bbs;
         std::filesystem::remove_all(bbs);
-        socket.send(asio::buffer("Remove Completed"));
+        socket.send(asio::buffer("Remove Completed\n"));
     }
     else if (command == "ls") {
         std::string bbs;
@@ -152,10 +152,10 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
     }
     else if (command == "gc") {
         deleteFlag.flush();
-        socket.send(asio::buffer("Garbage collection completed"));
+        socket.send(asio::buffer("Garbage collection completed\n"));
     }
     else {
-        socket.send(asio::buffer("Unknown command"));
+        socket.send(asio::buffer("Unknown command\n"));
     }
 
     return true;
