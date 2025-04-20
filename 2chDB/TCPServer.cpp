@@ -46,7 +46,7 @@ void TCPServer::onAccept(tcp::socket& socket, const boost::system::error_code &e
     boost::system::error_code ec;
 
     for (;;) {
-        asio::read_until(socket, asio::buffer(buffer), ec, "\n");
+        asio::read_until(socket, asio::buffer(buffer), '\n', ec);
  
         if (ec == asio::error::eof) {
             break; // Connection closed cleanly by peer
