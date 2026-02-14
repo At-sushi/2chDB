@@ -56,6 +56,27 @@ public:
     }
     // これは、2chDBのデータベースにデータを追加または更新するための基本的な機能をテストします。
 
+    void testWritesAppend() {
+        testWrite(TEST_BBS, "1234567890", TEST_STR);
+        // ファイルの内容を確認するコード
+        const char* result = queryFromReadCGI(TEST_BBS, "1234567890");
+        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR), std::string(result));
+
+        // ファイルの上書き
+        testWrite(TEST_BBS, "1234567890", "changed", true);
+        result = queryFromReadCGI(TEST_BBS, "1234567890");
+        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT_EQUAL(std::string(TEST_STR) + std::string("changed"), std::string(result));
+
+        // ファイルの削除
+        testWrite(TEST_BBS, "1234567890", "");
+        result = queryFromReadCGI(TEST_BBS, "1234567890");
+        CPPUNIT_ASSERT(result != nullptr);
+        CPPUNIT_ASSERT_EQUAL(std::string(""), std::string(result));
+    }
+    // これは、2chDBのデータベースにデータを追加または更新するための基本的な機能をテストします。
+
     void testNotFound() {
         // 存在しないBBSとキーを指定して、queryFromReadCGIがnullptrを返すことを確認します。
         const char* result = queryFromReadCGI("nonexistent_bbs", "nonexistent_key");

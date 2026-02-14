@@ -18,7 +18,7 @@
 constexpr int DEFAULT_PORT = 8082;
 
 void init();
-void testWrite(const char *bbs, const char *key, const char *source);
+void testWrite(const char *bbs, const char *key, const char *source, bool isAppend = false);
 const char *queryFromReadCGI(const char *bbs, const char *key);
 
 inline constexpr std::uint16_t get_hash(const std::string_view &key)

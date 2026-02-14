@@ -99,6 +99,17 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
 
         socket.send(asio::buffer("Written\n"));
     }
+    else if (command == "add") {
+        std::string bbs, key, source;
+
+        iss >> bbs >> key;
+        std::getline(iss, source);
+
+        testWrite(bbs.c_str(), key.c_str(), source.data(), true);
+        deleteFlag.erase(bbs, key);
+
+        socket.send(asio::buffer("Appended\n"));
+    }
     else if (command == "del")
     {
         std::string bbs, key;
@@ -141,6 +152,7 @@ bool TCPServer::processRequest(std::istream iss, tcp::socket& socket)
         const std::string help_message = "Available commands:\n"
                                     "get <bbs> <key> - Get data\n"
                                     "set <bbs> <key> <data> - Set data\n"
+                                    "add <bbs> <key> <data> - Append data\n"
                                     "del <bbs> <key> - Delete data\n"
                                     "create <bbs> - Create directory\n"
                                     "remove <bbs> - Remove directory\n"

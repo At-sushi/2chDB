@@ -39,14 +39,16 @@ const char *queryFromReadCGI(const char *bbs, const char *key)
     return BigBuffer;
 }
 
-void testWrite(const char *bbs, const char *key, const char *source)
+void testWrite(const char *bbs, const char *key, const char *source, bool isAppend /* = false*/)
 {
     const std::filesystem::path fname = create_fname(bbs, key);
 
     // create a directory if it does not exist
     std::filesystem::create_directory(fname.parent_path());
 
-    std::ofstream ofs(fname, std::ios_base::out | std::ios_base::binary);
+	const std::ios_base::openmode mode = isAppend ? std::ios_base::app : std::ios_base::trunc;
+
+    std::ofstream ofs(fname, mode | std::ios_base::out | std::ios_base::binary);
     if (!ofs)
     {
         std::cerr << "Failed to open file: " << fname << std::endl;
